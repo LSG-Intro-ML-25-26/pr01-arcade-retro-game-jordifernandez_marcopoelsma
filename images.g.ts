@@ -1,4 +1,4 @@
-// Auto-generated code. Do not edit.
+// Código generado automáticamente. No editar.
 namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
@@ -240,17 +240,72 @@ f f f c 3 c c c c c c f . .
 . . . . f f f f f f . . . . 
 . . . . . f f f . . . . . . 
 `];
+            case "nena-animation-left0":
+            case "anim5":return [img`
+. . . . . . . . . . . . . . 
+. . . . f f f f f . f f f . 
+. . . f f c c c c f f f f f 
+. . f c c c c c c b f f f f 
+. . f c c c c c c 3 c f f f 
+. f c c c c c c c c 3 3 f . 
+. f c c 4 c c c c c f f f . 
+. f f c 4 4 c c c f f f f . 
+. f f f 4 4 f b f 4 4 f f . 
+. . f c d d f 1 4 d 4 f f . 
+. . . f d d d d 4 f f f . . 
+. . . f e 4 4 4 e d d 4 . . 
+. . . f 3 3 3 3 e d d e . . 
+. . f f 6 6 6 6 f e e f . . 
+. . f f f f f f f f f f . . 
+. . . f f f . . . f f . . . 
+`, img`
+. . . . . . . . . . . . . . 
+. . . . f f f f f . f f f . 
+. . . f f c c c c f f f f f 
+. . f c c c c c c b f f f f 
+. . f c c c c c c 3 c f f f 
+. f c c c c c c c c 3 3 f . 
+. f c c 4 c c c c c f f f . 
+. f f c 4 4 c c c f f f f . 
+. f f f 4 4 f b f 4 4 f f . 
+. . f f d d f 1 4 d 4 f . . 
+. . . f d d d e e f f f . . 
+. . . f e 4 e d d 4 f . . . 
+. . . f 3 3 e d d e f . . . 
+. . f f 6 6 f e e f f f . . 
+. . f f f f f f f f f f . . 
+. . . f f f . . . f f . . . 
+`, img`
+. . . . f f f f f . f f f . 
+. . . f f c c c c f f f f f 
+. . f c c c c c c b f f f f 
+. . f c c c c c c 3 c f f f 
+. f c c c c c c c c 3 3 f . 
+. f c c 4 c c c c c f f f . 
+. f f e 4 4 c c c f f f f . 
+. f f e 4 4 f b f 4 4 f f . 
+. . f f d d f 1 4 d 4 f . . 
+. . . f d d d d 4 f f f . . 
+. . . f e 4 4 4 e e f . . . 
+. . . f 3 3 3 e d d 4 . . . 
+. . . f 3 3 3 e d d e . . . 
+. . . f 6 6 6 f e e f . . . 
+. . . . f f f f f f . . . . 
+. . . . . . f f f . . . . . 
+`];
         }
         return null;
     })
 
     helpers._registerFactory("song", function(name: string) {
         switch(helpers.stringTrim(name)) {
+            case "song2":
+            case "white_space0":return hex`00dc000408020301001c000f05001202c102c20100040500280000006400280003140006020004360000000400012508000c0001240c001000012510001400012918001c00012720002400012428002c00012030003400012438003c00012002001c000c960064006d019001000478002c010000640032000000000a060005180000001000012210002000012020003000012430004000012708001c000e050046006603320000040a002d00000064001400013200020100023000000004000119040008000119100014000119140018000119200024000119240028000119300034000119340038000119`;
             case "song1":
-            case "white_space":return hex`0064000408020200001c00010a006400f4016400000400000000000000000000000000050000041e0000000800010a08001000010d10001800011118002800011828002c00011802001c000c960064006d019001000478002c010000640032000000000a000005240000000800012c08001000012a10001800012918002000012c20002800012a280030000129`;
+            case "white_space":return hex`006e000408020301001c000f05001202c102c20100040500280000006400280003140006020004300000000400012508000c0001240c001000012510001400012918001c00012720002400012428002c00012030003400011d02001c000c960064006d019001000478002c010000640032000000000a060005180000001000012210002000012020003000012430004000012008001c000e050046006603320000040a002d00000064001400013200020100023000000004000119040008000119100014000119140018000119200024000119240028000119300034000119340038000119`;
         }
         return null;
     })
 
 }
-// Auto-generated code. Do not edit.
+// Código generado automáticamente. No editar.

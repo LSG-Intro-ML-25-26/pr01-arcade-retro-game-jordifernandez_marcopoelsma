@@ -1,698 +1,557 @@
-controller.right.onEvent(ControllerButtonEvent.Released, function () {
+controller.right.onEvent(ControllerButtonEvent.Released, function on_right_released() {
     if (controller.left.isPressed()) {
         if (controller.up.isPressed()) {
             if (controller.up.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-left0`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-left0
+                        `, 100, true)
             }
+            
         } else if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-down`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-down
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-left0`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-left0
+                    `, 100, true)
         }
+        
     } else if (controller.up.isPressed()) {
         if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f f . . . . 
-                f f f f f c c c c f f . . . 
-                f f f f b c c c c c c f . . 
-                f f f c 3 c c c c c c f . . 
-                . f 3 3 c c c c c c c c f . 
-                . f f f c c c c c 4 c c f . 
-                . f f f f c c c 4 4 e f f . 
-                . f f 4 4 f b f 4 4 e f f . 
-                . . f 4 d 4 1 f d d f f . . 
-                . . f f f 4 d d d d f . . . 
-                . . . f e e 4 4 4 e f . . . 
-                . . . 4 d d e 3 3 3 f . . . 
-                . . . e d d e 3 3 3 f . . . 
-                . . . f e e f 6 6 6 f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . f f f . . . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f f . . . .
+                    f f f f f c c c c f f . . .
+                    f f f f b c c c c c c f . .
+                    f f f c 3 c c c c c c f . .
+                    . f 3 3 c c c c c c c c f .
+                    . f f f c c c c c 4 c c f .
+                    . f f f f c c c 4 4 e f f .
+                    . f f 4 4 f b f 4 4 e f f .
+                    . . f 4 d 4 1 f d d f f . .
+                    . . f f f 4 d d d d f . . .
+                    . . . f e e 4 4 4 e f . . .
+                    . . . 4 d d e 3 3 3 f . . .
+                    . . . e d d e 3 3 3 f . . .
+                    . . . f e e f 6 6 6 f . . .
+                    . . . . f f f f f f . . . .
+                    . . . . . f f f . . . . . .
+                    `], 0, false)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-up
+                    `, 100, true)
         }
+        
     } else if (controller.down.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-down`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-down
+                `, 100, true)
     } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . f f f . f f f f f . . . . 
-            f f f f f c c c c f f . . . 
-            f f f f b c c c c c c f . . 
-            f f f c 3 c c c c c c f . . 
-            . f 3 3 c c c c c c c c f . 
-            . f f f c c c c c 4 c c f . 
-            . f f f f c c c 4 4 e f f . 
-            . f f 4 4 f b f 4 4 e f f . 
-            . . f 4 d 4 1 f d d f f . . 
-            . . f f f 4 d d d d f . . . 
-            . . . f e e 4 4 4 e f . . . 
-            . . . 4 d d e 3 3 3 f . . . 
-            . . . e d d e 3 3 3 f . . . 
-            . . . f e e f 6 6 6 f . . . 
-            . . . . f f f f f f . . . . 
-            . . . . . f f f . . . . . . 
-            `],
-        0,
-        false
-        )
+        animation.runImageAnimation(nena, [img`
+                . f f f . f f f f f . . . .
+                f f f f f c c c c f f . . .
+                f f f f b c c c c c c f . .
+                f f f c 3 c c c c c c f . .
+                . f 3 3 c c c c c c c c f .
+                . f f f c c c c c 4 c c f .
+                . f f f f c c c 4 4 e f f .
+                . f f 4 4 f b f 4 4 e f f .
+                . . f 4 d 4 1 f d d f f . .
+                . . f f f 4 d d d d f . . .
+                . . . f e e 4 4 4 e f . . .
+                . . . 4 d d e 3 3 3 f . . .
+                . . . e d d e 3 3 3 f . . .
+                . . . f e e f 6 6 6 f . . .
+                . . . . f f f f f f . . . .
+                . . . . . f f f . . . . . .
+                `], 0, false)
     }
+    
 })
-controller.left.onEvent(ControllerButtonEvent.Released, function () {
+controller.left.onEvent(ControllerButtonEvent.Released, function on_left_released() {
     if (controller.right.isPressed()) {
         if (controller.down.isPressed()) {
             if (controller.up.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-right`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-right
+                        `, 100, true)
             }
+            
         } else if (controller.up.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-up
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-right
+                    `, 100, true)
         }
+        
     } else if (controller.up.isPressed()) {
         if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . . . . f f f f f . f f f . 
-                . . . f f c c c c f f f f f 
-                . . f c c c c c c b f f f f 
-                . . f c c c c c c 3 c f f f 
-                . f c c c c c c c c 3 3 f . 
-                . f c c 4 c c c c c f f f . 
-                . f f e 4 4 c c c f f f f . 
-                . f f e 4 4 f b f 4 4 f f . 
-                . . f f d d f 1 4 d 4 f . . 
-                . . . f d d d d 4 f f f . . 
-                . . . f e 4 4 4 e e f . . . 
-                . . . f 3 3 3 e d d 4 . . . 
-                . . . f 3 3 3 e d d e . . . 
-                . . . f 6 6 6 f e e f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . . f f f . . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . . . . f f f f f . f f f .
+                    . . . f f c c c c f f f f f
+                    . . f c c c c c c b f f f f
+                    . . f c c c c c c 3 c f f f
+                    . f c c c c c c c c 3 3 f .
+                    . f c c 4 c c c c c f f f .
+                    . f f e 4 4 c c c f f f f .
+                    . f f e 4 4 f b f 4 4 f f .
+                    . . f f d d f 1 4 d 4 f . .
+                    . . . f d d d d 4 f f f . .
+                    . . . f e 4 4 4 e e f . . .
+                    . . . f 3 3 3 e d d 4 . . .
+                    . . . f 3 3 3 e d d e . . .
+                    . . . f 6 6 6 f e e f . . .
+                    . . . . f f f f f f . . . .
+                    . . . . . . f f f . . . . .
+                    `], 0, false)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-up
+                    `, 100, true)
         }
+        
     } else if (controller.down.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-down`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-down
+                `, 100, true)
     } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . . . . f f f f f . f f f . 
-            . . . f f c c c c f f f f f 
-            . . f c c c c c c b f f f f 
-            . . f c c c c c c 3 c f f f 
-            . f c c c c c c c c 3 3 f . 
-            . f c c 4 c c c c c f f f . 
-            . f f e 4 4 c c c f f f f . 
-            . f f e 4 4 f b f 4 4 f f . 
-            . . f f d d f 1 4 d 4 f . . 
-            . . . f d d d d 4 f f f . . 
-            . . . f e 4 4 4 e e f . . . 
-            . . . f 3 3 3 e d d 4 . . . 
-            . . . f 3 3 3 e d d e . . . 
-            . . . f 6 6 6 f e e f . . . 
-            . . . . f f f f f f . . . . 
-            . . . . . . f f f . . . . . 
-            `],
-        0,
-        false
-        )
+        animation.runImageAnimation(nena, [img`
+                . . . . f f f f f . f f f .
+                . . . f f c c c c f f f f f
+                . . f c c c c c c b f f f f
+                . . f c c c c c c 3 c f f f
+                . f c c c c c c c c 3 3 f .
+                . f c c 4 c c c c c f f f .
+                . f f e 4 4 c c c f f f f .
+                . f f e 4 4 f b f 4 4 f f .
+                . . f f d d f 1 4 d 4 f . .
+                . . . f d d d d 4 f f f . .
+                . . . f e 4 4 4 e e f . . .
+                . . . f 3 3 3 e d d 4 . . .
+                . . . f 3 3 3 e d d e . . .
+                . . . f 6 6 6 f e e f . . .
+                . . . . f f f f f f . . . .
+                . . . . . . f f f . . . . .
+                `], 0, false)
     }
+    
 })
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.down.onEvent(ControllerButtonEvent.Pressed, function on_down_pressed() {
     if (controller.up.isPressed()) {
         if (controller.left.isPressed()) {
             if (controller.right.isPressed()) {
-            	
+                
             } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-left0`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-left0
+                        `, 100, true)
             }
+            
         } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-right
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c c c c c c c f . 
-                . f f c c c c c c c c f f . 
-                . f f f c c c c c c f f f . 
-                . f f f f f f f f f f f f . 
-                . . f f f f f f f f f f . . 
-                . . e f f f f f f f f e . . 
-                . e 4 f f f f f f f f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f . f f f .
+                    f f f f f c c c c f f f f f
+                    f f f f b c c c c b f f f f
+                    f f f c 3 c c c c 3 c f f f
+                    . f 3 3 c c c c c c 3 3 f .
+                    . f c c c c c c c c c c f .
+                    . f f c c c c c c c c f f .
+                    . f f f c c c c c c f f f .
+                    . f f f f f f f f f f f f .
+                    . . f f f f f f f f f f . .
+                    . . e f f f f f f f f e . .
+                    . e 4 f f f f f f f f 4 e .
+                    . 4 d f 3 3 3 3 3 3 c d 4 .
+                    . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                    . . . . f f f f f f . . . .
+                    . . . . f f . . f f . . . .
+                    `], 0, false)
         }
+        
     } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-down`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-down
+                `, 100, true)
     }
+    
 })
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.right.onEvent(ControllerButtonEvent.Pressed, function on_right_pressed() {
     if (controller.left.isPressed()) {
         if (controller.down.isPressed()) {
             if (controller.up.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f f . . . . 
-                    f f f f f c c c c f f . . . 
-                    f f f f b c c c c c c f . . 
-                    f f f c 3 c c c c c c f . . 
-                    . f 3 3 c c c c c c c c f . 
-                    . f f f c c c c c 4 c c f . 
-                    . f f f f c c c 4 4 e f f . 
-                    . f f 4 4 f b f 4 4 e f f . 
-                    . . f 4 d 4 1 f d d f f . . 
-                    . . f f f 4 d d d d f . . . 
-                    . . . f e e 4 4 4 e f . . . 
-                    . . . 4 d d e 3 3 3 f . . . 
-                    . . . e d d e 3 3 3 f . . . 
-                    . . . f e e f 6 6 6 f . . . 
-                    . . . . f f f f f f . . . . 
-                    . . . . . f f f . . . . . . 
-                    `],
-                0,
-                false
-                )
+                animation.runImageAnimation(nena, [img`
+                        . f f f . f f f f f . . . .
+                        f f f f f c c c c f f . . .
+                        f f f f b c c c c c c f . .
+                        f f f c 3 c c c c c c f . .
+                        . f 3 3 c c c c c c c c f .
+                        . f f f c c c c c 4 c c f .
+                        . f f f f c c c 4 4 e f f .
+                        . f f 4 4 f b f 4 4 e f f .
+                        . . f 4 d 4 1 f d d f f . .
+                        . . f f f 4 d d d d f . . .
+                        . . . f e e 4 4 4 e f . . .
+                        . . . 4 d d e 3 3 3 f . . .
+                        . . . e d d e 3 3 3 f . . .
+                        . . . f e e f 6 6 6 f . . .
+                        . . . . f f f f f f . . . .
+                        . . . . . f f f . . . . . .
+                        `], 0, false)
             } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-up`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-up
+                        `, 100, true)
             }
+            
         } else if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-down`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-down
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . . . . f f f f f . f f f . 
-                . . . f f c c c c f f f f f 
-                . . f c c c c c c b f f f f 
-                . . f c c c c c c 3 c f f f 
-                . f c c c c c c c c 3 3 f . 
-                . f c c 4 c c c c c f f f . 
-                . f f e 4 4 c c c f f f f . 
-                . f f e 4 4 f b f 4 4 f f . 
-                . . f f d d f 1 4 d 4 f . . 
-                . . . f d d d d 4 f f f . . 
-                . . . f e 4 4 4 e e f . . . 
-                . . . f 3 3 3 e d d 4 . . . 
-                . . . f 3 3 3 e d d e . . . 
-                . . . f 6 6 6 f e e f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . . f f f . . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . . . . f f f f f . f f f .
+                    . . . f f c c c c f f f f f
+                    . . f c c c c c c b f f f f
+                    . . f c c c c c c 3 c f f f
+                    . f c c c c c c c c 3 3 f .
+                    . f c c 4 c c c c c f f f .
+                    . f f e 4 4 c c c f f f f .
+                    . f f e 4 4 f b f 4 4 f f .
+                    . . f f d d f 1 4 d 4 f . .
+                    . . . f d d d d 4 f f f . .
+                    . . . f e 4 4 4 e e f . . .
+                    . . . f 3 3 3 e d d 4 . . .
+                    . . . f 3 3 3 e d d e . . .
+                    . . . f 6 6 6 f e e f . . .
+                    . . . . f f f f f f . . . .
+                    . . . . . . f f f . . . . .
+                    `], 0, false)
         }
+        
     } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-right`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-right
+                `, 100, true)
     }
+    
 })
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.left.onEvent(ControllerButtonEvent.Pressed, function on_left_pressed() {
     if (controller.right.isPressed()) {
         if (controller.up.isPressed()) {
             if (controller.down.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . . . . f f f f f . f f f . 
-                    . . . f f c c c c f f f f f 
-                    . . f c c c c c c b f f f f 
-                    . . f c c c c c c 3 c f f f 
-                    . f c c c c c c c c 3 3 f . 
-                    . f c c 4 c c c c c f f f . 
-                    . f f e 4 4 c c c f f f f . 
-                    . f f e 4 4 f b f 4 4 f f . 
-                    . . f f d d f 1 4 d 4 f . . 
-                    . . . f d d d d 4 f f f . . 
-                    . . . f e 4 4 4 e e f . . . 
-                    . . . f 3 3 3 e d d 4 . . . 
-                    . . . f 3 3 3 e d d e . . . 
-                    . . . f 6 6 6 f e e f . . . 
-                    . . . . f f f f f f . . . . 
-                    . . . . . . f f f . . . . . 
-                    `],
-                0,
-                false
-                )
+                animation.runImageAnimation(nena, [img`
+                        . . . . f f f f f . f f f .
+                        . . . f f c c c c f f f f f
+                        . . f c c c c c c b f f f f
+                        . . f c c c c c c 3 c f f f
+                        . f c c c c c c c c 3 3 f .
+                        . f c c 4 c c c c c f f f .
+                        . f f e 4 4 c c c f f f f .
+                        . f f e 4 4 f b f 4 4 f f .
+                        . . f f d d f 1 4 d 4 f . .
+                        . . . f d d d d 4 f f f . .
+                        . . . f e 4 4 4 e e f . . .
+                        . . . f 3 3 3 e d d 4 . . .
+                        . . . f 3 3 3 e d d e . . .
+                        . . . f 6 6 6 f e e f . . .
+                        . . . . f f f f f f . . . .
+                        . . . . . . f f f . . . . .
+                        `], 0, false)
             } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-up`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-up
+                        `, 100, true)
             }
+            
         } else if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-down`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-down
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f f . . . . 
-                f f f f f c c c c f f . . . 
-                f f f f b c c c c c c f . . 
-                f f f c 3 c c c c c c f . . 
-                . f 3 3 c c c c c c c c f . 
-                . f f f c c c c c 4 c c f . 
-                . f f f f c c c 4 4 e f f . 
-                . f f 4 4 f b f 4 4 e f f . 
-                . . f 4 d 4 1 f d d f f . . 
-                . . f f f 4 d d d d f . . . 
-                . . . f e e 4 4 4 e f . . . 
-                . . . 4 d d e 3 3 3 f . . . 
-                . . . e d d e 3 3 3 f . . . 
-                . . . f e e f 6 6 6 f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . f f f . . . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f f . . . .
+                    f f f f f c c c c f f . . .
+                    f f f f b c c c c c c f . .
+                    f f f c 3 c c c c c c f . .
+                    . f 3 3 c c c c c c c c f .
+                    . f f f c c c c c 4 c c f .
+                    . f f f f c c c 4 4 e f f .
+                    . f f 4 4 f b f 4 4 e f f .
+                    . . f 4 d 4 1 f d d f f . .
+                    . . f f f 4 d d d d f . . .
+                    . . . f e e 4 4 4 e f . . .
+                    . . . 4 d d e 3 3 3 f . . .
+                    . . . e d d e 3 3 3 f . . .
+                    . . . f e e f 6 6 6 f . . .
+                    . . . . f f f f f f . . . .
+                    . . . . . f f f . . . . . .
+                    `], 0, false)
         }
+        
     } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-left0`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-left0
+                `, 100, true)
     }
+    
 })
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.up.onEvent(ControllerButtonEvent.Pressed, function on_up_pressed() {
     if (controller.down.isPressed()) {
         if (controller.left.isPressed()) {
             if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f . f f f . 
-                    f f f f f c c c c f f f f f 
-                    f f f f b c c c c b f f f f 
-                    f f f c 3 c c c c 3 c f f f 
-                    . f 3 3 c c c c c c 3 3 f . 
-                    . f c c c c c c c c c c f . 
-                    . f f c c c c c c c c f f . 
-                    . f f f c c c c c c f f f . 
-                    . f f f f f f f f f f f f . 
-                    . . f f f f f f f f f f . . 
-                    . . e f f f f f f f f e . . 
-                    . e 4 f f f f f f f f 4 e . 
-                    . 4 d f 3 3 3 3 3 3 c d 4 . 
-                    . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                    . . . . f f f f f f . . . . 
-                    . . . . f f . . f f . . . . 
-                    `],
-                0,
-                false
-                )
+                animation.runImageAnimation(nena, [img`
+                        . f f f . f f f f . f f f .
+                        f f f f f c c c c f f f f f
+                        f f f f b c c c c b f f f f
+                        f f f c 3 c c c c 3 c f f f
+                        . f 3 3 c c c c c c 3 3 f .
+                        . f c c c c c c c c c c f .
+                        . f f c c c c c c c c f f .
+                        . f f f c c c c c c f f f .
+                        . f f f f f f f f f f f f .
+                        . . f f f f f f f f f f . .
+                        . . e f f f f f f f f e . .
+                        . e 4 f f f f f f f f 4 e .
+                        . 4 d f 3 3 3 3 3 3 c d 4 .
+                        . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                        . . . . f f f f f f . . . .
+                        . . . . f f . . f f . . . .
+                        `], 0, false)
             } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-left0`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-left0
+                        `, 100, true)
             }
+            
         } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-right
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c 4 4 c c c c f . 
-                . f f c c 4 4 4 4 c c f f . 
-                . f f f b f 4 4 f b f f f . 
-                . f f 4 1 f d d f 1 4 f f . 
-                . . f f d d d d d d f f . . 
-                . . e f e 4 4 4 4 e f e . . 
-                . e 4 f b 3 3 3 3 b f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            true
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f . f f f .
+                    f f f f f c c c c f f f f f
+                    f f f f b c c c c b f f f f
+                    f f f c 3 c c c c 3 c f f f
+                    . f 3 3 c c c c c c 3 3 f .
+                    . f c c c c 4 4 c c c c f .
+                    . f f c c 4 4 4 4 c c f f .
+                    . f f f b f 4 4 f b f f f .
+                    . f f 4 1 f d d f 1 4 f f .
+                    . . f f d d d d d d f f . .
+                    . . e f e 4 4 4 4 e f e . .
+                    . e 4 f b 3 3 3 3 b f 4 e .
+                    . 4 d f 3 3 3 3 3 3 c d 4 .
+                    . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                    . . . . f f f f f f . . . .
+                    . . . . f f . . f f . . . .
+                    `], 0, true)
         }
+        
     } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-up`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-up
+                `, 100, true)
     }
+    
 })
-controller.down.onEvent(ControllerButtonEvent.Released, function () {
+controller.down.onEvent(ControllerButtonEvent.Released, function on_down_released() {
     if (controller.up.isPressed()) {
         if (controller.left.isPressed()) {
             if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-up`,
-                100,
-                true
-                )
+                animation.runImageAnimation(nena, assets.animation`
+                        nena-animation-up
+                        `, 100, true)
             }
+            
         } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-right
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-up
+                    `, 100, true)
         }
+        
     } else if (controller.left.isPressed()) {
         if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c 4 4 c c c c f . 
-                . f f c c 4 4 4 4 c c f f . 
-                . f f f b f 4 4 f b f f f . 
-                . f f 4 1 f d d f 1 4 f f . 
-                . . f f d d d d d d f f . . 
-                . . e f e 4 4 4 4 e f e . . 
-                . e 4 f b 3 3 3 3 b f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f . f f f .
+                    f f f f f c c c c f f f f f
+                    f f f f b c c c c b f f f f
+                    f f f c 3 c c c c 3 c f f f
+                    . f 3 3 c c c c c c 3 3 f .
+                    . f c c c c 4 4 c c c c f .
+                    . f f c c 4 4 4 4 c c f f .
+                    . f f f b f 4 4 f b f f f .
+                    . f f 4 1 f d d f 1 4 f f .
+                    . . f f d d d d d d f f . .
+                    . . e f e 4 4 4 4 e f e . .
+                    . e 4 f b 3 3 3 3 b f 4 e .
+                    . 4 d f 3 3 3 3 3 3 c d 4 .
+                    . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                    . . . . f f f f f f . . . .
+                    . . . . f f . . f f . . . .
+                    `], 0, false)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-left0`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-left0
+                    `, 100, true)
         }
+        
     } else if (controller.right.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-right`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-right
+                `, 100, true)
     } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . f f f . f f f f . f f f . 
-            f f f f f c c c c f f f f f 
-            f f f f b c c c c b f f f f 
-            f f f c 3 c c c c 3 c f f f 
-            . f 3 3 c c c c c c 3 3 f . 
-            . f c c c c 4 4 c c c c f . 
-            . f f c c 4 4 4 4 c c f f . 
-            . f f f b f 4 4 f b f f f . 
-            . f f 4 1 f d d f 1 4 f f . 
-            . . f f d d d d d d f f . . 
-            . . e f e 4 4 4 4 e f e . . 
-            . e 4 f b 3 3 3 3 b f 4 e . 
-            . 4 d f 3 3 3 3 3 3 c d 4 . 
-            . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-            . . . . f f f f f f . . . . 
-            . . . . f f . . f f . . . . 
-            `],
-        0,
-        false
-        )
+        animation.runImageAnimation(nena, [img`
+                . f f f . f f f f . f f f .
+                f f f f f c c c c f f f f f
+                f f f f b c c c c b f f f f
+                f f f c 3 c c c c 3 c f f f
+                . f 3 3 c c c c c c 3 3 f .
+                . f c c c c 4 4 c c c c f .
+                . f f c c 4 4 4 4 c c f f .
+                . f f f b f 4 4 f b f f f .
+                . f f 4 1 f d d f 1 4 f f .
+                . . f f d d d d d d f f . .
+                . . e f e 4 4 4 4 e f e . .
+                . e 4 f b 3 3 3 3 b f 4 e .
+                . 4 d f 3 3 3 3 3 3 c d 4 .
+                . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                . . . . f f f f f f . . . .
+                . . . . f f . . f f . . . .
+                `], 0, false)
     }
+    
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_on_overlap(sprite: Sprite, otherSprite: Sprite) {
     game.reset()
 })
-controller.up.onEvent(ControllerButtonEvent.Released, function () {
+controller.up.onEvent(ControllerButtonEvent.Released, function on_up_released() {
     if (controller.down.isPressed()) {
         if (controller.left.isPressed()) {
             if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f . f f f . 
-                    f f f f f c c c c f f f f f 
-                    f f f f b c c c c b f f f f 
-                    f f f c 3 c c c c 3 c f f f 
-                    . f 3 3 c c c c c c 3 3 f . 
-                    . f c c c c 4 4 c c c c f . 
-                    . f f c c 4 4 4 4 c c f f . 
-                    . f f f b f 4 4 f b f f f . 
-                    . f f 4 1 f d d f 1 4 f f . 
-                    . . f f d d d d d d f f . . 
-                    . . e f e 4 4 4 4 e f e . . 
-                    . e 4 f b 3 3 3 3 b f 4 e . 
-                    . 4 d f 3 3 3 3 3 3 c d 4 . 
-                    . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                    . . . . f f f f f f . . . . 
-                    . . . . f f . . f f . . . . 
-                    `],
-                0,
-                true
-                )
+                animation.runImageAnimation(nena, [img`
+                        . f f f . f f f f . f f f .
+                        f f f f f c c c c f f f f f
+                        f f f f b c c c c b f f f f
+                        f f f c 3 c c c c 3 c f f f
+                        . f 3 3 c c c c c c 3 3 f .
+                        . f c c c c 4 4 c c c c f .
+                        . f f c c 4 4 4 4 c c f f .
+                        . f f f b f 4 4 f b f f f .
+                        . f f 4 1 f d d f 1 4 f f .
+                        . . f f d d d d d d f f . .
+                        . . e f e 4 4 4 4 e f e . .
+                        . e 4 f b 3 3 3 3 b f 4 e .
+                        . 4 d f 3 3 3 3 3 3 c d 4 .
+                        . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                        . . . . f f f f f f . . . .
+                        . . . . f f . . f f . . . .
+                        `], 0, true)
             }
+            
         } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-right
+                    `, 100, true)
         } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c 4 4 c c c c f . 
-                . f f c c 4 4 4 4 c c f f . 
-                . f f f b f 4 4 f b f f f . 
-                . f f 4 1 f d d f 1 4 f f . 
-                . . f f d d d d d d f f . . 
-                . . e f e 4 4 4 4 e f e . . 
-                . e 4 f b 3 3 3 3 b f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            true
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f . f f f .
+                    f f f f f c c c c f f f f f
+                    f f f f b c c c c b f f f f
+                    f f f c 3 c c c c 3 c f f f
+                    . f 3 3 c c c c c c 3 3 f .
+                    . f c c c c 4 4 c c c c f .
+                    . f f c c 4 4 4 4 c c f f .
+                    . f f f b f 4 4 f b f f f .
+                    . f f 4 1 f d d f 1 4 f f .
+                    . . f f d d d d d d f f . .
+                    . . e f e 4 4 4 4 e f e . .
+                    . e 4 f b 3 3 3 3 b f 4 e .
+                    . 4 d f 3 3 3 3 3 3 c d 4 .
+                    . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                    . . . . f f f f f f . . . .
+                    . . . . f f . . f f . . . .
+                    `], 0, true)
         }
+        
     } else if (controller.left.isPressed()) {
         if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c c c c c c c f . 
-                . f f c c c c c c c c f f . 
-                . f f f c c c c c c f f f . 
-                . f f f f f f f f f f f f . 
-                . . f f f f f f f f f f . . 
-                . . e f f f f f f f f e . . 
-                . e 4 f f f f f f f f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            false
-            )
+            animation.runImageAnimation(nena, [img`
+                    . f f f . f f f f . f f f .
+                    f f f f f c c c c f f f f f
+                    f f f f b c c c c b f f f f
+                    f f f c 3 c c c c 3 c f f f
+                    . f 3 3 c c c c c c 3 3 f .
+                    . f c c c c c c c c c c f .
+                    . f f c c c c c c c c f f .
+                    . f f f c c c c c c f f f .
+                    . f f f f f f f f f f f f .
+                    . . f f f f f f f f f f . .
+                    . . e f f f f f f f f e . .
+                    . e 4 f f f f f f f f 4 e .
+                    . 4 d f 3 3 3 3 3 3 c d 4 .
+                    . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                    . . . . f f f f f f . . . .
+                    . . . . f f . . f f . . . .
+                    `], 0, false)
         } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-left0`,
-            100,
-            true
-            )
+            animation.runImageAnimation(nena, assets.animation`
+                    nena-animation-left0
+                    `, 100, true)
         }
+        
     } else if (controller.right.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-right`,
-        100,
-        true
-        )
+        animation.runImageAnimation(nena, assets.animation`
+                nena-animation-right
+                `, 100, true)
     } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . f f f . f f f f . f f f . 
-            f f f f f c c c c f f f f f 
-            f f f f b c c c c b f f f f 
-            f f f c 3 c c c c 3 c f f f 
-            . f 3 3 c c c c c c 3 3 f . 
-            . f c c c c c c c c c c f . 
-            . f f c c c c c c c c f f . 
-            . f f f c c c c c c f f f . 
-            . f f f f f f f f f f f f . 
-            . . f f f f f f f f f f . . 
-            . . e f f f f f f f f e . . 
-            . e 4 f f f f f f f f 4 e . 
-            . 4 d f 3 3 3 3 3 3 c d 4 . 
-            . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-            . . . . f f f f f f . . . . 
-            . . . . f f . . f f . . . . 
-            `],
-        0,
-        false
-        )
+        animation.runImageAnimation(nena, [img`
+                . f f f . f f f f . f f f .
+                f f f f f c c c c f f f f f
+                f f f f b c c c c b f f f f
+                f f f c 3 c c c c 3 c f f f
+                . f 3 3 c c c c c c 3 3 f .
+                . f c c c c c c c c c c f .
+                . f f c c c c c c c c f f .
+                . f f f c c c c c c f f f .
+                . f f f f f f f f f f f f .
+                . . f f f f f f f f f f . .
+                . . e f f f f f f f f e . .
+                . e 4 f f f f f f f f 4 e .
+                . 4 d f 3 3 3 3 3 3 c d 4 .
+                . 4 4 f 6 6 6 6 6 6 f 4 4 .
+                . . . . f f f f f f . . . .
+                . . . . f f . . f f . . . .
+                `], 0, false)
     }
+    
 })
 let ghotSleepTime = 0
-let nena: Sprite = null
-music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
+let nena : Sprite = null
+music.play(music.createSong(assets.song`
+        white_space
+        `), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
-nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+nena = sprites.create(assets.image`
+    nena-front
+    `, SpriteKind.Player)
 controller.moveSprite(nena)
 scene.cameraFollowSprite(nena)
-tiles.setTilemap(tilemap`nivel1`)
+tiles.setTilemap(tilemap`
+    map
+    `)
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -817,144 +676,142 @@ scene.setBackgroundImage(img`
     `)
 game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Full)
 let ghost = sprites.create(img`
-    ........................
-    ........................
-    ........................
-    ........................
-    ..........ffff..........
-    ........ff1111ff........
-    .......fb111111bf.......
-    .......f11111111f.......
-    ......fd11111111df......
-    ......fd11111111df......
-    ......fddd1111dddf......
-    ......fbdbfddfbdbf......
-    ......fcdcf11fcdcf......
-    .......fb111111bf.......
-    ......fffcdb1bdffff.....
-    ....fc111cbfbfc111cf....
-    ....f1b1b1ffff1b1b1f....
-    ....fbfbffffffbfbfbf....
-    .........ffffff.........
-    ...........fff..........
-    ........................
-    ........................
-    ........................
-    ........................
-    `, SpriteKind.Enemy)
-forever(function () {
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fddd1111dddf......
+        ......fbdbfddfbdbf......
+        ......fcdcf11fcdcf......
+        .......fb111111bf.......
+        ......fffcdb1bdffff.....
+        ....fc111cbfbfc111cf....
+        ....f1b1b1ffff1b1b1f....
+        ....fbfbffffffbfbfbf....
+        .........ffffff.........
+        ...........fff..........
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+forever(function on_forever() {
+    
     ghost.setScale(0, ScaleAnchor.Middle)
-    tiles.placeOnRandomTile(ghost, assets.tile`pared`)
+    tiles.placeOnRandomTile(ghost, assets.tile`
+        transparency16
+        `)
     ghotSleepTime = randint(1000, 3000)
     pause(ghotSleepTime)
     ghost.setScale(1, ScaleAnchor.Middle)
-    ghost.follow(nena, 5)
-    animation.runImageAnimation(
-    ghost,
-    [img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .....fffc1111111f.......
-        ...fc111cd1111111f......
-        ...f1b1b1b1111dddf......
-        ...fbfbffcf11fcddf......
-        ......fcf111111bbf......
-        .......ccbdb1b1fcf......
-        .......fffbfbfdff.......
-        ........ffffffff........
-        ........fffffffffff.....
-        .........fffffc111cf....
-        .........fffff1b1b1f....
-        ..........ffffbfbfbf....
-        ...........ffff.........
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd11111111df......
-        ....7.fd11111111df......
-        ...7..fd11111111df......
-        ...7..fd11111111df......
-        ...7..fddd1111dddff.....
-        ...77.fbdbfddfbdbfcf....
-        ...777fcdcf11fcdcfbf....
-        ....77fffbdb1bdffcf.....
-        ....fcb1bcffffff........
-        ....f1c1c1ffffff........
-        ....fdfdfdfffff.........
-        .....f.f.f..............
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd111111111f......
-        ......fd11111111df......
-        ......fd11111111df......
-        ......fcdd1111ddcff.....
-        .......fbcf11fcbfbbf....
-        .......ffbdb1bdffff.....
-        ........fcbfbfdf........
-        ........ffffffff........
-        ......ffffffffff........
-        .....fcb1bcffff.........
-        ......ffbff.............
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd11111111df......
-        ......fdd111111ddf......
-        ......fbdd1111dddf......
-        ......fcdbfddfbdbf......
-        .......fbcf11fcbfff.....
-        .......ffb1111bcfbcf....
-        ........fcdb1bdfbbbf....
-        .......ffffffffffcf.....
-        .....fcb1bcfffff........
-        .....f1b1b1ffff.........
-        ......ffbff.............
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        `],
-    100,
-    true
-    )
+    ghost.follow(nena, 50)
+    animation.runImageAnimation(ghost, [img`
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ..........ffff..........
+                ........ff1111ff........
+                .......fb111111bf.......
+                .....fffc1111111f.......
+                ...fc111cd1111111f......
+                ...f1b1b1b1111dddf......
+                ...fbfbffcf11fcddf......
+                ......fcf111111bbf......
+                .......ccbdb1b1fcf......
+                .......fffbfbfdff.......
+                ........ffffffff........
+                ........fffffffffff.....
+                .........fffffc111cf....
+                .........fffff1b1b1f....
+                ..........ffffbfbfbf....
+                ...........ffff.........
+                ........................
+                ........................
+                ........................
+                `, img`
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ..........ffff..........
+                ........ff1111ff........
+                .......fb111111bf.......
+                .......f11111111f.......
+                ......fd11111111df......
+                ....7.fd11111111df......
+                ...7..fd11111111df......
+                ...7..fd11111111df......
+                ...7..fddd1111dddff.....
+                ...77.fbdbfddfbdbfcf....
+                ...777fcdcf11fcdcfbf....
+                ....77fffbdb1bdffcf.....
+                ....fcb1bcffffff........
+                ....f1c1c1ffffff........
+                ....fdfdfdfffff.........
+                .....f.f.f..............
+                ........................
+                ........................
+                ........................
+                `, img`
+                ........................
+                ........................
+                ........................
+                ........................
+                ..........ffff..........
+                ........ff1111ff........
+                .......fb111111bf.......
+                .......f11111111f.......
+                ......fd111111111f......
+                ......fd11111111df......
+                ......fd11111111df......
+                ......fcdd1111ddcff.....
+                .......fbcf11fcbfbbf....
+                .......ffbdb1bdffff.....
+                ........fcbfbfdf........
+                ........ffffffff........
+                ......ffffffffff........
+                .....fcb1bcffff.........
+                ......ffbff.............
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                `, img`
+                ........................
+                ........................
+                ........................
+                ........................
+                ..........ffff..........
+                ........ff1111ff........
+                .......fb111111bf.......
+                .......f11111111f.......
+                ......fd11111111df......
+                ......fdd111111ddf......
+                ......fbdd1111dddf......
+                ......fcdbfddfbdbf......
+                .......fbcf11fcbfff.....
+                .......ffb1111bcfbcf....
+                ........fcdb1bdfbbbf....
+                .......ffffffffffcf.....
+                .....fcb1bcfffff........
+                .....f1b1b1ffff.........
+                ......ffbff.............
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                `], 100, true)
     ghotSleepTime = randint(1000, 1500)
     pause(ghotSleepTime)
 })

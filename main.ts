@@ -842,12 +842,12 @@ let ghost = sprites.create(img`
     ........................
     ........................
     `, SpriteKind.Enemy)
+let spawn_x = 0
+let spawn_y = 0
 tiles.placeOnRandomTile(ghost, assets.tile`pared`)
-let spawn_x = ghost.x
-let spawn_y = ghost.y
+spawn_x = ghost.x
+spawn_y = ghost.y
 forever(function () {
-    let mySprite: Sprite = null
-    mySprite.setPosition(spawn_x, spawn_y)
     ghost.setScale(0, ScaleAnchor.Middle)
     ghotSleepTime = randint(1000, 3000)
     pause(ghotSleepTime)
@@ -960,5 +960,6 @@ forever(function () {
     true
     )
     ghotSleepTime = randint(1000, 1500)
+    ghost.setPosition(spawn_x, spawn_y)
     pause(ghotSleepTime)
 })

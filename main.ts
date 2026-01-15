@@ -705,10 +705,12 @@ controller.up.onEvent(ControllerButtonEvent.Released, function () {
     }
 })
 let ghotSleepTime = 0
+let mySprite: Sprite = null
 let nena: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+scene.cameraFollowSprite(mySprite)
 controller.moveSprite(nena)
 scene.cameraFollowSprite(nena)
 tiles.setTilemap(tilemap`nivel1`)

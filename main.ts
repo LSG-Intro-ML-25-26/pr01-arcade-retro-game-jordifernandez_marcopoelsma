@@ -578,6 +578,9 @@ controller.down.onEvent(ControllerButtonEvent.Released, function () {
         )
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    game.reset()
+})
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
     if (controller.down.isPressed()) {
         if (controller.left.isPressed()) {
@@ -865,4 +868,5 @@ tiles.placeOnRandomTile(ghost, assets.tile`pared`)
 forever(function () {
     ghotSleepTime = randint(5000, 15000)
     pause(ghotSleepTime)
+    ghost.follow(nena)
 })

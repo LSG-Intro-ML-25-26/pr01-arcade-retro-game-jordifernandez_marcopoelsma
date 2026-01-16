@@ -428,6 +428,20 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         )
     }
 })
+scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
+    ghostCurrentX = ghost.x
+    ghostCurrentY = ghost.y
+    tiles.setWallAt(tiles.getTileLocation(ghostCurrentX, ghostCurrentY), false)
+    tiles.setWallAt(tiles.getTileLocation(ghostCurrentX + 1, ghostCurrentY), false)
+    tiles.setWallAt(tiles.getTileLocation(ghostCurrentX - 1, ghostCurrentY), false)
+    tiles.setWallAt(tiles.getTileLocation(ghostCurrentX, ghostCurrentY + 1), false)
+    tiles.setWallAt(tiles.getTileLocation(ghostCurrentX, ghostCurrentY - 1), false)
+    tileUtil.setWallAt(tileUtil.currentTilemap(), tiles.getTileLocation(ghostCurrentX, ghostCurrentY), false)
+    tileUtil.setWallAt(tileUtil.currentTilemap(), tiles.getTileLocation(ghostCurrentX + 1, ghostCurrentY), false)
+    tileUtil.setWallAt(tileUtil.currentTilemap(), tiles.getTileLocation(ghostCurrentX - 1, ghostCurrentY), false)
+    tileUtil.setWallAt(tileUtil.currentTilemap(), tiles.getTileLocation(ghostCurrentX, ghostCurrentY + 1), false)
+    tileUtil.setWallAt(tileUtil.currentTilemap(), tiles.getTileLocation(ghostCurrentX, ghostCurrentY - 1), false)
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (controller.down.isPressed()) {
         if (controller.left.isPressed()) {
@@ -726,6 +740,9 @@ controller.up.onEvent(ControllerButtonEvent.Released, function () {
     }
 })
 let ghotSleepTime = 0
+let ghostCurrentY = 0
+let ghostCurrentX = 0
+let ghost: Sprite = null
 let nena: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
@@ -857,7 +874,7 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
 game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Bottom)
-let ghost = sprites.create(img`
+ghost = sprites.create(img`
     ........................
     ........................
     ........................

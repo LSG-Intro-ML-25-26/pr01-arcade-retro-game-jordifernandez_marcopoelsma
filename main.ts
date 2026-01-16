@@ -186,7 +186,29 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (controller.up.isPressed()) {
         if (controller.left.isPressed()) {
             if (controller.right.isPressed()) {
-            	
+                animation.runImageAnimation(
+                nena,
+                [img`
+                    . f f f . f f f f . f f f . 
+                    f f f f f c c c c f f f f f 
+                    f f f f b c c c c b f f f f 
+                    f f f c 3 c c c c 3 c f f f 
+                    . f 3 3 c c c c c c 3 3 f . 
+                    . f c c c c 4 4 c c c c f . 
+                    . f f c c 4 4 4 4 c c f f . 
+                    . f f f b f 4 4 f b f f f . 
+                    . f f 4 1 f d d f 1 4 f f . 
+                    . . f f d d d d d d f f . . 
+                    . . e f e 4 4 4 4 e f e . . 
+                    . e 4 f b 3 3 3 3 b f 4 e . 
+                    . 4 d f 3 3 3 3 3 3 c d 4 . 
+                    . 4 4 f 6 6 6 6 6 6 f 4 4 . 
+                    . . . . f f f f f f . . . . 
+                    . . . . f f . . f f . . . . 
+                    `],
+                0,
+                false
+                )
             } else {
                 animation.runImageAnimation(
                 nena,
@@ -690,6 +712,7 @@ let nena: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+nena.setPosition(255, 255)
 controller.moveSprite(nena)
 scene.cameraFollowSprite(nena)
 tiles.setTilemap(tilemap`map`)
@@ -852,7 +875,7 @@ forever(function () {
     ghotSleepTime = randint(1000, 3000)
     pause(ghotSleepTime)
     ghost.setScale(1, ScaleAnchor.Middle)
-    ghost.follow(nena, 5)
+    ghost.follow(nena, 100)
     animation.runImageAnimation(
     ghost,
     [img`
@@ -959,7 +982,7 @@ forever(function () {
     100,
     true
     )
-    ghotSleepTime = randint(1000, 1500)
+    ghotSleepTime = randint(10000, 20000)
     ghost.setPosition(spawn_x, spawn_y)
     pause(ghotSleepTime)
 })

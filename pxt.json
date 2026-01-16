@@ -2,7 +2,12 @@
     "name": "MakeCode-Arcade-Template",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "pxt-circuit-playground-character-icons": "github:adafruit/circuit-playground-character-icons#v0.0.8",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
+        "multiplayer": "*",
+        "light": "*",
+        "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0"
     },
     "files": [
         "main.blocks",

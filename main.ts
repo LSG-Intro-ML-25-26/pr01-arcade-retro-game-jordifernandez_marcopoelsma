@@ -90,6 +90,24 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
         )
     }
 })
+function setWalls () {
+    tileUtil.setWalls(sprites.dungeon.greenOuterNorth0, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterNorth1, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterEast0, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterEast1, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterWest0, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterWest1, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterSouth1, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterSouth0, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterNorthWest, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterNorthEast, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterSouthWest, true)
+    tileUtil.setWalls(sprites.dungeon.greenOuterSouthEast, true)
+    tileUtil.setWalls(sprites.dungeon.greenInnerNorthWest, true)
+    tileUtil.setWalls(sprites.dungeon.greenInnerNorthEast, true)
+    tileUtil.setWalls(sprites.dungeon.greenInnerSouthEast, true)
+    tileUtil.setWalls(sprites.dungeon.greenInnerSouthWest, true)
+}
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
     if (controller.right.isPressed()) {
         if (controller.down.isPressed()) {
@@ -838,7 +856,7 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
-game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Full)
+game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Bottom)
 let ghost = sprites.create(img`
     ........................
     ........................
@@ -865,11 +883,10 @@ let ghost = sprites.create(img`
     ........................
     ........................
     `, SpriteKind.Enemy)
-let spawn_x = 0
-let spawn_y = 0
 tiles.placeOnRandomTile(ghost, assets.tile`pared`)
-spawn_x = ghost.x
-spawn_y = ghost.y
+let spawn_x = ghost.x
+let spawn_y = ghost.y
+setWalls()
 forever(function () {
     ghost.setScale(0, ScaleAnchor.Middle)
     ghotSleepTime = randint(1000, 3000)
@@ -982,7 +999,7 @@ forever(function () {
     100,
     true
     )
-    ghotSleepTime = randint(10000, 20000)
+    ghotSleepTime = randint(1000, 2000)
     ghost.setPosition(spawn_x, spawn_y)
     pause(ghotSleepTime)
 })

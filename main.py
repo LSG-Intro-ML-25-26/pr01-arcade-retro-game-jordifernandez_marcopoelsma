@@ -83,24 +83,6 @@ def on_right_released():
             False)
 controller.right.on_event(ControllerButtonEvent.RELEASED, on_right_released)
 
-def setWalls():
-    tileUtil.set_walls(sprites.dungeon.green_outer_north0, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_north1, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_east0, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_east1, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_west0, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_west1, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_south1, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_south0, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_north_west, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_north_east, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_south_west, True)
-    tileUtil.set_walls(sprites.dungeon.green_outer_south_east, True)
-    tileUtil.set_walls(sprites.dungeon.green_inner_north_west, True)
-    tileUtil.set_walls(sprites.dungeon.green_inner_north_east, True)
-    tileUtil.set_walls(sprites.dungeon.green_inner_south_east, True)
-    tileUtil.set_walls(sprites.dungeon.green_inner_south_west, True)
-
 def on_left_released():
     if controller.right.is_pressed():
         if controller.down.is_pressed():
@@ -837,12 +819,13 @@ ghost = sprites.create(img("""
         ........................
         """),
     SpriteKind.enemy)
+spawn_x = 0
+spawn_y = 0
 tiles.place_on_random_tile(ghost, assets.tile("""
     pared
     """))
 spawn_x = ghost.x
 spawn_y = ghost.y
-setWalls()
 
 def on_forever():
     global ghotSleepTime
@@ -962,3 +945,4 @@ def on_forever():
     ghost.set_position(spawn_x, spawn_y)
     pause(ghotSleepTime)
 forever(on_forever)
+

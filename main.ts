@@ -725,7 +725,6 @@ controller.up.onEvent(ControllerButtonEvent.Released, function () {
         )
     }
 })
-let res: tiles.Location[] = []
 let ghotSleepTime = 0
 let nena: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
@@ -890,6 +889,9 @@ let spawn_y = ghost.y
 spawn_x = 270
 spawn_y = 255
 setWalls()
+game.onUpdate(function () {
+	
+})
 forever(function () {
     ghost.setScale(0, ScaleAnchor.Middle)
     ghotSleepTime = randint(1000, 3000)
@@ -1005,8 +1007,6 @@ forever(function () {
     ghost.setPosition(spawn_x, spawn_y)
     pause(ghotSleepTime)
 })
-forever(function () {
-    res = scene.aStar(tiles.getTileLocation(ghost.x / 16, ghost.y / 16), tiles.getTileLocation(nena.x / 16, nena.y / 16))
-    game.showLongText(ghost.x / 16, DialogLayout.Bottom)
-    scene.followPath(ghost, res, 100)
+game.onUpdateInterval(100, function () {
+    scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 50)
 })

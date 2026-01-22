@@ -1,20 +1,16 @@
 function setWalls () {
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorth0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorth1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterEast0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterEast1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterWest0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterWest1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouth1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouth0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerNorthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerNorthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerSouthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerSouthWest, true)
+    wallList = [
+    assets.tile`mesa L`,
+    assets.tile`mesaR`,
+    assets.tile`mesa`,
+    assets.tile`miMosaico7`,
+    assets.tile`isla de cocina`,
+    assets.tile`miMosaico`,
+    assets.tile`transparency16`
+    ]
+    for (let wall of wallList) {
+        tileUtil.setWalls(wall, true)
+    }
 }
 function tiles2 () {
     let list: number[] = []
@@ -26,13 +22,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let ghotSleepTime = 0
 let ghostSight = 0
 let locationTiles = 0
+let wallList: Image[] = []
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 let nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 nena.setPosition(180, 55)
 controller.moveSprite(nena)
 scene.cameraFollowSprite(nena)
-tiles.setTilemap(tilemap`map`)
 tiles.setTilemap(tilemap`nivel2`)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -175,12 +171,12 @@ let ghost = sprites.create(img`
     2 2 2 2 2 f f f f f f 2 2 2 2 2 
     . 2 2 2 2 2 2 f f f 2 2 2 2 2 . 
     `, SpriteKind.Enemy)
-tiles.placeOnRandomTile(ghost, assets.tile`pared`)
+let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
+tiles.placeOnRandomTile(ghost, floorTiles._pickRandom())
 let spawn_x = ghost.x
 let spawn_y = ghost.y
 spawn_x = 120
 spawn_y = 160
-let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 setWalls()
 let ghostHunt = 0
 forever(function () {

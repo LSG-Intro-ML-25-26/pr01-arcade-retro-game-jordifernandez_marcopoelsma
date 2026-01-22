@@ -17,7 +17,7 @@ function setBaseStats () {
     minAtkCooldown = 1
     maxHuntTime = 10000
     minHuntTime = 15000
-    looseTrailTime = 2000
+    looseTrailTime = 5000
     ghostSpeed = 100
     ghostSightSpeed = ghostSpeed
     animation.runImageAnimation(
@@ -563,24 +563,14 @@ forever(function () {
     }
 })
 forever(function () {
-    let goToLastSight = 0
-    if (!(goToLastSight)) {
-        if (sight.isInSight(
-        ghost,
-        nena,
-        160,
-        false
-        )) {
-            ghostSight = 1
-            if (sight.isInSight(
-            ghost,
-            nena,
-            160,
-            true
-            )) {
-                pause(looseTrailTime)
-            }
-        }
+    if (sight.isInSight(
+    ghost,
+    nena,
+    160,
+    false
+    )) {
+        ghostSight = 1
+        pause(looseTrailTime)
     } else {
         ghostSight = 0
     }

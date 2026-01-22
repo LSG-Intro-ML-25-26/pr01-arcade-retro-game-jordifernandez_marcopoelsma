@@ -18,6 +18,8 @@ function setBaseStats () {
     maxHuntTime = 10000
     minHuntTime = 15000
     looseTrailTime = 2000
+    ghostSpeed = 100
+    ghostSightSpeed = ghostSpeed
     animation.runImageAnimation(
     ghost,
     assets.animation`ghostAnimation`,
@@ -30,7 +32,7 @@ function tiles2 () {
     locationTiles = list._pickRandom()
 }
 function setGhostType () {
-    ghostList = ["Demon", "Oni"]
+    ghostList = ["Demon", "Oni", "Revenant"]
     currentGhostType = ghostList._pickRandom()
     if (currentGhostType == "Oni") {
         animation.runImageAnimation(
@@ -57,6 +59,8 @@ let ghostSight = 0
 let currentGhostType = ""
 let ghostList: string[] = []
 let locationTiles = 0
+let ghostSightSpeed = 0
+let ghostSpeed = 0
 let looseTrailTime = 0
 let minHuntTime = 0
 let maxHuntTime = 0
@@ -576,9 +580,9 @@ forever(function () {
 game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {
         if (ghostSight == 1) {
-            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 100)
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), ghostSpeed)
         } else {
-            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(randint(0, tiles.tilemapRows()), randint(0, tiles.tilemapColumns()))), 100)
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(randint(0, tiles.tilemapRows()), randint(0, tiles.tilemapColumns()))), ghostSightSpeed)
         }
     }
 })

@@ -511,9 +511,6 @@ forever(function () {
     }
 })
 forever(function () {
-	
-})
-forever(function () {
     let goToLastSight = 0
     if (!(goToLastSight)) {
         if (sight.isInSight(
@@ -529,9 +526,9 @@ forever(function () {
 game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {
         if (ghostSight == 1) {
-            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 80)
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 110)
         } else {
-            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(randint(0, tiles.tilemapRows()), randint(0, tiles.tilemapColumns()))), 80)
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(randint(0, tiles.tilemapRows()), randint(0, tiles.tilemapColumns()))), 110)
         }
     }
 })

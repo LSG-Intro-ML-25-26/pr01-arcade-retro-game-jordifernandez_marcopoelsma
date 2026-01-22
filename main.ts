@@ -19,6 +19,7 @@ function setWalls () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
 	
 })
+let ghostSight = 0
 let ghotSleepTime = 0
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
@@ -176,6 +177,17 @@ spawn_x = 270
 spawn_y = 255
 setWalls()
 let ghostHunt = 0
+forever(function () {
+    ghostHunt = 0
+    ghost.setScale(0, ScaleAnchor.Middle)
+    ghotSleepTime = randint(1000, 1001)
+    pause(ghotSleepTime)
+    ghost.setPosition(spawn_x, spawn_y)
+    ghostHunt += 1
+    ghost.changeScale(1, ScaleAnchor.Middle)
+    ghotSleepTime = randint(100000, 100001)
+    pause(ghotSleepTime)
+})
 forever(function () {
     if (characterAnimations.matchesRule(nena, characterAnimations.rule(Predicate.Moving))) {
         characterAnimations.loopFrames(
@@ -496,26 +508,31 @@ forever(function () {
     }
 })
 forever(function () {
-    ghostHunt = 0
-    ghost.setScale(0, ScaleAnchor.Middle)
-    ghotSleepTime = randint(1000, 1001)
-    pause(ghotSleepTime)
-    ghost.setPosition(spawn_x, spawn_y)
-    ghostHunt += 1
-    ghost.changeScale(1, ScaleAnchor.Middle)
-    ghotSleepTime = randint(100000, 100001)
-    pause(ghotSleepTime)
-})
-forever(function () {
     if (scene.spriteIsFollowingPath(ghost)) {
     	
     } else {
         ghost.setPosition(spawn_x, spawn_y)
     }
 })
-game.onUpdateInterval(200, function () {
+forever(function () {
+    if (sight.isInSight(
+    ghost,
+    nena,
+    160,
+    false
+    )) {
+        ghostSight = 1
+    } else {
+        ghostSight = 0
+    }
+})
+game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {
-        scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 100)
+        if (ghostSight == 1) {
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 120)
+        } else {
+        	
+        }
     } else {
         ghost.setPosition(spawn_x, spawn_y)
     }

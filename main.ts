@@ -18,6 +18,12 @@ function setBaseStats () {
     maxHuntTime = 10000
     minHuntTime = 15000
     looseTrailTime = 2000
+    animation.runImageAnimation(
+    ghost,
+    assets.animation`ghostAnimation`,
+    300,
+    true
+    )
 }
 function tiles2 () {
     let list: number[] = []
@@ -34,12 +40,6 @@ function setGhostType () {
         true
         )
     } else {
-        animation.runImageAnimation(
-        ghost,
-        assets.animation`ghostAnimation`,
-        300,
-        true
-        )
         if (currentGhostType == "Demon") {
             maxAtkCooldown = minAtkCooldown
             minAtkCooldown = minAtkCooldown / 2

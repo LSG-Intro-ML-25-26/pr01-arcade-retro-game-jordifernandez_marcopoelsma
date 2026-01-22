@@ -12,17 +12,56 @@ function setWalls () {
         tileUtil.setWalls(wall, true)
     }
 }
+function setBaseStats () {
+    maxAtkCooldown = 0
+    minAtkCooldown = 1
+    maxHuntTime = 10000
+    minHuntTime = 15000
+}
 function tiles2 () {
     let list: number[] = []
     locationTiles = list._pickRandom()
+}
+function setGhostType () {
+    ghostList = ["Demon", "Oni"]
+    currentGhostType = ghostList._pickRandom()
+    if (currentGhostType == "Oni") {
+        animation.runImageAnimation(
+        ghost,
+        assets.animation`ghostAnimation`,
+        100,
+        true
+        )
+    } else {
+        animation.runImageAnimation(
+        ghost,
+        assets.animation`ghostAnimation`,
+        300,
+        true
+        )
+        if (currentGhostType == "Demon") {
+            maxAtkCooldown = minAtkCooldown
+            minAtkCooldown = minAtkCooldown / 2
+        } else {
+        	
+        }
+    }
+    game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
 	
 })
 let ghotSleepTime = 0
 let ghostSight = 0
+let currentGhostType = ""
+let ghostList: string[] = []
 let locationTiles = 0
+let minHuntTime = 0
+let maxHuntTime = 0
+let minAtkCooldown = 0
+let maxAtkCooldown = 0
 let wallList: Image[] = []
+let ghost: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 let nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
@@ -153,7 +192,7 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
 game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Bottom)
-let ghost = sprites.create(img`
+ghost = sprites.create(img`
     . 2 2 2 2 2 f f f f 2 2 2 2 2 . 
     2 2 2 2 f f 1 1 1 1 f f 2 2 2 2 
     2 2 2 f b 1 1 1 1 1 1 b f 2 2 2 
@@ -175,77 +214,20 @@ let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moq
 tiles.placeOnRandomTile(ghost, floorTiles._pickRandom())
 let spawn_x = ghost.x
 let spawn_y = ghost.y
-spawn_x = 120
-spawn_y = 160
 setWalls()
+setBaseStats()
+setGhostType()
 let ghostHunt = 0
 forever(function () {
     ghostHunt = 0
     ghostSight = 0
     ghost.setScale(0, ScaleAnchor.Middle)
-    ghotSleepTime = randint(1000, 1001)
-    pause(ghotSleepTime)
-    animation.runImageAnimation(
-    ghost,
-    [img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd11111111df......
-        ......fd11111111df......
-        ......fddd1111dddf......
-        ......fbdbfddfbdbf......
-        ......fcdcf11fcdcf......
-        .......fb111111bf.......
-        ......fffcdb1bdffff.....
-        ....fc111cbfbfc111cf....
-        ....f1b1b1ffff1b1b1f....
-        ....fbfbffffffbfbfbf....
-        .........ffffff.........
-        ...........fff..........
-        ........................
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        `],
-    500,
-    true
-    )
+    ghotSleepTime = 0
+    pause(randint(minAtkCooldown, maxAtkCooldown))
     ghost.setPosition(spawn_x, spawn_y)
     ghostHunt += 1
     ghost.changeScale(1, ScaleAnchor.Middle)
-    ghotSleepTime = randint(100000, 100001)
-    pause(ghotSleepTime)
+    pause(randint(minHuntTime, maxHuntTime))
 })
 forever(function () {
     if (characterAnimations.matchesRule(nena, characterAnimations.rule(Predicate.Moving))) {
@@ -576,7 +558,17 @@ forever(function () {
         false
         )) {
             ghostSight = 1
+            if (sight.isInSight(
+            ghost,
+            nena,
+            160,
+            true
+            )) {
+                pause(2000)
+            }
         }
+    } else {
+        ghostSight = 0
     }
 })
 game.onUpdateInterval(300, function () {

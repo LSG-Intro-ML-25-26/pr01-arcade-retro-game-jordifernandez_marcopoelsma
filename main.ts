@@ -17,6 +17,7 @@ function setBaseStats () {
     minAtkCooldown = 1
     maxHuntTime = 10000
     minHuntTime = 15000
+    looseTrailTime = 2000
 }
 function tiles2 () {
     let list: number[] = []
@@ -56,6 +57,7 @@ let ghostSight = 0
 let currentGhostType = ""
 let ghostList: string[] = []
 let locationTiles = 0
+let looseTrailTime = 0
 let minHuntTime = 0
 let maxHuntTime = 0
 let minAtkCooldown = 0
@@ -564,7 +566,7 @@ forever(function () {
             160,
             true
             )) {
-                pause(2000)
+                pause(looseTrailTime)
             }
         }
     } else {

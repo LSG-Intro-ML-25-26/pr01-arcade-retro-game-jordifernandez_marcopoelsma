@@ -1,32 +1,34 @@
 function setWalls () {
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorth0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorth1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterEast0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterEast1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterWest0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterWest1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouth1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouth0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerNorthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerNorthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerSouthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerSouthWest, true)
+    wallList = [
+    assets.tile`mesa L`,
+    assets.tile`mesaR`,
+    assets.tile`mesa`,
+    assets.tile`miMosaico7`,
+    assets.tile`isla de cocina`,
+    assets.tile`miMosaico`,
+    assets.tile`transparency16`
+    ]
+    for (let wall of wallList) {
+        tileUtil.setWalls(wall, true)
+    }
+}
+function tiles2 () {
+    let list: number[] = []
+    locationTiles = list._pickRandom()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
 	
 })
 let ghotSleepTime = 0
+let ghostSight = 0
+let locationTiles = 0
+let wallList: Image[] = []
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 let nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-nena.setPosition(255, 255)
+nena.setPosition(180, 55)
 controller.moveSprite(nena)
 scene.cameraFollowSprite(nena)
-tiles.setTilemap(tilemap`map`)
 tiles.setTilemap(tilemap`nivel2`)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -169,13 +171,26 @@ let ghost = sprites.create(img`
     2 2 2 2 2 f f f f f f 2 2 2 2 2 
     . 2 2 2 2 2 2 f f f 2 2 2 2 2 . 
     `, SpriteKind.Enemy)
-tiles.placeOnRandomTile(ghost, assets.tile`pared`)
+let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
+tiles.placeOnRandomTile(ghost, floorTiles._pickRandom())
 let spawn_x = ghost.x
 let spawn_y = ghost.y
-spawn_x = 270
-spawn_y = 255
+spawn_x = 120
+spawn_y = 160
 setWalls()
 let ghostHunt = 0
+forever(function () {
+    ghostHunt = 0
+    ghostSight = 0
+    ghost.setScale(0, ScaleAnchor.Middle)
+    ghotSleepTime = randint(1000, 1001)
+    pause(ghotSleepTime)
+    ghost.setPosition(spawn_x, spawn_y)
+    ghostHunt += 1
+    ghost.changeScale(1, ScaleAnchor.Middle)
+    ghotSleepTime = randint(100000, 100001)
+    pause(ghotSleepTime)
+})
 forever(function () {
     if (characterAnimations.matchesRule(nena, characterAnimations.rule(Predicate.Moving))) {
         characterAnimations.loopFrames(
@@ -496,27 +511,27 @@ forever(function () {
     }
 })
 forever(function () {
-    ghostHunt = 0
-    ghost.setScale(0, ScaleAnchor.Middle)
-    ghotSleepTime = randint(1000, 1001)
-    pause(ghotSleepTime)
-    ghost.setPosition(spawn_x, spawn_y)
-    ghostHunt += 1
-    ghost.changeScale(1, ScaleAnchor.Middle)
-    ghotSleepTime = randint(100000, 100001)
-    pause(ghotSleepTime)
+	
 })
 forever(function () {
-    if (scene.spriteIsFollowingPath(ghost)) {
-    	
-    } else {
-        ghost.setPosition(spawn_x, spawn_y)
+    let goToLastSight = 0
+    if (!(goToLastSight)) {
+        if (sight.isInSight(
+        ghost,
+        nena,
+        160,
+        false
+        )) {
+            ghostSight = 1
+        }
     }
 })
-game.onUpdateInterval(200, function () {
+game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {
-        scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 100)
-    } else {
-        ghost.setPosition(spawn_x, spawn_y)
+        if (ghostSight == 1) {
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), 80)
+        } else {
+            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(randint(0, tiles.tilemapRows()), randint(0, tiles.tilemapColumns()))), 80)
+        }
     }
 })

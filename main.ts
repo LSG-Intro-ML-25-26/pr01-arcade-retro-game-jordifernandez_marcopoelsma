@@ -52,8 +52,16 @@ function setGhostType () {
     game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-	
+    animation.runImageAnimation(
+    ghost,
+    assets.animation`ghostAnimation`,
+    5000,
+    false
+    )
+    game.gameOver(false)
 })
+let yTile = 0
+let xTile = 0
 let ghotSleepTime = 0
 let ghostSight = 0
 let currentGhostType = ""
@@ -71,10 +79,10 @@ let ghost: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 let nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-nena.setPosition(180, 55)
+nena.setPosition(190, 240)
 controller.moveSprite(nena)
 scene.cameraFollowSprite(nena)
-tiles.setTilemap(tilemap`nivel2`)
+tiles.setCurrentTilemap(tilemap`TangleWood`)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -582,7 +590,13 @@ game.onUpdateInterval(300, function () {
         if (ghostSight == 1) {
             scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), ghostSpeed)
         } else {
-            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(randint(0, tiles.tilemapRows()), randint(0, tiles.tilemapColumns()))), ghostSightSpeed)
+            for (let index = 0; index <= floorTiles.length; index++) {
+                xTile = randint(0, tiles.tilemapRows())
+                yTile = randint(0, tiles.tilemapRows())
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(xTile, yTile), floorTiles[index])) {
+                    scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(xTile, yTile)), ghostSightSpeed)
+                }
+            }
         }
     }
 })

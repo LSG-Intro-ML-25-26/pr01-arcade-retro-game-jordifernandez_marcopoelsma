@@ -1,1009 +1,626 @@
-controller.right.onEvent(ControllerButtonEvent.Released, function () {
-    if (controller.left.isPressed()) {
-        if (controller.up.isPressed()) {
-            if (controller.up.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-left0`,
-                100,
-                true
-                )
-            }
-        } else if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-down`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-left0`,
-            100,
-            true
-            )
-        }
-    } else if (controller.up.isPressed()) {
-        if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f f . . . . 
-                f f f f f c c c c f f . . . 
-                f f f f b c c c c c c f . . 
-                f f f c 3 c c c c c c f . . 
-                . f 3 3 c c c c c c c c f . 
-                . f f f c c c c c 4 c c f . 
-                . f f f f c c c 4 4 e f f . 
-                . f f 4 4 f b f 4 4 e f f . 
-                . . f 4 d 4 1 f d d f f . . 
-                . . f f f 4 d d d d f . . . 
-                . . . f e e 4 4 4 e f . . . 
-                . . . 4 d d e 3 3 3 f . . . 
-                . . . e d d e 3 3 3 f . . . 
-                . . . f e e f 6 6 6 f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . f f f . . . . . . 
-                `],
-            0,
-            false
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
-        }
-    } else if (controller.down.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-down`,
-        100,
-        true
-        )
-    } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . f f f . f f f f f . . . . 
-            f f f f f c c c c f f . . . 
-            f f f f b c c c c c c f . . 
-            f f f c 3 c c c c c c f . . 
-            . f 3 3 c c c c c c c c f . 
-            . f f f c c c c c 4 c c f . 
-            . f f f f c c c 4 4 e f f . 
-            . f f 4 4 f b f 4 4 e f f . 
-            . . f 4 d 4 1 f d d f f . . 
-            . . f f f 4 d d d d f . . . 
-            . . . f e e 4 4 4 e f . . . 
-            . . . 4 d d e 3 3 3 f . . . 
-            . . . e d d e 3 3 3 f . . . 
-            . . . f e e f 6 6 6 f . . . 
-            . . . . f f f f f f . . . . 
-            . . . . . f f f . . . . . . 
-            `],
-        0,
-        false
-        )
-    }
-})
-function setWalls () {
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorth0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorth1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterEast0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterEast1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterWest0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterWest1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouth1, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouth0, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterNorthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenOuterSouthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerNorthWest, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerNorthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerSouthEast, true)
-    tileUtil.setWalls(sprites.dungeon.greenInnerSouthWest, true)
-}
-controller.left.onEvent(ControllerButtonEvent.Released, function () {
-    if (controller.right.isPressed()) {
-        if (controller.down.isPressed()) {
-            if (controller.up.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-right`,
-                100,
-                true
-                )
-            }
-        } else if (controller.up.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
-        }
-    } else if (controller.up.isPressed()) {
-        if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . . . . f f f f f . f f f . 
-                . . . f f c c c c f f f f f 
-                . . f c c c c c c b f f f f 
-                . . f c c c c c c 3 c f f f 
-                . f c c c c c c c c 3 3 f . 
-                . f c c 4 c c c c c f f f . 
-                . f f e 4 4 c c c f f f f . 
-                . f f e 4 4 f b f 4 4 f f . 
-                . . f f d d f 1 4 d 4 f . . 
-                . . . f d d d d 4 f f f . . 
-                . . . f e 4 4 4 e e f . . . 
-                . . . f 3 3 3 e d d 4 . . . 
-                . . . f 3 3 3 e d d e . . . 
-                . . . f 6 6 6 f e e f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . . f f f . . . . . 
-                `],
-            0,
-            false
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
-        }
-    } else if (controller.down.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-down`,
-        100,
-        true
-        )
-    } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . . . . f f f f f . f f f . 
-            . . . f f c c c c f f f f f 
-            . . f c c c c c c b f f f f 
-            . . f c c c c c c 3 c f f f 
-            . f c c c c c c c c 3 3 f . 
-            . f c c 4 c c c c c f f f . 
-            . f f e 4 4 c c c f f f f . 
-            . f f e 4 4 f b f 4 4 f f . 
-            . . f f d d f 1 4 d 4 f . . 
-            . . . f d d d d 4 f f f . . 
-            . . . f e 4 4 4 e e f . . . 
-            . . . f 3 3 3 e d d 4 . . . 
-            . . . f 3 3 3 e d d e . . . 
-            . . . f 6 6 6 f e e f . . . 
-            . . . . f f f f f f . . . . 
-            . . . . . . f f f . . . . . 
-            `],
-        0,
-        false
-        )
-    }
-})
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (controller.up.isPressed()) {
-        if (controller.left.isPressed()) {
-            if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f . f f f . 
-                    f f f f f c c c c f f f f f 
-                    f f f f b c c c c b f f f f 
-                    f f f c 3 c c c c 3 c f f f 
-                    . f 3 3 c c c c c c 3 3 f . 
-                    . f c c c c 4 4 c c c c f . 
-                    . f f c c 4 4 4 4 c c f f . 
-                    . f f f b f 4 4 f b f f f . 
-                    . f f 4 1 f d d f 1 4 f f . 
-                    . . f f d d d d d d f f . . 
-                    . . e f e 4 4 4 4 e f e . . 
-                    . e 4 f b 3 3 3 3 b f 4 e . 
-                    . 4 d f 3 3 3 3 3 3 c d 4 . 
-                    . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                    . . . . f f f f f f . . . . 
-                    . . . . f f . . f f . . . . 
-                    `],
-                0,
-                false
-                )
-            } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-left0`,
-                100,
-                true
-                )
-            }
-        } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c c c c c c c f . 
-                . f f c c c c c c c c f f . 
-                . f f f c c c c c c f f f . 
-                . f f f f f f f f f f f f . 
-                . . f f f f f f f f f f . . 
-                . . e f f f f f f f f e . . 
-                . e 4 f f f f f f f f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            false
-            )
-        }
-    } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-down`,
-        100,
-        true
-        )
-    }
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (controller.left.isPressed()) {
-        if (controller.down.isPressed()) {
-            if (controller.up.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f f . . . . 
-                    f f f f f c c c c f f . . . 
-                    f f f f b c c c c c c f . . 
-                    f f f c 3 c c c c c c f . . 
-                    . f 3 3 c c c c c c c c f . 
-                    . f f f c c c c c 4 c c f . 
-                    . f f f f c c c 4 4 e f f . 
-                    . f f 4 4 f b f 4 4 e f f . 
-                    . . f 4 d 4 1 f d d f f . . 
-                    . . f f f 4 d d d d f . . . 
-                    . . . f e e 4 4 4 e f . . . 
-                    . . . 4 d d e 3 3 3 f . . . 
-                    . . . e d d e 3 3 3 f . . . 
-                    . . . f e e f 6 6 6 f . . . 
-                    . . . . f f f f f f . . . . 
-                    . . . . . f f f . . . . . . 
-                    `],
-                0,
-                false
-                )
-            } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-up`,
-                100,
-                true
-                )
-            }
-        } else if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-down`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . . . . f f f f f . f f f . 
-                . . . f f c c c c f f f f f 
-                . . f c c c c c c b f f f f 
-                . . f c c c c c c 3 c f f f 
-                . f c c c c c c c c 3 3 f . 
-                . f c c 4 c c c c c f f f . 
-                . f f e 4 4 c c c f f f f . 
-                . f f e 4 4 f b f 4 4 f f . 
-                . . f f d d f 1 4 d 4 f . . 
-                . . . f d d d d 4 f f f . . 
-                . . . f e 4 4 4 e e f . . . 
-                . . . f 3 3 3 e d d 4 . . . 
-                . . . f 3 3 3 e d d e . . . 
-                . . . f 6 6 6 f e e f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . . f f f . . . . . 
-                `],
-            0,
-            false
-            )
-        }
-    } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-right`,
-        100,
-        true
-        )
-    }
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (controller.right.isPressed()) {
-        if (controller.up.isPressed()) {
-            if (controller.down.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . . . . f f f f f . f f f . 
-                    . . . f f c c c c f f f f f 
-                    . . f c c c c c c b f f f f 
-                    . . f c c c c c c 3 c f f f 
-                    . f c c c c c c c c 3 3 f . 
-                    . f c c 4 c c c c c f f f . 
-                    . f f e 4 4 c c c f f f f . 
-                    . f f e 4 4 f b f 4 4 f f . 
-                    . . f f d d f 1 4 d 4 f . . 
-                    . . . f d d d d 4 f f f . . 
-                    . . . f e 4 4 4 e e f . . . 
-                    . . . f 3 3 3 e d d 4 . . . 
-                    . . . f 3 3 3 e d d e . . . 
-                    . . . f 6 6 6 f e e f . . . 
-                    . . . . f f f f f f . . . . 
-                    . . . . . . f f f . . . . . 
-                    `],
-                0,
-                false
-                )
-            } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-up`,
-                100,
-                true
-                )
-            }
-        } else if (controller.down.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-down`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f f . . . . 
-                f f f f f c c c c f f . . . 
-                f f f f b c c c c c c f . . 
-                f f f c 3 c c c c c c f . . 
-                . f 3 3 c c c c c c c c f . 
-                . f f f c c c c c 4 c c f . 
-                . f f f f c c c 4 4 e f f . 
-                . f f 4 4 f b f 4 4 e f f . 
-                . . f 4 d 4 1 f d d f f . . 
-                . . f f f 4 d d d d f . . . 
-                . . . f e e 4 4 4 e f . . . 
-                . . . 4 d d e 3 3 3 f . . . 
-                . . . e d d e 3 3 3 f . . . 
-                . . . f e e f 6 6 6 f . . . 
-                . . . . f f f f f f . . . . 
-                . . . . . f f f . . . . . . 
-                `],
-            0,
-            false
-            )
-        }
-    } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-left0`,
-        100,
-        true
-        )
-    }
-})
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (controller.down.isPressed()) {
-        if (controller.left.isPressed()) {
-            if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f . f f f . 
-                    f f f f f c c c c f f f f f 
-                    f f f f b c c c c b f f f f 
-                    f f f c 3 c c c c 3 c f f f 
-                    . f 3 3 c c c c c c 3 3 f . 
-                    . f c c c c c c c c c c f . 
-                    . f f c c c c c c c c f f . 
-                    . f f f c c c c c c f f f . 
-                    . f f f f f f f f f f f f . 
-                    . . f f f f f f f f f f . . 
-                    . . e f f f f f f f f e . . 
-                    . e 4 f f f f f f f f 4 e . 
-                    . 4 d f 3 3 3 3 3 3 c d 4 . 
-                    . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                    . . . . f f f f f f . . . . 
-                    . . . . f f . . f f . . . . 
-                    `],
-                0,
-                false
-                )
-            } else {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-left0`,
-                100,
-                true
-                )
-            }
-        } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c 4 4 c c c c f . 
-                . f f c c 4 4 4 4 c c f f . 
-                . f f f b f 4 4 f b f f f . 
-                . f f 4 1 f d d f 1 4 f f . 
-                . . f f d d d d d d f f . . 
-                . . e f e 4 4 4 4 e f e . . 
-                . e 4 f b 3 3 3 3 b f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            true
-            )
-        }
-    } else {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-up`,
-        100,
-        true
-        )
-    }
-})
-controller.down.onEvent(ControllerButtonEvent.Released, function () {
-    if (controller.up.isPressed()) {
-        if (controller.left.isPressed()) {
-            if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                assets.animation`nena-animation-up`,
-                100,
-                true
-                )
-            }
-        } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-up`,
-            100,
-            true
-            )
-        }
-    } else if (controller.left.isPressed()) {
-        if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c 4 4 c c c c f . 
-                . f f c c 4 4 4 4 c c f f . 
-                . f f f b f 4 4 f b f f f . 
-                . f f 4 1 f d d f 1 4 f f . 
-                . . f f d d d d d d f f . . 
-                . . e f e 4 4 4 4 e f e . . 
-                . e 4 f b 3 3 3 3 b f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            false
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-left0`,
-            100,
-            true
-            )
-        }
-    } else if (controller.right.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-right`,
-        100,
-        true
-        )
-    } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . f f f . f f f f . f f f . 
-            f f f f f c c c c f f f f f 
-            f f f f b c c c c b f f f f 
-            f f f c 3 c c c c 3 c f f f 
-            . f 3 3 c c c c c c 3 3 f . 
-            . f c c c c 4 4 c c c c f . 
-            . f f c c 4 4 4 4 c c f f . 
-            . f f f b f 4 4 f b f f f . 
-            . f f 4 1 f d d f 1 4 f f . 
-            . . f f d d d d d d f f . . 
-            . . e f e 4 4 4 4 e f e . . 
-            . e 4 f b 3 3 3 3 b f 4 e . 
-            . 4 d f 3 3 3 3 3 3 c d 4 . 
-            . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-            . . . . f f f f f f . . . . 
-            . . . . f f . . f f . . . . 
-            `],
-        0,
-        false
-        )
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.reset()
-})
-controller.up.onEvent(ControllerButtonEvent.Released, function () {
-    if (controller.down.isPressed()) {
-        if (controller.left.isPressed()) {
-            if (controller.right.isPressed()) {
-                animation.runImageAnimation(
-                nena,
-                [img`
-                    . f f f . f f f f . f f f . 
-                    f f f f f c c c c f f f f f 
-                    f f f f b c c c c b f f f f 
-                    f f f c 3 c c c c 3 c f f f 
-                    . f 3 3 c c c c c c 3 3 f . 
-                    . f c c c c 4 4 c c c c f . 
-                    . f f c c 4 4 4 4 c c f f . 
-                    . f f f b f 4 4 f b f f f . 
-                    . f f 4 1 f d d f 1 4 f f . 
-                    . . f f d d d d d d f f . . 
-                    . . e f e 4 4 4 4 e f e . . 
-                    . e 4 f b 3 3 3 3 b f 4 e . 
-                    . 4 d f 3 3 3 3 3 3 c d 4 . 
-                    . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                    . . . . f f f f f f . . . . 
-                    . . . . f f . . f f . . . . 
-                    `],
-                0,
-                true
-                )
-            }
-        } else if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-right`,
-            100,
-            true
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c 4 4 c c c c f . 
-                . f f c c 4 4 4 4 c c f f . 
-                . f f f b f 4 4 f b f f f . 
-                . f f 4 1 f d d f 1 4 f f . 
-                . . f f d d d d d d f f . . 
-                . . e f e 4 4 4 4 e f e . . 
-                . e 4 f b 3 3 3 3 b f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            true
-            )
-        }
-    } else if (controller.left.isPressed()) {
-        if (controller.right.isPressed()) {
-            animation.runImageAnimation(
-            nena,
-            [img`
-                . f f f . f f f f . f f f . 
-                f f f f f c c c c f f f f f 
-                f f f f b c c c c b f f f f 
-                f f f c 3 c c c c 3 c f f f 
-                . f 3 3 c c c c c c 3 3 f . 
-                . f c c c c c c c c c c f . 
-                . f f c c c c c c c c f f . 
-                . f f f c c c c c c f f f . 
-                . f f f f f f f f f f f f . 
-                . . f f f f f f f f f f . . 
-                . . e f f f f f f f f e . . 
-                . e 4 f f f f f f f f 4 e . 
-                . 4 d f 3 3 3 3 3 3 c d 4 . 
-                . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-                . . . . f f f f f f . . . . 
-                . . . . f f . . f f . . . . 
-                `],
-            0,
-            false
-            )
-        } else {
-            animation.runImageAnimation(
-            nena,
-            assets.animation`nena-animation-left0`,
-            100,
-            true
-            )
-        }
-    } else if (controller.right.isPressed()) {
-        animation.runImageAnimation(
-        nena,
-        assets.animation`nena-animation-right`,
-        100,
-        true
-        )
-    } else {
-        animation.runImageAnimation(
-        nena,
-        [img`
-            . f f f . f f f f . f f f . 
-            f f f f f c c c c f f f f f 
-            f f f f b c c c c b f f f f 
-            f f f c 3 c c c c 3 c f f f 
-            . f 3 3 c c c c c c 3 3 f . 
-            . f c c c c c c c c c c f . 
-            . f f c c c c c c c c f f . 
-            . f f f c c c c c c f f f . 
-            . f f f f f f f f f f f f . 
-            . . f f f f f f f f f f . . 
-            . . e f f f f f f f f e . . 
-            . e 4 f f f f f f f f 4 e . 
-            . 4 d f 3 3 3 3 3 3 c d 4 . 
-            . 4 4 f 6 6 6 6 6 6 f 4 4 . 
-            . . . . f f f f f f . . . . 
-            . . . . f f . . f f . . . . 
-            `],
-        0,
-        false
-        )
-    }
-})
-let res: tiles.Location[] = []
-let ghotSleepTime = 0
-let nena: Sprite = null
-music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
-music.setVolume(32)
-nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-nena.setPosition(255, 255)
-controller.moveSprite(nena)
-scene.cameraFollowSprite(nena)
-tiles.setTilemap(tilemap`map`)
-scene.setBackgroundImage(img`
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-    `)
-game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Bottom)
-let ghost = sprites.create(img`
-    ........................
-    ........................
-    ........................
-    ........................
-    ..........ffff..........
-    ........ff1111ff........
-    .......fb111111bf.......
-    .......f11111111f.......
-    ......fd11111111df......
-    ......fd11111111df......
-    ......fddd1111dddf......
-    ......fbdbfddfbdbf......
-    ......fcdcf11fcdcf......
-    .......fb111111bf.......
-    ......fffcdb1bdffff.....
-    ....fc111cbfbfc111cf....
-    ....f1b1b1ffff1b1b1f....
-    ....fbfbffffffbfbfbf....
-    .........ffffff.........
-    ...........fff..........
-    ........................
-    ........................
-    ........................
-    ........................
-    `, SpriteKind.Enemy)
-tiles.placeOnRandomTile(ghost, assets.tile`pared`)
-let spawn_x = ghost.x
-let spawn_y = ghost.y
+def setWalls():
+    global wallList
+    wallList = [assets.tile("""
+            mesa L
+            """),
+        assets.tile("""
+            mesaR
+            """),
+        assets.tile("""
+            mesa
+            """),
+        assets.tile("""
+            miMosaico7
+            """),
+        assets.tile("""
+            isla de cocina
+            """),
+        assets.tile("""
+            miMosaico
+            """),
+        assets.tile("""
+            transparency16
+            """)]
+    for wall in wallList:
+        tileUtil.set_walls(wall, True)
+def tiles2():
+    global locationTiles
+    list2: List[number] = []
+    locationTiles = list2._pick_random()
+
+def on_on_overlap(sprite, otherSprite):
+    pass
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
+
+ghotSleepTime = 0
+ghostSight = 0
+locationTiles = 0
+wallList: List[Image] = []
+music.play(music.create_song(assets.song("""
+        white_space
+        """)),
+    music.PlaybackMode.LOOPING_IN_BACKGROUND)
+music.set_volume(32)
+nena = sprites.create(assets.image("""
+    nena-front
+    """), SpriteKind.player)
+nena.set_position(180, 55)
+controller.move_sprite(nena)
+scene.camera_follow_sprite(nena)
+tiles.set_tilemap(tilemap("""
+    nivel2
+    """))
+scene.set_background_image(img("""
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    """))
+game.show_long_text("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!",
+    DialogLayout.BOTTOM)
+ghost = sprites.create(img("""
+        . 2 2 2 2 2 f f f f 2 2 2 2 2 .
+        2 2 2 2 f f 1 1 1 1 f f 2 2 2 2
+        2 2 2 f b 1 1 1 1 1 1 b f 2 2 2
+        2 2 2 f 1 1 1 1 1 1 1 1 f 2 2 2
+        2 2 f d 1 1 1 1 1 1 1 1 d f 2 2
+        2 2 f d 1 1 1 1 1 1 1 1 d f 2 2
+        2 2 f d d d 1 1 1 1 d d d f 2 2
+        2 2 f b d b f d d f b d b f 2 2
+        2 2 f c d c f 1 1 f c d c f 2 2
+        2 2 2 f b 1 1 1 1 1 1 b f 2 2 2
+        2 2 f f f c d b 1 b d f f f f 2
+        f c 1 1 1 c b f b f c 1 1 1 c f
+        f 1 b 1 b 1 f f f f 1 b 1 b 1 f
+        f b f b f f f f f f b f b f b f
+        2 2 2 2 2 f f f f f f 2 2 2 2 2
+        . 2 2 2 2 2 2 f f f 2 2 2 2 2 .
+        """),
+    SpriteKind.enemy)
+floorTiles = [assets.tile("""
+        miMosaico2
+        """),
+    assets.tile("""
+        moqueta
+        """),
+    assets.tile("""
+        moqueta morada
+        """)]
+tiles.place_on_random_tile(ghost, floorTiles._pick_random())
+spawn_x = ghost.x
+spawn_y = ghost.y
+spawn_x = 120
+spawn_y = 160
 setWalls()
-forever(function () {
-    ghost.setScale(0, ScaleAnchor.Middle)
-    ghotSleepTime = randint(1000, 3000)
+ghostHunt = 0
+
+def on_forever():
+    global ghostHunt, ghostSight, ghotSleepTime
+    ghostHunt = 0
+    ghostSight = 0
+    ghost.set_scale(0, ScaleAnchor.MIDDLE)
+    ghotSleepTime = randint(1000, 1001)
     pause(ghotSleepTime)
-    ghost.setScale(1, ScaleAnchor.Middle)
-    ghost.follow(res, 1)
-    animation.runImageAnimation(
-    ghost,
-    [img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .....fffc1111111f.......
-        ...fc111cd1111111f......
-        ...f1b1b1b1111dddf......
-        ...fbfbffcf11fcddf......
-        ......fcf111111bbf......
-        .......ccbdb1b1fcf......
-        .......fffbfbfdff.......
-        ........ffffffff........
-        ........fffffffffff.....
-        .........fffffc111cf....
-        .........fffff1b1b1f....
-        ..........ffffbfbfbf....
-        ...........ffff.........
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd11111111df......
-        ....7.fd11111111df......
-        ...7..fd11111111df......
-        ...7..fd11111111df......
-        ...7..fddd1111dddff.....
-        ...77.fbdbfddfbdbfcf....
-        ...777fcdcf11fcdcfbf....
-        ....77fffbdb1bdffcf.....
-        ....fcb1bcffffff........
-        ....f1c1c1ffffff........
-        ....fdfdfdfffff.........
-        .....f.f.f..............
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd111111111f......
-        ......fd11111111df......
-        ......fd11111111df......
-        ......fcdd1111ddcff.....
-        .......fbcf11fcbfbbf....
-        .......ffbdb1bdffff.....
-        ........fcbfbfdf........
-        ........ffffffff........
-        ......ffffffffff........
-        .....fcb1bcffff.........
-        ......ffbff.............
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        `,img`
-        ........................
-        ........................
-        ........................
-        ........................
-        ..........ffff..........
-        ........ff1111ff........
-        .......fb111111bf.......
-        .......f11111111f.......
-        ......fd11111111df......
-        ......fdd111111ddf......
-        ......fbdd1111dddf......
-        ......fcdbfddfbdbf......
-        .......fbcf11fcbfff.....
-        .......ffb1111bcfbcf....
-        ........fcdb1bdfbbbf....
-        .......ffffffffffcf.....
-        .....fcb1bcfffff........
-        .....f1b1b1ffff.........
-        ......ffbff.............
-        ........................
-        ........................
-        ........................
-        ........................
-        ........................
-        `],
-    100,
-    true
-    )
-    ghotSleepTime = randint(1000, 2000)
-    ghost.setPosition(spawn_x, spawn_y)
+    animation.run_image_animation(ghost,
+        [img("""
+                ........................
+                ........................
+                ........................
+                ........................
+                ..........ffff..........
+                ........ff1111ff........
+                .......fb111111bf.......
+                .......f11111111f.......
+                ......fd11111111df......
+                ......fd11111111df......
+                ......fddd1111dddf......
+                ......fbdbfddfbdbf......
+                ......fcdcf11fcdcf......
+                .......fb111111bf.......
+                ......fffcdb1bdffff.....
+                ....fc111cbfbfc111cf....
+                ....f1b1b1ffff1b1b1f....
+                ....fbfbffffffbfbfbf....
+                .........ffffff.........
+                ...........fff..........
+                ........................
+                ........................
+                ........................
+                ........................
+                """),
+            img("""
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                ........................
+                """)],
+        500,
+        True)
+    ghost.set_position(spawn_x, spawn_y)
+    ghostHunt += 1
+    ghost.change_scale(1, ScaleAnchor.MIDDLE)
+    ghotSleepTime = randint(100000, 100001)
     pause(ghotSleepTime)
-})
-forever(function () {
-    res = scene.aStar(tiles.getTileLocation(ghost.x, ghost.y), tiles.getTileLocation(nena.x, nena.y))
-})
+forever(on_forever)
+
+def on_forever2():
+    if characterAnimations.matches_rule(nena, characterAnimations.rule(Predicate.MOVING)):
+        characterAnimations.loop_frames(nena,
+            [img("""
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f f 2 2 f f f . . . .
+                    . . . f f f 2 2 2 2 f f f . . .
+                    . . f f f e e e e e e f f f . .
+                    . . f f e 2 2 2 2 2 2 e e f . .
+                    . . f e 2 f f f f f f 2 e f . .
+                    . . f f f f e e e e f f f f . .
+                    . f f e f b f 4 4 f b f e f f .
+                    . f e e 4 1 f d d f 1 4 e e f .
+                    . . f e e d d d d d d e e f . .
+                    . . . f e e 4 4 4 4 e e f . . .
+                    . . e 4 f 2 2 2 2 2 2 f 4 e . .
+                    . . 4 d f 2 2 2 2 2 2 f d 4 . .
+                    . . 4 4 f 4 4 5 5 4 4 f 4 4 . .
+                    . . . . . f f f f f f . . . . .
+                    . . . . . f f . . f f . . . . .
+                    """),
+                img("""
+                    . . . . . . . . . . . . . . . .
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f f 2 2 f f f . . . .
+                    . . . f f f 2 2 2 2 f f f . . .
+                    . . f f f e e e e e e f f f . .
+                    . . f f e 2 2 2 2 2 2 e e f . .
+                    . f f e 2 f f f f f f 2 e f f .
+                    . f f f f f e e e e f f f f f .
+                    . . f e f b f 4 4 f b f e f . .
+                    . . f e 4 1 f d d f 1 4 e f . .
+                    . . . f e 4 d d d d 4 e f e . .
+                    . . f e f 2 2 2 2 e d d 4 e . .
+                    . . e 4 f 2 2 2 2 e d d e . . .
+                    . . . . f 4 4 5 5 f e e . . . .
+                    . . . . f f f f f f f . . . . .
+                    . . . . f f f . . . . . . . . .
+                    """),
+                img("""
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f f 2 2 f f f . . . .
+                    . . . f f f 2 2 2 2 f f f . . .
+                    . . f f f e e e e e e f f f . .
+                    . . f f e 2 2 2 2 2 2 e e f . .
+                    . . f e 2 f f f f f f 2 e f . .
+                    . . f f f f e e e e f f f f . .
+                    . f f e f b f 4 4 f b f e f f .
+                    . f e e 4 1 f d d f 1 4 e e f .
+                    . . f e e d d d d d d e e f . .
+                    . . . f e e 4 4 4 4 e e f . . .
+                    . . e 4 f 2 2 2 2 2 2 f 4 e . .
+                    . . 4 d f 2 2 2 2 2 2 f d 4 . .
+                    . . 4 4 f 4 4 5 5 4 4 f 4 4 . .
+                    . . . . . f f f f f f . . . . .
+                    . . . . . f f . . f f . . . . .
+                    """),
+                img("""
+                    . . . . . . . . . . . . . . . .
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f f 2 2 f f f . . . .
+                    . . . f f f 2 2 2 2 f f f . . .
+                    . . f f f e e e e e e f f f . .
+                    . . f e e 2 2 2 2 2 2 e f f . .
+                    . f f e 2 f f f f f f 2 e f f .
+                    . f f f f f e e e e f f f f f .
+                    . . f e f b f 4 4 f b f e f . .
+                    . . f e 4 1 f d d f 1 4 e f . .
+                    . . e f e 4 d d d d 4 e f . . .
+                    . . e 4 d d e 2 2 2 2 f e f . .
+                    . . . e d d e 2 2 2 2 f 4 e . .
+                    . . . . e e f 5 5 4 4 f . . . .
+                    . . . . . f f f f f f f . . . .
+                    . . . . . . . . . f f f . . . .
+                    """)],
+            100,
+            characterAnimations.rule(Predicate.MOVING_DOWN))
+        characterAnimations.loop_frames(nena,
+            [img("""
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f e e e e f f . . . .
+                    . . . f e e e f f e e e f . . .
+                    . . f f f f f 2 2 f f f f f . .
+                    . . f f e 2 e 2 2 e 2 e f f . .
+                    . . f e 2 f 2 f f 2 f 2 e f . .
+                    . . f f f 2 2 e e 2 2 f f f . .
+                    . f f e f 2 f e e f 2 f e f f .
+                    . f e e f f e e e e f e e e f .
+                    . . f e e e e e e e e e e f . .
+                    . . . f e e e e e e e e f . . .
+                    . . e 4 f f f f f f f f 4 e . .
+                    . . 4 d f 2 2 2 2 2 2 f d 4 . .
+                    . . 4 4 f 4 4 4 4 4 4 f 4 4 . .
+                    . . . . . f f f f f f . . . . .
+                    . . . . . f f . . f f . . . . .
+                    """),
+                img("""
+                    . . . . . . . . . . . . . . . .
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f e e e e f f . . . .
+                    . . . f e e e f f e e e f . . .
+                    . . . f f f f 2 2 f f f f . . .
+                    . . f f e 2 e 2 2 e 2 e f f . .
+                    . . f e 2 f 2 f f f 2 f e f . .
+                    . . f f f 2 f e e 2 2 f f f . .
+                    . . f e 2 f f e e 2 f e e f . .
+                    . f f e f f e e e f e e e f f .
+                    . f f e e e e e e e e e e f f .
+                    . . . f e e e e e e e e f . . .
+                    . . . e f f f f f f f f 4 e . .
+                    . . . 4 f 2 2 2 2 2 e d d 4 . .
+                    . . . e f f f f f f e e 4 . . .
+                    . . . . f f f . . . . . . . . .
+                    """),
+                img("""
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f e e e e f f . . . .
+                    . . . f e e e f f e e e f . . .
+                    . . f f f f f 2 2 f f f f f . .
+                    . . f f e 2 e 2 2 e 2 e f f . .
+                    . . f e 2 f 2 f f 2 f 2 e f . .
+                    . . f f f 2 2 e e 2 2 f f f . .
+                    . f f e f 2 f e e f 2 f e f f .
+                    . f e e f f e e e e f e e e f .
+                    . . f e e e e e e e e e e f . .
+                    . . . f e e e e e e e e f . . .
+                    . . e 4 f f f f f f f f 4 e . .
+                    . . 4 d f 2 2 2 2 2 2 f d 4 . .
+                    . . 4 4 f 4 4 4 4 4 4 f 4 4 . .
+                    . . . . . f f f f f f . . . . .
+                    . . . . . f f . . f f . . . . .
+                    """),
+                img("""
+                    . . . . . . . . . . . . . . . .
+                    . . . . . . f f f f . . . . . .
+                    . . . . f f e e e e f f . . . .
+                    . . . f e e e f f e e e f . . .
+                    . . . f f f f 2 2 f f f f . . .
+                    . . f f e 2 e 2 2 e 2 e f f . .
+                    . . f e f 2 f f f 2 f 2 e f . .
+                    . . f f f 2 2 e e f 2 f f f . .
+                    . . f e e f 2 e e f f 2 e f . .
+                    . f f e e e f e e e f f e f f .
+                    . f f e e e e e e e e e e f f .
+                    . . . f e e e e e e e e f . . .
+                    . . e 4 f f f f f f f f e . . .
+                    . . 4 d d e 2 2 2 2 2 f 4 . . .
+                    . . . 4 e e f f f f f f e . . .
+                    . . . . . . . . . f f f . . . .
+                    """)],
+            100,
+            characterAnimations.rule(Predicate.MOVING_UP))
+        characterAnimations.loop_frames(nena,
+            [img("""
+                    . . . . . . f f f f f f . . . .
+                    . . . . f f e e e e f 2 f . . .
+                    . . . f f e e e e f 2 2 2 f . .
+                    . . . f e e e f f e e e e f . .
+                    . . . f f f f e e 2 2 2 2 e f .
+                    . . . f e 2 2 2 f f f f e 2 f .
+                    . . f f f f f f f e e e f f f .
+                    . . f f e 4 4 e b f 4 4 e e f .
+                    . . f e e 4 d 4 1 f d d e f . .
+                    . . . f e e e 4 d d d d f . . .
+                    . . . . f f e e 4 4 4 e f . . .
+                    . . . . . 4 d d e 2 2 2 f . . .
+                    . . . . . e d d e 2 2 2 f . . .
+                    . . . . . f e e f 4 5 5 f . . .
+                    . . . . . . f f f f f f . . . .
+                    . . . . . . . f f f . . . . . .
+                    """),
+                img("""
+                    . . . . . . . . f f . . . . . .
+                    . . . . . . f f e e f f . . . .
+                    . . . . f f e e e e f 2 f . . .
+                    . . . f f e e e e f 2 2 2 f . .
+                    . . . f e e e f f e e e e f . .
+                    . . . f f f f e e 2 2 2 2 e f .
+                    . . . f e 2 2 2 f f f f e 2 f .
+                    . . f f f f f f f e e e f f f .
+                    . . f f e 4 4 e b f 4 4 e e f .
+                    . . f e e 4 d 4 1 f d d e f . .
+                    . . . f e e e e e d d d f . . .
+                    . . . . . f 4 d d e 4 e f . . .
+                    . . . . . f e d d e 2 2 f . . .
+                    . . . . f f f e e f 5 5 f f . .
+                    . . . . f f f f f f f f f f . .
+                    . . . . . f f . . . f f f . . .
+                    """),
+                img("""
+                    . . . . . . f f f f f f . . . .
+                    . . . . f f e e e e f 2 f . . .
+                    . . . f f e e e e f 2 2 2 f . .
+                    . . . f e e e f f e e e e f . .
+                    . . . f f f f e e 2 2 2 2 e f .
+                    . . . f e 2 2 2 f f f f e 2 f .
+                    . . f f f f f f f e e e f f f .
+                    . . f f e 4 4 e b f 4 4 e e f .
+                    . . f e e 4 d 4 1 f d d e f . .
+                    . . . f e e e 4 d d d d f . . .
+                    . . . . f f e e 4 4 4 e f . . .
+                    . . . . . 4 d d e 2 2 2 f . . .
+                    . . . . . e d d e 2 2 2 f . . .
+                    . . . . . f e e f 4 5 5 f . . .
+                    . . . . . . f f f f f f . . . .
+                    . . . . . . . f f f . . . . . .
+                    """),
+                img("""
+                    . . . . . . . . f f . . . . . .
+                    . . . . . . f f e e f f . . . .
+                    . . . . f f e e e e f 2 f . . .
+                    . . . f f e e e e f 2 2 2 f . .
+                    . . . f e e e f f e e e e f . .
+                    . . . f f f f e e 2 2 2 2 e f .
+                    . . . f e 2 2 2 f f f f e 2 f .
+                    . . f f f f f f f e e e f f f .
+                    . . f f e 4 4 e b f 4 4 e e f .
+                    . . f e e 4 d 4 1 f d d e f . .
+                    . . . f e e e 4 d d d d f . . .
+                    . . . . 4 d d e 4 4 4 e f . . .
+                    . . . . e d d e 2 2 2 2 f . . .
+                    . . . . f e e f 4 4 5 5 f f . .
+                    . . . . f f f f f f f f f f . .
+                    . . . . . f f . . . f f f . . .
+                    """)],
+            100,
+            characterAnimations.rule(Predicate.MOVING_RIGHT))
+        characterAnimations.loop_frames(nena,
+            [img("""
+                    . . . . f f f f f f . . . . . .
+                    . . . f 2 f e e e e f f . . . .
+                    . . f 2 2 2 f e e e e f f . . .
+                    . . f e e e e f f e e e f . . .
+                    . f e 2 2 2 2 e e f f f f . . .
+                    . f 2 e f f f f 2 2 2 e f . . .
+                    . f f f e e e f f f f f f f . .
+                    . f e e 4 4 f b e 4 4 e f f . .
+                    . . f e d d f 1 4 d 4 e e f . .
+                    . . . f d d d d 4 e e e f . . .
+                    . . . f e 4 4 4 e e f f . . . .
+                    . . . f 2 2 2 e d d 4 . . . . .
+                    . . . f 2 2 2 e d d e . . . . .
+                    . . . f 5 5 4 f e e f . . . . .
+                    . . . . f f f f f f . . . . . .
+                    . . . . . . f f f . . . . . . .
+                    """),
+                img("""
+                    . . . . . . f f . . . . . . . .
+                    . . . . f f e e f f . . . . . .
+                    . . . f 2 f e e e e f f . . . .
+                    . . f 2 2 2 f e e e e f f . . .
+                    . . f e e e e f f e e e f . . .
+                    . f e 2 2 2 2 e e f f f f . . .
+                    . f 2 e f f f f 2 2 2 e f . . .
+                    . f f f e e e f f f f f f f . .
+                    . f e e 4 4 f b e 4 4 e f f . .
+                    . . f e d d f 1 4 d 4 e e f . .
+                    . . . f d d d e e e e e f . . .
+                    . . . f e 4 e d d 4 f . . . . .
+                    . . . f 2 2 e d d e f . . . . .
+                    . . f f 5 5 f e e f f f . . . .
+                    . . f f f f f f f f f f . . . .
+                    . . . f f f . . . f f . . . . .
+                    """),
+                img("""
+                    . . . . f f f f f f . . . . . .
+                    . . . f 2 f e e e e f f . . . .
+                    . . f 2 2 2 f e e e e f f . . .
+                    . . f e e e e f f e e e f . . .
+                    . f e 2 2 2 2 e e f f f f . . .
+                    . f 2 e f f f f 2 2 2 e f . . .
+                    . f f f e e e f f f f f f f . .
+                    . f e e 4 4 f b e 4 4 e f f . .
+                    . . f e d d f 1 4 d 4 e e f . .
+                    . . . f d d d d 4 e e e f . . .
+                    . . . f e 4 4 4 e e f f . . . .
+                    . . . f 2 2 2 e d d 4 . . . . .
+                    . . . f 2 2 2 e d d e . . . . .
+                    . . . f 5 5 4 f e e f . . . . .
+                    . . . . f f f f f f . . . . . .
+                    . . . . . . f f f . . . . . . .
+                    """),
+                img("""
+                    . . . . . . f f . . . . . . . .
+                    . . . . f f e e f f . . . . . .
+                    . . . f 2 f e e e e f f . . . .
+                    . . f 2 2 2 f e e e e f f . . .
+                    . . f e e e e f f e e e f . . .
+                    . f e 2 2 2 2 e e f f f f . . .
+                    . f 2 e f f f f 2 2 2 e f . . .
+                    . f f f e e e f f f f f f f . .
+                    . f e e 4 4 f b e 4 4 e f f . .
+                    . . f e d d f 1 4 d 4 e e f . .
+                    . . . f d d d d 4 e e e f . . .
+                    . . . f e 4 4 4 e d d 4 . . . .
+                    . . . f 2 2 2 2 e d d e . . . .
+                    . . f f 5 5 4 4 f e e f . . . .
+                    . . f f f f f f f f f f . . . .
+                    . . . f f f . . . f f . . . . .
+                    """)],
+            100,
+            characterAnimations.rule(Predicate.MOVING_LEFT))
+    else:
+        nena.set_image(img("""
+            . . . . . . f f f f . . . . . .
+            . . . . f f f 2 2 f f f . . . .
+            . . . f f f 2 2 2 2 f f f . . .
+            . . f f f e e e e e e f f f . .
+            . . f f e 2 2 2 2 2 2 e e f . .
+            . . f e 2 f f f f f f 2 e f . .
+            . . f f f f e e e e f f f f . .
+            . f f e f b f 4 4 f b f e f f .
+            . f e e 4 1 f d d f 1 4 e e f .
+            . . f e e d d d d d d e e f . .
+            . . . f e e 4 4 4 4 e e f . . .
+            . . e 4 f 2 2 2 2 2 2 f 4 e . .
+            . . 4 d f 2 2 2 2 2 2 f d 4 . .
+            . . 4 4 f 4 4 5 5 4 4 f 4 4 . .
+            . . . . . f f f f f f . . . . .
+            . . . . . f f . . f f . . . . .
+            """))
+forever(on_forever2)
+
+def on_forever3():
+    global ghostSight
+    goToLastSight = 0
+    if not (goToLastSight):
+        if sight.is_in_sight(ghost, nena, 160, False):
+            ghostSight = 1
+forever(on_forever3)
+
+def on_update_interval():
+    if ghostHunt == 1:
+        if ghostSight == 1:
+            scene.follow_path(ghost,
+                scene.a_star(tiles.location_of_sprite(ghost),
+                    tiles.location_of_sprite(nena)),
+                100)
+        else:
+            scene.follow_path(ghost,
+                scene.a_star(tiles.location_of_sprite(ghost),
+                    tiles.get_tile_location(randint(0, tiles.tilemap_rows()),
+                        randint(0, tiles.tilemap_columns()))),
+                100)
+game.on_update_interval(300, on_update_interval)

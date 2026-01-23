@@ -687,6 +687,7 @@ forever(function () {
     }
 })
 forever(function () {
+    openedMenu = false
     color.setPalette(
     color.originalPalette
     )
@@ -699,6 +700,8 @@ forever(function () {
     color.setPalette(
     color.Adventure
     )
+    openedMenu = true
+    inputGhostType.close()
     pause(timeBeforeAtkAfterLightsOff)
     tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
     ghostHunt += 1

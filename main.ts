@@ -42,10 +42,10 @@ function ghostAbilitiesList () {
         maxMimicCooldown = 6000
     }
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(openedMenu)) {
         openedMenu = true
-        controller.moveSprite(mainCharacter, 0, 0)
+        mainCharacter.setVelocity(0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
         miniMenu.createMenuItem(ghostList[0], skullList[0]),
         miniMenu.createMenuItem(ghostList[1], skullList[1]),
@@ -69,7 +69,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
-        inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
@@ -93,10 +93,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 }
             }
         })
-        inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             openedMenu = false
-            controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             inputGhostType.close()
+            mainCharacter.setVelocity(playerVelocity, playerVelocity)
         })
     }
 })
@@ -119,9 +119,9 @@ function setBaseStats () {
     ghostCloseSpeed = ghostSpeed
     wallHacks = false
     sightRange = 160
-    flashingGhost = 250
     timeBeforeAtkAfterLightsOff = 2000
     immunitySpawnTime = 2000
+    flashingGhost = 250
     animation.runImageAnimation(
     ghost,
     assets.animation`ghostAnimation`,
@@ -165,7 +165,6 @@ let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
-let openedMenu = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false
@@ -183,6 +182,7 @@ let currentGhostType = ""
 let currentGhostAbility = ""
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
+let openedMenu = false
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
@@ -341,6 +341,7 @@ ghost = sprites.create(img`
     ........................
     `, SpriteKind.Enemy)
 ghost.setScale(0, ScaleAnchor.Middle)
+openedMenu = true
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
 ghostSpawnRoom = floorTiles._pickRandom()
@@ -707,6 +708,7 @@ forever(function () {
     )
     if (openedMenu) {
         inputGhostType.close()
+        mainCharacter.setVelocity(playerVelocity, playerVelocity)
     }
     openedMenu = true
     pause(timeBeforeAtkAfterLightsOff)

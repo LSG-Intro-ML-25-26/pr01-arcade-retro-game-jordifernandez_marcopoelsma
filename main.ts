@@ -72,12 +72,13 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
-                stop = 999999999999
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                    stopHunt = true
                     game.splash("THIS IS THE ROOM!")
                     game.splash("THIS IS THE GHOST TYPE!")
                     game.gameOver(true)
                 } else {
+                    stopHunt = true
                     game.splash("THIS IS THE ROOM!")
                     game.splash("THIS IS NOT THE GHOST TYPE!")
                     gameOver()
@@ -85,11 +86,13 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
                 }
             } else {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                    stopHunt = true
                     game.splash("THIS IS NOT THE ROOM!")
                     game.splash("THIS IS THE GHOST TYPE!")
                     gameOver()
                     game.gameOver(false)
                 } else {
+                    stopHunt = true
                     game.splash("THIS IS NOT THE ROOM!")
                     game.splash("THIS IS NOT THE GHOST TYPE!")
                     gameOver()
@@ -118,7 +121,7 @@ function gameOver () {
     }
 }
 function setBaseStats () {
-    stop = 0
+    stopHunt = false
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
     maxAtkCooldown = 5000
@@ -174,7 +177,7 @@ let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let playerVelocity = 0
-let stop = 0
+let stopHunt = false
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -721,23 +724,24 @@ forever(function () {
     }
     ghost.setScale(0, ScaleAnchor.Middle)
     pause(randint(minAtkCooldown, maxAtkCooldown))
-    pause(stop)
-    color.setPalette(
-    color.Adventure
-    )
-    if (openedMenu) {
-        inputGhostType.close()
-        controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+    if (!(stopHunt)) {
+        color.setPalette(
+        color.Adventure
+        )
+        if (openedMenu) {
+            inputGhostType.close()
+            controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+        }
+        openedMenu = true
+        pause(timeBeforeAtkAfterLightsOff)
+        tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+        ghostHunt += 1
+        ghost.changeScale(1, ScaleAnchor.Middle)
+        immortalPlayer = true
+        pause(immunitySpawnTime)
+        immortalPlayer = false
+        pause(randint(minHuntTime, maxHuntTime))
     }
-    openedMenu = true
-    pause(timeBeforeAtkAfterLightsOff)
-    tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-    ghostHunt += 1
-    ghost.changeScale(1, ScaleAnchor.Middle)
-    immortalPlayer = true
-    pause(immunitySpawnTime)
-    immortalPlayer = false
-    pause(randint(minHuntTime, maxHuntTime))
 })
 game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {

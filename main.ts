@@ -687,10 +687,10 @@ forever(function () {
     }
 })
 forever(function () {
-    openedMenu = false
     color.setPalette(
     color.originalPalette
     )
+    openedMenu = false
     ghostHunt = 0
     if (!(wallHacks)) {
         ghostSight = false
@@ -700,8 +700,10 @@ forever(function () {
     color.setPalette(
     color.Adventure
     )
+    if (openedMenu) {
+        inputGhostType.close()
+    }
     openedMenu = true
-    inputGhostType.close()
     pause(timeBeforeAtkAfterLightsOff)
     tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
     ghostHunt += 1

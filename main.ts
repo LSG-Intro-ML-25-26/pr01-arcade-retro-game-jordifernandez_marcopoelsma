@@ -23,10 +23,11 @@ function setBaseStats () {
     ghostCloseSpeed = ghostSpeed
     wallHacks = false
     sightRange = 160
+    flashingGhost = 250
     animation.runImageAnimation(
     ghost,
     assets.animation`ghostAnimation`,
-    300,
+    flashingGhost,
     true
     )
 }
@@ -39,49 +40,49 @@ function setGhostType () {
     "Demon",
     "Oni",
     "Revenant",
-    "Deogen"
+    "Deogen",
+    "Yurei"
     ]
     currentGhostType = ghostList._pickRandom()
     if (currentGhostType == "Oni") {
+        flashingGhost = flashingGhost * 0.33
         animation.runImageAnimation(
         ghost,
         assets.animation`ghostAnimation`,
-        100,
+        flashingGhost,
         true
         )
     } else if (currentGhostType == "Demon") {
         maxAtkCooldown = minAtkCooldown
-        minAtkCooldown = minAtkCooldown / 2
+        minAtkCooldown = minAtkCooldown * 0.5
     } else if (currentGhostType == "Revenant") {
-        ghostSpeed = 50
-        ghostSightSpeed = 130
+        ghostSpeed = ghostSpeed * 0.5
+        ghostSightSpeed = ghostSightSpeed * 1.5
     } else if (currentGhostType == "Deogen") {
         looseTrailTime = maxHuntTime
         wallHacks = true
-        ghostSightSpeed = 130
-        ghostCloseSpeed = 50
+        ghostSightSpeed = ghostSightSpeed * 1.3
+        ghostCloseSpeed = ghostCloseSpeed * 0.5
         sightRange = 999999999999
-        ghostSight = 1
+        ghostSight = true
+    } else if (currentGhostType == "Yurei") {
+        sightRange = sightRange * 0.2
+        looseTrailTime = looseTrailTime * 0.4
     } else {
     	
     }
     game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    animation.runImageAnimation(
-    ghost,
-    assets.animation`ghostAnimation`,
-    5000,
-    false
-    )
     game.gameOver(false)
 })
 let yTile = 0
 let xTile = 0
-let ghostSight = 0
+let ghostSight = false
 let currentGhostType = ""
 let ghostList: string[] = []
 let locationTiles = 0
+let flashingGhost = 0
 let sightRange = 0
 let wallHacks = false
 let ghostCloseSpeed = 0
@@ -253,7 +254,7 @@ let ghostHunt = 0
 forever(function () {
     ghostHunt = 0
     if (!(wallHacks)) {
-        ghostSight = 0
+        ghostSight = false
     }
     ghost.setScale(0, ScaleAnchor.Middle)
     pause(randint(minAtkCooldown, maxAtkCooldown))
@@ -588,15 +589,15 @@ forever(function () {
     sightRange,
     wallHacks
     )) {
-        ghostSight = 1
+        ghostSight = true
         pause(looseTrailTime)
     } else {
-        ghostSight = 0
+        ghostSight = false
     }
 })
 game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {
-        if (ghostSight == 1) {
+        if (ghostSight) {
             if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
                 scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostCloseSpeed)
             } else {

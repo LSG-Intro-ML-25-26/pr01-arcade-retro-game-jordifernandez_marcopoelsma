@@ -74,27 +74,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
                     stopHunt = true
-                    game.splash("THIS IS THE ROOM!")
-                    game.splash("THIS IS THE GHOST TYPE!")
                     game.gameOver(true)
                 } else {
-                    stopHunt = true
-                    game.splash("THIS IS THE ROOM!")
-                    game.splash("THIS IS NOT THE GHOST TYPE!")
                     gameOver()
                 }
             } else {
-                if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                    stopHunt = true
-                    game.splash("THIS IS NOT THE ROOM!")
-                    game.splash("THIS IS THE GHOST TYPE!")
-                    gameOver()
-                } else {
-                    stopHunt = true
-                    game.splash("THIS IS NOT THE ROOM!")
-                    game.splash("THIS IS NOT THE GHOST TYPE!")
-                    gameOver()
-                }
+                gameOver()
             }
         })
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
@@ -111,6 +96,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     mainCharacter.setImage(assets.image`hidden`)
 })
 function gameOver () {
+    stopHunt = true
     if (openedMenu) {
         inputGhostType.close()
     }
@@ -730,16 +716,18 @@ forever(function () {
     }
 })
 forever(function () {
-    color.setPalette(
-    color.originalPalette
-    )
-    openedMenu = false
-    ghostHunt = 0
-    if (!(wallHacks)) {
-        ghostSight = false
+    if (!(stopHunt)) {
+        color.setPalette(
+        color.originalPalette
+        )
+        openedMenu = false
+        ghostHunt = 0
+        if (!(wallHacks)) {
+            ghostSight = false
+        }
+        ghost.setScale(0, ScaleAnchor.Middle)
+        pause(randint(minAtkCooldown, maxAtkCooldown))
     }
-    ghost.setScale(0, ScaleAnchor.Middle)
-    pause(randint(minAtkCooldown, maxAtkCooldown))
     if (!(stopHunt)) {
         color.setPalette(
         color.Adventure

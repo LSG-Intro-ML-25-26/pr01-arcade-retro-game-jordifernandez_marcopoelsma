@@ -37,10 +37,6 @@ function setBaseStats () {
     true
     )
 }
-function tiles2 () {
-    let list: number[] = []
-    locationTiles = list._pickRandom()
-}
 function setGhostType () {
     ghostList = [
     "Demon",
@@ -78,13 +74,12 @@ function setGhostType () {
     game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-	
+    game.gameOver(false)
 })
 let yTile = 0
 let xTile = 0
 let currentGhostType = ""
 let ghostList: string[] = []
-let locationTiles = 0
 let flashingGhost = 0
 let sightRange = 0
 let ghostCloseSpeed = 0
@@ -249,6 +244,7 @@ ghost = sprites.create(img`
     . 2 2 2 2 2 2 f f f 2 2 2 2 2 . 
     `, SpriteKind.Enemy)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
+let hideTiles = [assets.tile`escondite`]
 tiles.placeOnRandomTile(ghost, floorTiles._pickRandom())
 let spawn_x = ghost.x
 let spawn_y = ghost.y
@@ -256,18 +252,6 @@ setWalls()
 setBaseStats()
 setGhostType()
 let ghostHunt = 0
-forever(function () {
-    ghostHunt = 0
-    if (!(wallHacks)) {
-        ghostSight = false
-    }
-    ghost.setScale(0, ScaleAnchor.Middle)
-    pause(randint(minAtkCooldown, maxAtkCooldown))
-    ghost.setPosition(spawn_x, spawn_y)
-    ghostHunt += 1
-    ghost.changeScale(1, ScaleAnchor.Middle)
-    pause(randint(minHuntTime, maxHuntTime))
-})
 forever(function () {
     if (sight.isInSight(
     ghost,
@@ -598,6 +582,18 @@ forever(function () {
             . . . . . f f . . f f . . . . . 
             `)
     }
+})
+forever(function () {
+    ghostHunt = 0
+    if (!(wallHacks)) {
+        ghostSight = false
+    }
+    ghost.setScale(0, ScaleAnchor.Middle)
+    pause(randint(minAtkCooldown, maxAtkCooldown))
+    ghost.setPosition(spawn_x, spawn_y)
+    ghostHunt += 1
+    ghost.changeScale(1, ScaleAnchor.Middle)
+    pause(randint(minHuntTime, maxHuntTime))
 })
 game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {

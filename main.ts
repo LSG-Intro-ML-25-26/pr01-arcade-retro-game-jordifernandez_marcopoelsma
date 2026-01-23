@@ -73,14 +73,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                    stopHunt = true
-                    game.gameOver(true)
+                    changeHuntOrColorState = true
+                    win = true
                 } else {
-                    gameOver()
+                    win = false
                 }
-            } else {
-                gameOver()
             }
+            gameOver()
         })
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             openedMenu = false
@@ -96,7 +95,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     mainCharacter.setImage(assets.image`hidden`)
 })
 function gameOver () {
-    stopHunt = true
+    changeHuntOrColorState = true
     if (openedMenu) {
         inputGhostType.close()
     }
@@ -116,10 +115,10 @@ function gameOver () {
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Border, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 0)
     ghostReveal.onButtonPressed(controller.A, function (selection, selectedIndex) {
-        game.gameOver(false)
+        game.gameOver(win)
     })
     ghostReveal.onButtonPressed(controller.B, function (selection, selectedIndex) {
-        game.gameOver(false)
+        game.gameOver(win)
     })
 }
 function setBaseStats () {
@@ -178,6 +177,7 @@ let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
+let win = false
 let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
@@ -198,7 +198,7 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
-let stopHunt = false
+let changeHuntOrColorState = false
 let ghostSpawnRoom: Image = null
 let openedMenu = false
 let ghost: Sprite = null
@@ -364,7 +364,7 @@ let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moq
 let hideTiles = [assets.tile`escondite`]
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-stopHunt = false
+changeHuntOrColorState = false
 setWalls()
 setBaseStats()
 setGhostType()
@@ -716,7 +716,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (!(stopHunt)) {
+    if (!(changeHuntOrColorState)) {
         color.setPalette(
         color.originalPalette
         )
@@ -728,7 +728,7 @@ forever(function () {
         ghost.setScale(0, ScaleAnchor.Middle)
         pause(randint(minAtkCooldown, maxAtkCooldown))
     }
-    if (!(stopHunt)) {
+    if (!(changeHuntOrColorState)) {
         color.setPalette(
         color.Adventure
         )

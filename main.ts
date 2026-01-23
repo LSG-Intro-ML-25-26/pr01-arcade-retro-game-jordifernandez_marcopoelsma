@@ -13,10 +13,21 @@ function setWalls () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    inputGhostType = miniMenu.createMenu(
+    miniMenu.createMenuItem(ghostList[0]),
+    miniMenu.createMenuItem(ghostList[1]),
+    miniMenu.createMenuItem(ghostList[2]),
+    miniMenu.createMenuItem(ghostList[3]),
+    miniMenu.createMenuItem(ghostList[4])
+    )
+    inputGhostType.setTitle("INPUT GHOST TYPE")
+    inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
+    inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Padding, 0)
+    tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
     if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
-        game.splash("Sisoy")
+    	
     } else {
-        game.splash("Nosoy")
+    	
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
@@ -47,9 +58,9 @@ function setBaseStats () {
 function setGhostType () {
     ghostList = [
     "Demon",
+    "Deogen",
     "Oni",
     "Revenant",
-    "Deogen",
     "Yurei"
     ]
     currentGhostType = ghostList._pickRandom()
@@ -86,7 +97,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let yTile = 0
 let xTile = 0
 let currentGhostType = ""
-let ghostList: string[] = []
 let flashingGhost = 0
 let sightRange = 0
 let ghostCloseSpeed = 0
@@ -99,6 +109,8 @@ let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let ghostSight = false
 let wallHacks = false
+let ghostList: string[] = []
+let inputGhostType: miniMenu.MenuSprite = null
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
@@ -232,30 +244,37 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
-game.showLongText("ENCUENTRA AL FANTASMA Y PURIFICA EL HOTEL!", DialogLayout.Bottom)
+game.showLongText("FIND THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
 ghost = sprites.create(img`
-    . 2 2 2 2 2 f f f f 2 2 2 2 2 . 
-    2 2 2 2 f f 1 1 1 1 f f 2 2 2 2 
-    2 2 2 f b 1 1 1 1 1 1 b f 2 2 2 
-    2 2 2 f 1 1 1 1 1 1 1 1 f 2 2 2 
-    2 2 f d 1 1 1 1 1 1 1 1 d f 2 2 
-    2 2 f d 1 1 1 1 1 1 1 1 d f 2 2 
-    2 2 f d d d 1 1 1 1 d d d f 2 2 
-    2 2 f b d b f d d f b d b f 2 2 
-    2 2 f c d c f 1 1 f c d c f 2 2 
-    2 2 2 f b 1 1 1 1 1 1 b f 2 2 2 
-    2 2 f f f c d b 1 b d f f f f 2 
-    f c 1 1 1 c b f b f c 1 1 1 c f 
-    f 1 b 1 b 1 f f f f 1 b 1 b 1 f 
-    f b f b f f f f f f b f b f b f 
-    2 2 2 2 2 f f f f f f 2 2 2 2 2 
-    . 2 2 2 2 2 2 f f f 2 2 2 2 2 . 
+    ........................
+    ........................
+    ........................
+    ........................
+    ..........ffff..........
+    ........ff1111ff........
+    .......fb111111bf.......
+    .......f11111111f.......
+    ......fd11111111df......
+    ......fd11111111df......
+    ......fddd1111dddf......
+    ......fbdbfddfbdbf......
+    ......fcdcf11fcdcf......
+    .......fb111111bf.......
+    ......fffcdb1bdffff.....
+    ....fc111cbfbfc111cf....
+    ....f1b1b1ffff1b1b1f....
+    ....fbfbffffffbfbfbf....
+    .........ffffff.........
+    ...........fff..........
+    ........................
+    ........................
+    ........................
+    ........................
     `, SpriteKind.Enemy)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-setWalls()
 setBaseStats()
 setGhostType()
 let ghostHunt = 0

@@ -31,7 +31,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 10)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
-            killOnHit = false
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
                     game.splash("THIS IS THE ROOM!")
@@ -81,6 +80,7 @@ function setBaseStats () {
     wallHacks = false
     sightRange = 160
     flashingGhost = 250
+    startAtkCooldown = 2000
     animation.runImageAnimation(
     ghost,
     assets.animation`ghostAnimation`,
@@ -128,6 +128,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
+let startAtkCooldown = 0
 let flashingGhost = 0
 let sightRange = 0
 let ghostCloseSpeed = 0
@@ -142,7 +143,6 @@ let ghostSight = false
 let wallHacks = false
 let playerVelocity = 0
 let currentGhostType = ""
-let killOnHit = false
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let openedMenu = false
@@ -646,12 +646,19 @@ forever(function () {
     }
 })
 forever(function () {
+    color.setPalette(
+    color.originalPalette
+    )
     ghostHunt = 0
     if (!(wallHacks)) {
         ghostSight = false
     }
     ghost.setScale(0, ScaleAnchor.Middle)
     pause(randint(minAtkCooldown, maxAtkCooldown))
+    color.setPalette(
+    color.Adventure
+    )
+    pause(startAtkCooldown)
     tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
     ghostHunt += 1
     ghost.changeScale(1, ScaleAnchor.Middle)

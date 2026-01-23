@@ -37,7 +37,7 @@ function ghostAbilitiesList () {
     } else if (currentGhostAbility == "Yurei") {
         sightRange = sightRange * 0.2
         looseTrailTime = looseTrailTime * 0.4
-    } else if (currentGhostAbility == "Mimic") {
+    } else if (currentGhostType == "Mimic") {
         minMimicCooldown = 4000
         maxMimicCooldown = 6000
     }
@@ -63,10 +63,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 22)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 2)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 11)
-        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16 + 0))
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 9)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 1)
+        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
@@ -159,7 +161,6 @@ let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let playerVelocity = 0
-let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -178,6 +179,7 @@ let ghostSpeed = 0
 let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
+let currentGhostType = ""
 let currentGhostAbility = ""
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null

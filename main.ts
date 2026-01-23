@@ -69,10 +69,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
 function setBaseStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-    maxAtkCooldown = 0
-    minAtkCooldown = 1
-    maxHuntTime = 100000
-    minHuntTime = 150000
+    maxAtkCooldown = 5000
+    minAtkCooldown = 10000
+    maxHuntTime = 15000
+    minHuntTime = 20000
     looseTrailTime = 5000
     ghostSpeed = 100
     ghostSightSpeed = ghostSpeed
@@ -124,7 +124,7 @@ function setGhostType () {
     game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-	
+    game.gameOver(false)
 })
 let yTile = 0
 let xTile = 0

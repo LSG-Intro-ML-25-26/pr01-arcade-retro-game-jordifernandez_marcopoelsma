@@ -13,6 +13,7 @@ function setWalls () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    openedMenu = true
     inputGhostType = miniMenu.createMenu(
     miniMenu.createMenuItem(ghostList[0]),
     miniMenu.createMenuItem(ghostList[1]),
@@ -114,6 +115,7 @@ let ghostSight = false
 let wallHacks = false
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
+let openedMenu = false
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
@@ -278,6 +280,7 @@ let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moq
 let hideTiles = [assets.tile`escondite`]
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+setWalls()
 setBaseStats()
 setGhostType()
 let ghostHunt = 0

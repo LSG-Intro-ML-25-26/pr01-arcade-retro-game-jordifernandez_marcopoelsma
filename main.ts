@@ -12,12 +12,6 @@ function setWalls () {
         tileUtil.setWalls(wall, true)
     }
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
-    if (!(wallHacks)) {
-        ghostSight = false
-    }
-    mainCharacter.setImage(assets.image`hidden`)
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(openedMenu)) {
         openedMenu = true
@@ -67,6 +61,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         })
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
+    if (!(wallHacks)) {
+        ghostSight = false
+    }
+    mainCharacter.setImage(assets.image`hidden`)
+})
 function setBaseStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -82,6 +82,7 @@ function setBaseStats () {
     sightRange = 160
     flashingGhost = 250
     timeBeforeAtkAfterLightsOff = 2000
+    immunitySpawnTime = 2000
     animation.runImageAnimation(
     ghost,
     assets.animation`ghostAnimation`,
@@ -131,6 +132,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
+let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let flashingGhost = 0
 let sightRange = 0
@@ -142,14 +144,14 @@ let minHuntTime = 0
 let maxHuntTime = 0
 let minAtkCooldown = 0
 let maxAtkCooldown = 0
+let ghostSight = false
+let wallHacks = false
 let playerVelocity = 0
 let currentGhostType = ""
 let immortalPlayer = false
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let openedMenu = false
-let ghostSight = false
-let wallHacks = false
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
@@ -666,6 +668,9 @@ forever(function () {
     tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
     ghostHunt += 1
     ghost.changeScale(1, ScaleAnchor.Middle)
+    immortalPlayer = true
+    pause(immunitySpawnTime)
+    immortalPlayer = false
     pause(randint(minHuntTime, maxHuntTime))
 })
 game.onUpdateInterval(300, function () {

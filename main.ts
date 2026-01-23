@@ -54,13 +54,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         miniMenu.createMenuItem(ghostList[4], skullList[4])
         ])
         inputGhostType.setTitle("INPUT GHOST TYPE")
-        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 150)
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 7)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 22)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 2)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 11)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16 + 1))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             immortalPlayer = true
@@ -685,6 +687,7 @@ forever(function () {
     }
 })
 forever(function () {
+    openedMenu = true
     color.setPalette(
     color.originalPalette
     )
@@ -697,6 +700,7 @@ forever(function () {
     color.setPalette(
     color.Adventure
     )
+    openedMenu = false
     pause(timeBeforeAtkAfterLightsOff)
     tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
     ghostHunt += 1

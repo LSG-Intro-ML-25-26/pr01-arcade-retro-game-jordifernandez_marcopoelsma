@@ -55,6 +55,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         ])
         inputGhostType.setTitle("INPUT GHOST TYPE")
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 100)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
@@ -342,17 +343,6 @@ forever(function () {
         pause(looseTrailTime)
         ghostSight = false
     }
-})
-forever(function () {
-    while (true) {
-        currentGhostAbility = ghostList._pickRandom()
-        if (currentGhostAbility != currentGhostType) {
-            setBaseStats()
-            ghostAbilitiesList()
-            break;
-        }
-    }
-    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
@@ -672,6 +662,17 @@ forever(function () {
             . . . . . f f . . f f . . . . . 
             `)
     }
+})
+forever(function () {
+    while (true) {
+        currentGhostAbility = ghostList._pickRandom()
+        if (currentGhostAbility != currentGhostType) {
+            setBaseStats()
+            ghostAbilitiesList()
+            break;
+        }
+    }
+    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     color.setPalette(

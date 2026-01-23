@@ -51,7 +51,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         miniMenu.createMenuItem(ghostList[1], skullList[1]),
         miniMenu.createMenuItem(ghostList[2], skullList[2]),
         miniMenu.createMenuItem(ghostList[3], skullList[3]),
-        miniMenu.createMenuItem(ghostList[4], skullList[4])
+        miniMenu.createMenuItem(ghostList[4], skullList[4]),
+        miniMenu.createMenuItem(ghostList[5], skullList[5])
         ])
         inputGhostType.setTitle("INPUT GHOST TYPE")
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)

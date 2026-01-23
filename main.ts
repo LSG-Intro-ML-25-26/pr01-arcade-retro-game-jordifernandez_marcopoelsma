@@ -20,6 +20,9 @@ function setBaseStats () {
     looseTrailTime = 5000
     ghostSpeed = 100
     ghostSightSpeed = ghostSpeed
+    ghostCloseSpeed = ghostSpeed
+    wallHacks = false
+    sightRange = 160
     animation.runImageAnimation(
     ghost,
     assets.animation`ghostAnimation`,
@@ -32,7 +35,12 @@ function tiles2 () {
     locationTiles = list._pickRandom()
 }
 function setGhostType () {
-    ghostList = ["Demon", "Oni", "Revenant"]
+    ghostList = [
+    "Demon",
+    "Oni",
+    "Revenant",
+    "Deogen"
+    ]
     currentGhostType = ghostList._pickRandom()
     if (currentGhostType == "Oni") {
         animation.runImageAnimation(
@@ -41,13 +49,21 @@ function setGhostType () {
         100,
         true
         )
+    } else if (currentGhostType == "Demon") {
+        maxAtkCooldown = minAtkCooldown
+        minAtkCooldown = minAtkCooldown / 2
+    } else if (currentGhostType == "Revenant") {
+        ghostSpeed = 50
+        ghostSightSpeed = 130
+    } else if (currentGhostType == "Deogen") {
+        looseTrailTime = maxHuntTime
+        wallHacks = true
+        ghostSightSpeed = 130
+        ghostCloseSpeed = 50
+        sightRange = 999999999999
+        ghostSight = 1
     } else {
-        if (currentGhostType == "Demon") {
-            maxAtkCooldown = minAtkCooldown
-            minAtkCooldown = minAtkCooldown / 2
-        } else {
-        	
-        }
+    	
     }
     game.splash(currentGhostType)
 }
@@ -62,11 +78,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
-let ghotSleepTime = 0
 let ghostSight = 0
 let currentGhostType = ""
 let ghostList: string[] = []
 let locationTiles = 0
+let sightRange = 0
+let wallHacks = false
+let ghostCloseSpeed = 0
 let ghostSightSpeed = 0
 let ghostSpeed = 0
 let looseTrailTime = 0
@@ -78,10 +96,10 @@ let wallList: Image[] = []
 let ghost: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
-let nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-nena.setPosition(190, 240)
-controller.moveSprite(nena)
-scene.cameraFollowSprite(nena)
+let mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+mainCharacter.setPosition(190, 240)
+controller.moveSprite(mainCharacter)
+scene.cameraFollowSprite(mainCharacter)
 tiles.setCurrentTilemap(tilemap`TangleWood`)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -234,9 +252,10 @@ setGhostType()
 let ghostHunt = 0
 forever(function () {
     ghostHunt = 0
-    ghostSight = 0
+    if (!(wallHacks)) {
+        ghostSight = 0
+    }
     ghost.setScale(0, ScaleAnchor.Middle)
-    ghotSleepTime = 0
     pause(randint(minAtkCooldown, maxAtkCooldown))
     ghost.setPosition(spawn_x, spawn_y)
     ghostHunt += 1
@@ -244,9 +263,9 @@ forever(function () {
     pause(randint(minHuntTime, maxHuntTime))
 })
 forever(function () {
-    if (characterAnimations.matchesRule(nena, characterAnimations.rule(Predicate.Moving))) {
+    if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
         characterAnimations.loopFrames(
-        nena,
+        mainCharacter,
         [img`
             . . . . . . f f f f . . . . . . 
             . . . . f f f 2 2 f f f . . . . 
@@ -320,7 +339,7 @@ forever(function () {
         characterAnimations.rule(Predicate.MovingDown)
         )
         characterAnimations.loopFrames(
-        nena,
+        mainCharacter,
         [img`
             . . . . . . f f f f . . . . . . 
             . . . . f f e e e e f f . . . . 
@@ -394,7 +413,7 @@ forever(function () {
         characterAnimations.rule(Predicate.MovingUp)
         )
         characterAnimations.loopFrames(
-        nena,
+        mainCharacter,
         [img`
             . . . . . . f f f f f f . . . . 
             . . . . f f e e e e f 2 f . . . 
@@ -468,7 +487,7 @@ forever(function () {
         characterAnimations.rule(Predicate.MovingRight)
         )
         characterAnimations.loopFrames(
-        nena,
+        mainCharacter,
         [img`
             . . . . f f f f f f . . . . . . 
             . . . f 2 f e e e e f f . . . . 
@@ -542,7 +561,7 @@ forever(function () {
         characterAnimations.rule(Predicate.MovingLeft)
         )
     } else {
-        nena.setImage(img`
+        mainCharacter.setImage(img`
             . . . . . . f f f f . . . . . . 
             . . . . f f f 2 2 f f f . . . . 
             . . . f f f 2 2 2 2 f f f . . . 
@@ -565,9 +584,9 @@ forever(function () {
 forever(function () {
     if (sight.isInSight(
     ghost,
-    nena,
-    160,
-    false
+    mainCharacter,
+    sightRange,
+    wallHacks
     )) {
         ghostSight = 1
         pause(looseTrailTime)
@@ -578,13 +597,17 @@ forever(function () {
 game.onUpdateInterval(300, function () {
     if (ghostHunt == 1) {
         if (ghostSight == 1) {
-            scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(nena)), ghostSpeed)
+            if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
+                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostCloseSpeed)
+            } else {
+                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostSightSpeed)
+            }
         } else {
             for (let index = 0; index <= floorTiles.length; index++) {
                 xTile = randint(0, tiles.tilemapRows())
                 yTile = randint(0, tiles.tilemapRows())
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(xTile, yTile), floorTiles[index])) {
-                    scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(xTile, yTile)), ghostSightSpeed)
+                    scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(xTile, yTile)), ghostSpeed)
                 }
             }
         }

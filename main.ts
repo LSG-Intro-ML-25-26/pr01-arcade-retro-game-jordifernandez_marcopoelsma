@@ -143,7 +143,9 @@ function setGhostType () {
     assets.image`YureiSkull`
     ]
     currentGhostAbility = ghostList._pickRandom()
-    currentGhostType = currentGhostAbility
+    if (currentGhostType != "Mimic") {
+        currentGhostType = currentGhostAbility
+    }
     ghostAbilitiesList()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -181,7 +183,7 @@ let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
-music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
+music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
 mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 mainCharacter.setPosition(190, 240)
@@ -356,17 +358,6 @@ forever(function () {
         pause(looseTrailTime)
         ghostSight = false
     }
-})
-forever(function () {
-    while (true) {
-        currentGhostAbility = ghostList._pickRandom()
-        if (currentGhostAbility != currentGhostType) {
-            setBaseStats()
-            ghostAbilitiesList()
-            break;
-        }
-    }
-    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
@@ -685,6 +676,21 @@ forever(function () {
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
             `)
+    }
+})
+forever(function () {
+    if (currentGhostType == "Mimic") {
+        while (true) {
+            currentGhostAbility = ghostList._pickRandom()
+            if (currentGhostAbility != currentGhostType) {
+                setBaseStats()
+                ghostAbilitiesList()
+                break;
+            }
+        }
+        pause(randint(minMimicCooldown, maxMimicCooldown))
+    } else {
+        pause(999999999999999)
     }
 })
 forever(function () {

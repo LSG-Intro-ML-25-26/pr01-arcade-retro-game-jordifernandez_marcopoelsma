@@ -12,6 +12,12 @@ function setWalls () {
         tileUtil.setWalls(wall, true)
     }
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
+    if (!(wallHacks)) {
+        ghostSight = false
+    }
+    mainCharacter.setImage(assets.image`hidden`)
+})
 function setBaseStats () {
     maxAtkCooldown = 0
     minAtkCooldown = 1
@@ -68,23 +74,19 @@ function setGhostType () {
     } else if (currentGhostType == "Yurei") {
         sightRange = sightRange * 0.2
         looseTrailTime = looseTrailTime * 0.4
-    } else {
-    	
     }
     game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.gameOver(false)
+	
 })
 let yTile = 0
 let xTile = 0
-let ghostSight = false
 let currentGhostType = ""
 let ghostList: string[] = []
 let locationTiles = 0
 let flashingGhost = 0
 let sightRange = 0
-let wallHacks = false
 let ghostCloseSpeed = 0
 let ghostSightSpeed = 0
 let ghostSpeed = 0
@@ -93,11 +95,14 @@ let minHuntTime = 0
 let maxHuntTime = 0
 let minAtkCooldown = 0
 let maxAtkCooldown = 0
+let ghostSight = false
+let wallHacks = false
 let wallList: Image[] = []
 let ghost: Sprite = null
+let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
-let mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 mainCharacter.setPosition(190, 240)
 controller.moveSprite(mainCharacter)
 scene.cameraFollowSprite(mainCharacter)
@@ -262,6 +267,18 @@ forever(function () {
     ghostHunt += 1
     ghost.changeScale(1, ScaleAnchor.Middle)
     pause(randint(minHuntTime, maxHuntTime))
+})
+forever(function () {
+    if (sight.isInSight(
+    ghost,
+    mainCharacter,
+    sightRange,
+    wallHacks
+    )) {
+        ghostSight = true
+        pause(looseTrailTime)
+        ghostSight = false
+    }
 })
 forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
@@ -580,19 +597,6 @@ forever(function () {
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
             `)
-    }
-})
-forever(function () {
-    if (sight.isInSight(
-    ghost,
-    mainCharacter,
-    sightRange,
-    wallHacks
-    )) {
-        ghostSight = true
-        pause(looseTrailTime)
-    } else {
-        ghostSight = false
     }
 })
 game.onUpdateInterval(300, function () {

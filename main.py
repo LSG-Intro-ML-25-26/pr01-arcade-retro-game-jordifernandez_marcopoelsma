@@ -23,32 +23,105 @@ def setWalls():
             """)]
     for wall in wallList:
         tileUtil.set_walls(wall, True)
-def tiles2():
-    global locationTiles
-    list2: List[number] = []
-    locationTiles = list2._pick_random()
 
-def on_on_overlap(sprite, otherSprite):
-    pass
+def on_overlap_tile(sprite, location):
+    global ghostSight
+    if not (wallHacks):
+        ghostSight = False
+    mainCharacter.set_image(assets.image("""
+        hidden
+        """))
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        escondite
+        """),
+    on_overlap_tile)
+
+def setBaseStats():
+    global maxAtkCooldown, minAtkCooldown, maxHuntTime, minHuntTime, looseTrailTime, ghostSpeed, ghostSightSpeed, ghostCloseSpeed, wallHacks, sightRange, flashingGhost
+    maxAtkCooldown = 0
+    minAtkCooldown = 1
+    maxHuntTime = 10000
+    minHuntTime = 15000
+    looseTrailTime = 5000
+    ghostSpeed = 100
+    ghostSightSpeed = ghostSpeed
+    ghostCloseSpeed = ghostSpeed
+    wallHacks = False
+    sightRange = 160
+    flashingGhost = 250
+    animation.run_image_animation(ghost,
+        assets.animation("""
+            ghostAnimation
+            """),
+        flashingGhost,
+        True)
+def setGhostType():
+    global ghostList, currentGhostType, flashingGhost, maxAtkCooldown, minAtkCooldown, ghostSpeed, ghostSightSpeed, looseTrailTime, wallHacks, ghostCloseSpeed, sightRange, ghostSight
+    ghostList = ["Demon", "Oni", "Revenant", "Deogen", "Yurei"]
+    currentGhostType = ghostList._pick_random()
+    if currentGhostType == "Oni":
+        flashingGhost = flashingGhost * 0.33
+        animation.run_image_animation(ghost,
+            assets.animation("""
+                ghostAnimation
+                """),
+            flashingGhost,
+            True)
+    elif currentGhostType == "Demon":
+        maxAtkCooldown = minAtkCooldown
+        minAtkCooldown = minAtkCooldown * 0.5
+    elif currentGhostType == "Revenant":
+        ghostSpeed = ghostSpeed * 0.5
+        ghostSightSpeed = ghostSightSpeed * 1.5
+    elif currentGhostType == "Deogen":
+        looseTrailTime = maxHuntTime
+        wallHacks = True
+        ghostSightSpeed = ghostSightSpeed * 1.3
+        ghostCloseSpeed = ghostCloseSpeed * 0.5
+        sightRange = 999999999999
+        ghostSight = True
+    elif currentGhostType == "Yurei":
+        sightRange = sightRange * 0.2
+        looseTrailTime = looseTrailTime * 0.4
+    game.splash(currentGhostType)
+
+def on_on_overlap(sprite2, otherSprite):
+    game.game_over(False)
 sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
 
-ghotSleepTime = 0
-ghostSight = 0
-locationTiles = 0
+yTile = 0
+xTile = 0
+currentGhostType = ""
+ghostList: List[str] = []
+flashingGhost = 0
+sightRange = 0
+ghostCloseSpeed = 0
+ghostSightSpeed = 0
+ghostSpeed = 0
+looseTrailTime = 0
+minHuntTime = 0
+maxHuntTime = 0
+minAtkCooldown = 0
+maxAtkCooldown = 0
+ghostSight = False
+wallHacks = False
 wallList: List[Image] = []
+ghost: Sprite = None
+mainCharacter: Sprite = None
 music.play(music.create_song(assets.song("""
         white_space
         """)),
     music.PlaybackMode.LOOPING_IN_BACKGROUND)
 music.set_volume(32)
-nena = sprites.create(assets.image("""
+mainCharacter = sprites.create(assets.image("""
     nena-front
     """), SpriteKind.player)
-nena.set_position(180, 55)
-controller.move_sprite(nena)
-scene.camera_follow_sprite(nena)
-tiles.set_tilemap(tilemap("""
-    nivel2
+mainCharacter.set_position(190, 240)
+controller.move_sprite(mainCharacter)
+scene.camera_follow_sprite(mainCharacter)
+tiles.set_current_tilemap(tilemap("""
+    TangleWood
     """))
 scene.set_background_image(img("""
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -202,86 +275,28 @@ floorTiles = [assets.tile("""
     assets.tile("""
         moqueta morada
         """)]
+hideTiles = [assets.tile("""
+    escondite
+    """)]
 tiles.place_on_random_tile(ghost, floorTiles._pick_random())
 spawn_x = ghost.x
 spawn_y = ghost.y
-spawn_x = 120
-spawn_y = 160
 setWalls()
+setBaseStats()
+setGhostType()
 ghostHunt = 0
 
 def on_forever():
-    global ghostHunt, ghostSight, ghotSleepTime
-    ghostHunt = 0
-    ghostSight = 0
-    ghost.set_scale(0, ScaleAnchor.MIDDLE)
-    ghotSleepTime = randint(1000, 1001)
-    pause(ghotSleepTime)
-    animation.run_image_animation(ghost,
-        [img("""
-                ........................
-                ........................
-                ........................
-                ........................
-                ..........ffff..........
-                ........ff1111ff........
-                .......fb111111bf.......
-                .......f11111111f.......
-                ......fd11111111df......
-                ......fd11111111df......
-                ......fddd1111dddf......
-                ......fbdbfddfbdbf......
-                ......fcdcf11fcdcf......
-                .......fb111111bf.......
-                ......fffcdb1bdffff.....
-                ....fc111cbfbfc111cf....
-                ....f1b1b1ffff1b1b1f....
-                ....fbfbffffffbfbfbf....
-                .........ffffff.........
-                ...........fff..........
-                ........................
-                ........................
-                ........................
-                ........................
-                """),
-            img("""
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                ........................
-                """)],
-        500,
-        True)
-    ghost.set_position(spawn_x, spawn_y)
-    ghostHunt += 1
-    ghost.change_scale(1, ScaleAnchor.MIDDLE)
-    ghotSleepTime = randint(100000, 100001)
-    pause(ghotSleepTime)
+    global ghostSight
+    if sight.is_in_sight(ghost, mainCharacter, sightRange, wallHacks):
+        ghostSight = True
+        pause(looseTrailTime)
+        ghostSight = False
 forever(on_forever)
 
 def on_forever2():
-    if characterAnimations.matches_rule(nena, characterAnimations.rule(Predicate.MOVING)):
-        characterAnimations.loop_frames(nena,
+    if characterAnimations.matches_rule(mainCharacter, characterAnimations.rule(Predicate.MOVING)):
+        characterAnimations.loop_frames(mainCharacter,
             [img("""
                     . . . . . . f f f f . . . . . .
                     . . . . f f f 2 2 f f f . . . .
@@ -356,7 +371,7 @@ def on_forever2():
                     """)],
             100,
             characterAnimations.rule(Predicate.MOVING_DOWN))
-        characterAnimations.loop_frames(nena,
+        characterAnimations.loop_frames(mainCharacter,
             [img("""
                     . . . . . . f f f f . . . . . .
                     . . . . f f e e e e f f . . . .
@@ -431,7 +446,7 @@ def on_forever2():
                     """)],
             100,
             characterAnimations.rule(Predicate.MOVING_UP))
-        characterAnimations.loop_frames(nena,
+        characterAnimations.loop_frames(mainCharacter,
             [img("""
                     . . . . . . f f f f f f . . . .
                     . . . . f f e e e e f 2 f . . .
@@ -506,7 +521,7 @@ def on_forever2():
                     """)],
             100,
             characterAnimations.rule(Predicate.MOVING_RIGHT))
-        characterAnimations.loop_frames(nena,
+        characterAnimations.loop_frames(mainCharacter,
             [img("""
                     . . . . f f f f f f . . . . . .
                     . . . f 2 f e e e e f f . . . .
@@ -582,7 +597,7 @@ def on_forever2():
             100,
             characterAnimations.rule(Predicate.MOVING_LEFT))
     else:
-        nena.set_image(img("""
+        mainCharacter.set_image(img("""
             . . . . . . f f f f . . . . . .
             . . . . f f f 2 2 f f f . . . .
             . . . f f f 2 2 2 2 f f f . . .
@@ -603,24 +618,41 @@ def on_forever2():
 forever(on_forever2)
 
 def on_forever3():
-    global ghostSight
-    goToLastSight = 0
-    if not (goToLastSight):
-        if sight.is_in_sight(ghost, nena, 160, False):
-            ghostSight = 1
+    global ghostHunt, ghostSight
+    ghostHunt = 0
+    if not (wallHacks):
+        ghostSight = False
+    ghost.set_scale(0, ScaleAnchor.MIDDLE)
+    pause(randint(minAtkCooldown, maxAtkCooldown))
+    ghost.set_position(spawn_x, spawn_y)
+    ghostHunt += 1
+    ghost.change_scale(1, ScaleAnchor.MIDDLE)
+    pause(randint(minHuntTime, maxHuntTime))
 forever(on_forever3)
 
 def on_update_interval():
+    global xTile, yTile
     if ghostHunt == 1:
-        if ghostSight == 1:
-            scene.follow_path(ghost,
-                scene.a_star(tiles.location_of_sprite(ghost),
-                    tiles.location_of_sprite(nena)),
-                100)
+        if ghostSight:
+            if spriteutils.distance_between(mainCharacter, ghost) < 48:
+                scene.follow_path(ghost,
+                    scene.a_star(tiles.location_of_sprite(ghost),
+                        tiles.location_of_sprite(mainCharacter)),
+                    ghostCloseSpeed)
+            else:
+                scene.follow_path(ghost,
+                    scene.a_star(tiles.location_of_sprite(ghost),
+                        tiles.location_of_sprite(mainCharacter)),
+                    ghostSightSpeed)
         else:
-            scene.follow_path(ghost,
-                scene.a_star(tiles.location_of_sprite(ghost),
-                    tiles.get_tile_location(randint(0, tiles.tilemap_rows()),
-                        randint(0, tiles.tilemap_columns()))),
-                100)
+            index = 0
+            while index <= len(floorTiles):
+                xTile = randint(0, tiles.tilemap_rows())
+                yTile = randint(0, tiles.tilemap_rows())
+                if tiles.tile_at_location_equals(tiles.get_tile_location(xTile, yTile), floorTiles[index]):
+                    scene.follow_path(ghost,
+                        scene.a_star(tiles.location_of_sprite(ghost),
+                            tiles.get_tile_location(xTile, yTile)),
+                        ghostSpeed)
+                index += 1
 game.on_update_interval(300, on_update_interval)

@@ -12,6 +12,11 @@ function setWalls () {
         tileUtil.setWalls(wall, true)
     }
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), floorTiles[0])) {
+        game.splash("Sisoy")
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
     if (!(wallHacks)) {
         ghostSight = false
@@ -74,7 +79,7 @@ function setGhostType () {
     game.splash(currentGhostType)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.gameOver(false)
+	
 })
 let yTile = 0
 let xTile = 0
@@ -93,6 +98,7 @@ let maxAtkCooldown = 0
 let ghostSight = false
 let wallHacks = false
 let wallList: Image[] = []
+let floorTiles: Image[] = []
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
@@ -243,11 +249,10 @@ ghost = sprites.create(img`
     2 2 2 2 2 f f f f f f 2 2 2 2 2 
     . 2 2 2 2 2 2 f f f 2 2 2 2 2 . 
     `, SpriteKind.Enemy)
-let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
+floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
-tiles.placeOnRandomTile(ghost, floorTiles._pickRandom())
-let spawn_x = ghost.x
-let spawn_y = ghost.y
+let ghostSpawnRoom = floorTiles._pickRandom()
+tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
 setWalls()
 setBaseStats()
 setGhostType()
@@ -590,7 +595,7 @@ forever(function () {
     }
     ghost.setScale(0, ScaleAnchor.Middle)
     pause(randint(minAtkCooldown, maxAtkCooldown))
-    ghost.setPosition(spawn_x, spawn_y)
+    tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
     ghostHunt += 1
     ghost.changeScale(1, ScaleAnchor.Middle)
     pause(randint(minHuntTime, maxHuntTime))
@@ -604,11 +609,13 @@ game.onUpdateInterval(300, function () {
                 scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostSightSpeed)
             }
         } else {
-            for (let index = 0; index <= floorTiles.length; index++) {
+            while (true) {
+                let index = 0
                 xTile = randint(0, tiles.tilemapRows())
                 yTile = randint(0, tiles.tilemapRows())
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(xTile, yTile), floorTiles[index])) {
                     scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(xTile, yTile)), ghostSpeed)
+                    break;
                 }
             }
         }

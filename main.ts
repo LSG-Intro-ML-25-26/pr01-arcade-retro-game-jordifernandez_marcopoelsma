@@ -12,6 +12,36 @@ function setWalls () {
         tileUtil.setWalls(wall, true)
     }
 }
+function ghostAbilitiesList () {
+    if (currentGhostAbility == "Oni") {
+        flashingGhost = flashingGhost * 0.33
+        animation.runImageAnimation(
+        ghost,
+        assets.animation`ghostAnimation`,
+        flashingGhost,
+        true
+        )
+    } else if (currentGhostAbility == "Demon") {
+        maxAtkCooldown = minAtkCooldown
+        minAtkCooldown = minAtkCooldown * 0.5
+    } else if (currentGhostAbility == "Revenant") {
+        ghostSpeed = ghostSpeed * 0.5
+        ghostSightSpeed = ghostSightSpeed * 1.5
+    } else if (currentGhostAbility == "Deogen") {
+        looseTrailTime = maxHuntTime
+        wallHacks = true
+        ghostSightSpeed = ghostSightSpeed * 1.3
+        ghostCloseSpeed = ghostCloseSpeed * 0.5
+        sightRange = 999999999999
+        ghostSight = true
+    } else if (currentGhostAbility == "Yurei") {
+        sightRange = sightRange * 0.2
+        looseTrailTime = looseTrailTime * 0.4
+    } else if (currentGhostType == "Mimic") {
+        minMimicCooldown = 4000
+        maxMimicCooldown = 6000
+    }
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(openedMenu)) {
         openedMenu = true
@@ -94,36 +124,14 @@ function setGhostType () {
     ghostList = [
     "Demon",
     "Deogen",
+    "Mimic",
     "Oni",
     "Revenant",
     "Yurei"
     ]
-    currentGhostType = ghostList._pickRandom()
-    if (currentGhostType == "Oni") {
-        flashingGhost = flashingGhost * 0.33
-        animation.runImageAnimation(
-        ghost,
-        assets.animation`ghostAnimation`,
-        flashingGhost,
-        true
-        )
-    } else if (currentGhostType == "Demon") {
-        maxAtkCooldown = minAtkCooldown
-        minAtkCooldown = minAtkCooldown * 0.5
-    } else if (currentGhostType == "Revenant") {
-        ghostSpeed = ghostSpeed * 0.5
-        ghostSightSpeed = ghostSightSpeed * 1.5
-    } else if (currentGhostType == "Deogen") {
-        looseTrailTime = maxHuntTime
-        wallHacks = true
-        ghostSightSpeed = ghostSightSpeed * 1.3
-        ghostCloseSpeed = ghostCloseSpeed * 0.5
-        sightRange = 999999999999
-        ghostSight = true
-    } else if (currentGhostType == "Yurei") {
-        sightRange = sightRange * 0.2
-        looseTrailTime = looseTrailTime * 0.4
-    }
+    currentGhostAbility = ghostList._pickRandom()
+    currentGhostType = currentGhostAbility
+    ghostAbilitiesList()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(immortalPlayer)) {
@@ -134,24 +142,27 @@ let yTile = 0
 let xTile = 0
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
-let flashingGhost = 0
-let sightRange = 0
-let ghostCloseSpeed = 0
-let ghostSightSpeed = 0
-let ghostSpeed = 0
-let looseTrailTime = 0
 let minHuntTime = 0
-let maxHuntTime = 0
-let minAtkCooldown = 0
-let maxAtkCooldown = 0
-let ghostSight = false
-let wallHacks = false
 let playerVelocity = 0
-let currentGhostType = ""
 let immortalPlayer = false
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let openedMenu = false
+let maxMimicCooldown = 0
+let minMimicCooldown = 0
+let ghostSight = false
+let sightRange = 0
+let ghostCloseSpeed = 0
+let wallHacks = false
+let maxHuntTime = 0
+let looseTrailTime = 0
+let ghostSightSpeed = 0
+let ghostSpeed = 0
+let minAtkCooldown = 0
+let maxAtkCooldown = 0
+let flashingGhost = 0
+let currentGhostType = ""
+let currentGhostAbility = ""
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
@@ -331,6 +342,17 @@ forever(function () {
         pause(looseTrailTime)
         ghostSight = false
     }
+})
+forever(function () {
+    while (true) {
+        currentGhostAbility = ghostList._pickRandom()
+        if (currentGhostAbility != currentGhostType) {
+            setBaseStats()
+            ghostAbilitiesList()
+            break;
+        }
+    }
+    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {

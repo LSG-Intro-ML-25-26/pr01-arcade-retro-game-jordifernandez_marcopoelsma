@@ -13,8 +13,10 @@ function setWalls () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), floorTiles[0])) {
+    if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
         game.splash("Sisoy")
+    } else {
+        game.splash("Nosoy")
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
@@ -98,7 +100,7 @@ let maxAtkCooldown = 0
 let ghostSight = false
 let wallHacks = false
 let wallList: Image[] = []
-let floorTiles: Image[] = []
+let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.LoopingInBackground)
@@ -249,9 +251,9 @@ ghost = sprites.create(img`
     2 2 2 2 2 f f f f f f 2 2 2 2 2 
     . 2 2 2 2 2 2 f f f 2 2 2 2 2 . 
     `, SpriteKind.Enemy)
-floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
+let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
-let ghostSpawnRoom = floorTiles._pickRandom()
+ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
 setWalls()
 setBaseStats()

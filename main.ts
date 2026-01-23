@@ -22,7 +22,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     )
     inputGhostType.setTitle("INPUT GHOST TYPE")
     inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
-    inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Padding, 0)
+    inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 1)
+    inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
+    inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 10)
     tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
     if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
     	

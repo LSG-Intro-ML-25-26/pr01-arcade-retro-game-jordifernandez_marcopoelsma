@@ -13,44 +13,52 @@ function setWalls () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    openedMenu = true
-    inputGhostType = miniMenu.createMenuFromArray([
-    miniMenu.createMenuItem(ghostList[0]),
-    miniMenu.createMenuItem(ghostList[1]),
-    miniMenu.createMenuItem(ghostList[2]),
-    miniMenu.createMenuItem(ghostList[3]),
-    miniMenu.createMenuItem(ghostList[4])
-    ])
-    inputGhostType.setTitle("INPUT GHOST TYPE")
-    inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
-    inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 1)
-    inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
-    inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-    inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 10)
-    tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
-    inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
-        if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
-            if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                game.splash("THIS IS THE ROOM!")
-                game.splash("THIS IS THE GHOST TYPE!")
-                game.gameOver(true)
+    if (!(openedMenu)) {
+        openedMenu = true
+        controller.moveSprite(mainCharacter, 0, 0)
+        inputGhostType = miniMenu.createMenuFromArray([
+        miniMenu.createMenuItem(ghostList[0]),
+        miniMenu.createMenuItem(ghostList[1]),
+        miniMenu.createMenuItem(ghostList[2]),
+        miniMenu.createMenuItem(ghostList[3]),
+        miniMenu.createMenuItem(ghostList[4])
+        ])
+        inputGhostType.setTitle("INPUT GHOST TYPE")
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 1)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 10)
+        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
+        inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
+                if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                    game.splash("THIS IS THE ROOM!")
+                    game.splash("THIS IS THE GHOST TYPE!")
+                    game.gameOver(true)
+                } else {
+                    game.splash("THIS IS THE ROOM!")
+                    game.splash("THIS IS NOT THE GHOST TYPE!")
+                    game.gameOver(false)
+                }
             } else {
-                game.splash("THIS IS THE ROOM!")
-                game.splash("THIS IS NOT THE GHOST TYPE!")
-                game.gameOver(false)
+                if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                    game.splash("THIS IS NOT THE ROOM!")
+                    game.splash("THIS IS THE GHOST TYPE!")
+                    game.gameOver(false)
+                } else {
+                    game.splash("THIS IS NOT THE ROOM!")
+                    game.splash("THIS IS NOT THE GHOST TYPE!")
+                    game.gameOver(false)
+                }
             }
-        } else {
-            if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                game.splash("THIS IS NOT THE ROOM!")
-                game.splash("THIS IS THE GHOST TYPE!")
-                game.gameOver(false)
-            } else {
-                game.splash("THIS IS NOT THE ROOM!")
-                game.splash("THIS IS NOT THE GHOST TYPE!")
-                game.gameOver(false)
-            }
-        }
-    })
+        })
+        inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
+            openedMenu = false
+            controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+            inputGhostType.close()
+        })
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
     if (!(wallHacks)) {
@@ -59,6 +67,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     mainCharacter.setImage(assets.image`hidden`)
 })
 function setBaseStats () {
+    playerVelocity = 100
+    controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
     maxAtkCooldown = 0
     minAtkCooldown = 1
     maxHuntTime = 100000
@@ -130,6 +140,7 @@ let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let ghostSight = false
 let wallHacks = false
+let playerVelocity = 0
 let currentGhostType = ""
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
@@ -142,7 +153,6 @@ music.play(music.createSong(assets.song`white_space`), music.PlaybackMode.Loopin
 music.setVolume(32)
 mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 mainCharacter.setPosition(190, 240)
-controller.moveSprite(mainCharacter)
 scene.cameraFollowSprite(mainCharacter)
 tiles.setCurrentTilemap(tilemap`TangleWood`)
 scene.setBackgroundImage(img`

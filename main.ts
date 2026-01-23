@@ -72,6 +72,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
+                stop = 999999999999
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
                     game.splash("THIS IS THE ROOM!")
                     game.splash("THIS IS THE GHOST TYPE!")
@@ -79,16 +80,19 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
                 } else {
                     game.splash("THIS IS THE ROOM!")
                     game.splash("THIS IS NOT THE GHOST TYPE!")
+                    gameOver()
                     game.gameOver(false)
                 }
             } else {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
                     game.splash("THIS IS NOT THE ROOM!")
                     game.splash("THIS IS THE GHOST TYPE!")
+                    gameOver()
                     game.gameOver(false)
                 } else {
                     game.splash("THIS IS NOT THE ROOM!")
                     game.splash("THIS IS NOT THE GHOST TYPE!")
+                    gameOver()
                     game.gameOver(false)
                 }
             }
@@ -106,7 +110,15 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     }
     mainCharacter.setImage(assets.image`hidden`)
 })
+function gameOver () {
+    if (currentGhostType == "Oni") {
+        game.splash("The Ghost was an: " + currentGhostType)
+    } else {
+        game.splash("The Ghost was a: " + currentGhostType)
+    }
+}
 function setBaseStats () {
+    stop = 0
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
     maxAtkCooldown = 5000
@@ -152,6 +164,7 @@ function setGhostType () {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(immortalPlayer)) {
+        gameOver()
         game.gameOver(false)
     }
 })
@@ -161,6 +174,7 @@ let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let playerVelocity = 0
+let stop = 0
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -707,6 +721,7 @@ forever(function () {
     }
     ghost.setScale(0, ScaleAnchor.Middle)
     pause(randint(minAtkCooldown, maxAtkCooldown))
+    pause(stop)
     color.setPalette(
     color.Adventure
     )

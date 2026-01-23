@@ -37,7 +37,7 @@ function ghostAbilitiesList () {
     } else if (currentGhostAbility == "Yurei") {
         sightRange = sightRange * 0.2
         looseTrailTime = looseTrailTime * 0.4
-    } else if (currentGhostType == "Mimic") {
+    } else if (currentGhostAbility == "Mimic") {
         minMimicCooldown = 4000
         maxMimicCooldown = 6000
     }
@@ -56,15 +56,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         ])
         inputGhostType.setTitle("INPUT GHOST TYPE")
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
-        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 150)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 100)
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 2)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 22)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 2)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 11)
-        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16 + 1))
+        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16 + 0))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
@@ -143,9 +145,7 @@ function setGhostType () {
     assets.image`YureiSkull`
     ]
     currentGhostAbility = ghostList._pickRandom()
-    if (currentGhostType != "Mimic") {
-        currentGhostType = currentGhostAbility
-    }
+    currentGhostType = currentGhostAbility
     ghostAbilitiesList()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -159,6 +159,7 @@ let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let playerVelocity = 0
+let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -177,7 +178,6 @@ let ghostSpeed = 0
 let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
-let currentGhostType = ""
 let currentGhostAbility = ""
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
@@ -358,6 +358,17 @@ forever(function () {
         pause(looseTrailTime)
         ghostSight = false
     }
+})
+forever(function () {
+    while (true) {
+        currentGhostAbility = ghostList._pickRandom()
+        if (currentGhostAbility != currentGhostType) {
+            setBaseStats()
+            ghostAbilitiesList()
+            break;
+        }
+    }
+    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
@@ -676,21 +687,6 @@ forever(function () {
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
             `)
-    }
-})
-forever(function () {
-    if (currentGhostType == "Mimic") {
-        while (true) {
-            currentGhostAbility = ghostList._pickRandom()
-            if (currentGhostAbility != currentGhostType) {
-                setBaseStats()
-                ghostAbilitiesList()
-                break;
-            }
-        }
-        pause(randint(minMimicCooldown, maxMimicCooldown))
-    } else {
-        pause(999999999999999)
     }
 })
 forever(function () {

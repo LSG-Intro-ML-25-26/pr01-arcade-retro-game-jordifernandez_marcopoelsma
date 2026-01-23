@@ -47,20 +47,21 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
-        miniMenu.createMenuItem(ghostList[0]),
-        miniMenu.createMenuItem(ghostList[1]),
-        miniMenu.createMenuItem(ghostList[2]),
-        miniMenu.createMenuItem(ghostList[3]),
-        miniMenu.createMenuItem(ghostList[4])
+        miniMenu.createMenuItem(ghostList[0], skullList[0]),
+        miniMenu.createMenuItem(ghostList[1], skullList[1]),
+        miniMenu.createMenuItem(ghostList[2], skullList[2]),
+        miniMenu.createMenuItem(ghostList[3], skullList[3]),
+        miniMenu.createMenuItem(ghostList[4], skullList[4])
         ])
         inputGhostType.setTitle("INPUT GHOST TYPE")
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 100)
-        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 100)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 1)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 150)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 10)
-        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 7)
+        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16 + 1))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
@@ -130,6 +131,14 @@ function setGhostType () {
     "Revenant",
     "Yurei"
     ]
+    skullList = [
+    assets.image`DemonSkull`,
+    assets.image`DeogenSkull`,
+    assets.image`MimicSkull`,
+    assets.image`OniSkull`,
+    assets.image`RevenantSkull`,
+    assets.image`YureiSkull`
+    ]
     currentGhostAbility = ghostList._pickRandom()
     currentGhostType = currentGhostAbility
     ghostAbilitiesList()
@@ -146,6 +155,7 @@ let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let playerVelocity = 0
 let immortalPlayer = false
+let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let openedMenu = false
@@ -343,6 +353,17 @@ forever(function () {
         pause(looseTrailTime)
         ghostSight = false
     }
+})
+forever(function () {
+    while (true) {
+        currentGhostAbility = ghostList._pickRandom()
+        if (currentGhostAbility != currentGhostType) {
+            setBaseStats()
+            ghostAbilitiesList()
+            break;
+        }
+    }
+    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
@@ -662,17 +683,6 @@ forever(function () {
             . . . . . f f . . f f . . . . . 
             `)
     }
-})
-forever(function () {
-    while (true) {
-        currentGhostAbility = ghostList._pickRandom()
-        if (currentGhostAbility != currentGhostType) {
-            setBaseStats()
-            ghostAbilitiesList()
-            break;
-        }
-    }
-    pause(randint(minMimicCooldown, maxMimicCooldown))
 })
 forever(function () {
     color.setPalette(

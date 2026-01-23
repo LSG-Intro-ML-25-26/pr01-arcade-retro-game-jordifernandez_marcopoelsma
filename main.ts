@@ -37,7 +37,7 @@ function ghostAbilitiesList () {
     } else if (currentGhostAbility == "Yurei") {
         sightRange = sightRange * 0.2
         looseTrailTime = looseTrailTime * 0.4
-    } else if (currentGhostType == "Mimic") {
+    } else if (currentGhostAbility == "Mimic") {
         minMimicCooldown = 4000
         maxMimicCooldown = 6000
     }
@@ -178,6 +178,7 @@ let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let playerVelocity = 0
 let stopHunt = false
+let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -195,7 +196,6 @@ let ghostSpeed = 0
 let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
-let currentGhostType = ""
 let currentGhostAbility = ""
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null

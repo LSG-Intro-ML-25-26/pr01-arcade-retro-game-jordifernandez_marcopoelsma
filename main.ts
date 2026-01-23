@@ -31,6 +31,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 10)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
+            killOnHit = false
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
                     game.splash("THIS IS THE ROOM!")
@@ -141,6 +142,7 @@ let ghostSight = false
 let wallHacks = false
 let playerVelocity = 0
 let currentGhostType = ""
+let killOnHit = false
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let openedMenu = false

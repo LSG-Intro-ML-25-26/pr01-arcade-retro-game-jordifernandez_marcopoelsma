@@ -42,7 +42,7 @@ function ghostAbilitiesList () {
         maxMimicCooldown = 6000
     }
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(openedMenu)) {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
@@ -69,7 +69,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
-        inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
@@ -82,7 +82,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
                     game.splash("THIS IS THE ROOM!")
                     game.splash("THIS IS NOT THE GHOST TYPE!")
                     gameOver()
-                    game.gameOver(false)
                 }
             } else {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
@@ -90,17 +89,15 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
                     game.splash("THIS IS NOT THE ROOM!")
                     game.splash("THIS IS THE GHOST TYPE!")
                     gameOver()
-                    game.gameOver(false)
                 } else {
                     stopHunt = true
                     game.splash("THIS IS NOT THE ROOM!")
                     game.splash("THIS IS NOT THE GHOST TYPE!")
                     gameOver()
-                    game.gameOver(false)
                 }
             }
         })
-        inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             openedMenu = false
             inputGhostType.close()
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -114,14 +111,32 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     mainCharacter.setImage(assets.image`hidden`)
 })
 function gameOver () {
-    if (currentGhostType == "Oni") {
-        game.splash("The Ghost was an: " + currentGhostType)
-    } else {
-        game.splash("The Ghost was a: " + currentGhostType)
+    if (openedMenu) {
+        inputGhostType.close()
     }
+    ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[ghostList.indexOf(currentGhostType)], skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
+    ghostReveal.setTitle("The Ghost was:")
+    tiles.placeOnTile(ghostReveal, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16 - 2, scene.cameraProperty(CameraProperty.Y) / 16 - 1))
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 9)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Border, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 0)
+    ghostReveal.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        game.gameOver(false)
+    })
+    ghostReveal.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        game.gameOver(false)
+    })
 }
 function setBaseStats () {
-    stopHunt = false
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
     maxAtkCooldown = 5000
@@ -168,7 +183,6 @@ function setGhostType () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(immortalPlayer)) {
         gameOver()
-        game.gameOver(false)
     }
 })
 let yTile = 0
@@ -176,8 +190,8 @@ let xTile = 0
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
+let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
-let stopHunt = false
 let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
@@ -198,6 +212,7 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
+let stopHunt = false
 let ghostSpawnRoom: Image = null
 let openedMenu = false
 let ghost: Sprite = null
@@ -363,6 +378,7 @@ let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moq
 let hideTiles = [assets.tile`escondite`]
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+stopHunt = false
 setWalls()
 setBaseStats()
 setGhostType()

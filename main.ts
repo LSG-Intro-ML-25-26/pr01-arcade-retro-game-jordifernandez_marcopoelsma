@@ -111,10 +111,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
-            immortalPlayer = true
             if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                    changeHuntOrColorState = true
                     win = true
                 }
             }
@@ -223,8 +221,11 @@ function setDifficulty () {
     }
 }
 function gameOver () {
-    controller.moveSprite(mainCharacter, 0, 0)
+    gameOver2 = true
+    immortalPlayer = true
     changeHuntOrColorState = true
+    canHunt = false
+    controller.moveSprite(mainCharacter, 0, 0)
     if (openedMenu) {
         inputGhostType.close()
     }
@@ -245,6 +246,8 @@ function setStates () {
     incenseState = false
     openedMenu = false
     isDifficultySetted = false
+    isHouseFloorTile = false
+    gameOver2 = false
     difficulty = 1
 }
 info.onLifeZero(function () {
@@ -288,11 +291,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let yTile = 0
 let xTile = 0
 let infoDisplayed = false
-let isHouseFloorTile = false
-let canHunt = false
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
+let isHouseFloorTile = false
 let ghostHunt = false
+let canHunt = false
+let changeHuntOrColorState = false
+let gameOver2 = false
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let isDifficultySetted = false
 let minHuntTime = 0
@@ -300,7 +305,6 @@ let difficulty = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
 let win = false
-let changeHuntOrColorState = false
 let currentGhostType = ""
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -914,27 +918,29 @@ forever(function () {
     }
 })
 forever(function () {
-    isHouseFloorTile = false
-    for (let tile of floorTiles) {
-        if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
-            isHouseFloorTile = true
-            break;
-        }
-    }
-    if (!(isHouseFloorTile)) {
-        for (let tile2 of hideTiles) {
-            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
+    if (!(gameOver2)) {
+        for (let tile of floorTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
                 isHouseFloorTile = true
                 break;
             }
         }
-    }
-    if (isHouseFloorTile) {
-        canHunt = true
-        changeHuntOrColorState = false
-    } else {
-        canHunt = false
-        changeHuntOrColorState = true
+        if (!(isHouseFloorTile)) {
+            for (let tile2 of hideTiles) {
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
+                    isHouseFloorTile = true
+                    break;
+                }
+            }
+        }
+        if (isHouseFloorTile) {
+            canHunt = true
+            changeHuntOrColorState = false
+            isHouseFloorTile = false
+        } else {
+            canHunt = false
+            changeHuntOrColorState = true
+        }
     }
 })
 forever(function () {

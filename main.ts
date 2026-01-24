@@ -452,7 +452,32 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
 mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+let difficultyNPC = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
 tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
+animation.runImageAnimation(
+difficultyNPC,
+assets.animation`difficulty`,
+500,
+true
+)
+tiles.placeOnRandomTile(difficultyNPC, sprites.castle.tileGrass2)
 scene.cameraFollowSprite(mainCharacter)
 ghost = sprites.create(img`
     ........................
@@ -1003,6 +1028,11 @@ forever(function () {
         setDifficulty()
     }
     pause(300)
+})
+forever(function () {
+    if (isDifficultySetted) {
+        sprites.destroy(difficultyNPC)
+    }
 })
 game.onUpdateInterval(300, function () {
     if (ghostHunt == true) {

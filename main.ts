@@ -43,7 +43,7 @@ function ghostAbilitiesList () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(openedMenu)) {
+    if (!(ghostReadyToHunt) && !(openedMenu)) {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
@@ -75,8 +75,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                 if (selectedIndex == ghostList.indexOf(currentGhostType)) {
                     changeHuntOrColorState = true
                     win = true
-                } else {
-                    win = false
                 }
             }
             gameOver()
@@ -180,12 +178,12 @@ let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
-let win = false
 let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
+let ghostReadyToHunt = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false
@@ -201,9 +199,10 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
+let openedMenu = false
+let win = false
 let changeHuntOrColorState = false
 let ghostSpawnRoom: Image = null
-let openedMenu = false
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
@@ -362,16 +361,18 @@ ghost = sprites.create(img`
     ........................
     `, SpriteKind.Enemy)
 ghost.setScale(0, ScaleAnchor.Middle)
-openedMenu = true
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-changeHuntOrColorState = false
 setWalls()
 setBaseStats()
 setGhostType()
-let ghostHunt = 0
+changeHuntOrColorState = false
+let ghostHunt = false
+ghostHunt = false
+win = false
+openedMenu = false
 forever(function () {
     if (sight.isInSight(
     ghost,
@@ -723,8 +724,8 @@ forever(function () {
         color.setPalette(
         color.originalPalette
         )
-        openedMenu = false
-        ghostHunt = 0
+        ghostReadyToHunt = false
+        ghostHunt = false
         if (!(wallHacks)) {
             ghostSight = false
         }
@@ -732,17 +733,18 @@ forever(function () {
         pause(randint(minAtkCooldown, maxAtkCooldown))
     }
     if (!(changeHuntOrColorState)) {
+        ghostReadyToHunt = true
         color.setPalette(
         color.Adventure
         )
         if (openedMenu) {
+            openedMenu = false
             inputGhostType.close()
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
         }
-        openedMenu = true
         pause(timeBeforeAtkAfterLightsOff)
         tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-        ghostHunt += 1
+        ghostHunt = true
         ghost.changeScale(1, ScaleAnchor.Middle)
         immortalPlayer = true
         pause(immunitySpawnTime)
@@ -758,7 +760,7 @@ forever(function () {
     }
 })
 game.onUpdateInterval(300, function () {
-    if (ghostHunt == 1) {
+    if (ghostHunt == true) {
         if (ghostSight) {
             if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
                 scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostCloseSpeed)

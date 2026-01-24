@@ -230,6 +230,7 @@ function noSelectMenu () {
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
@@ -1147,8 +1148,9 @@ forever(function () {
             ])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 5)
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 110)
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 90)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
+            ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
         setDifficulty()

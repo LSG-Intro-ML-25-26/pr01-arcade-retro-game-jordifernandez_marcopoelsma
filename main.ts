@@ -927,10 +927,10 @@ forever(function () {
             }
             ghostReveal = miniMenu.createMenuFromArray([
             miniMenu.createMenuItem("Incense", assets.tile`incenseNoBackground`),
-            miniMenu.createMenuItem("Press B to use"),
-            miniMenu.createMenuItem("Grants immunity"),
-            miniMenu.createMenuItem("Grants invisibility"),
-            miniMenu.createMenuItem("Duration: " + incenseDuration + " seconds")
+            miniMenu.createMenuItem("Press \"B\" to use"),
+            miniMenu.createMenuItem("Grants: immunity"),
+            miniMenu.createMenuItem("Grants: invisibility"),
+            miniMenu.createMenuItem("Duration: " + incenseDuration / 1000 + " seconds")
             ])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 5)

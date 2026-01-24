@@ -193,7 +193,7 @@ function setStates () {
 function setPlayerStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-    incenseCount = 2
+    incenseCount = 1
     incenseDuration = 3000
 }
 function setGhostType () {

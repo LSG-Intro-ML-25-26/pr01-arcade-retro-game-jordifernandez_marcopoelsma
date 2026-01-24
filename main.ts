@@ -148,18 +148,16 @@ function noSelectMenu () {
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 0)
 }
 function setGhostStats () {
-    maxAtkCooldown = 5000
-    minAtkCooldown = 10000
-    maxHuntTime = 15000
-    minHuntTime = 20000
-    looseTrailTime = 5000
-    ghostSpeed = 100
+    maxAtkCooldown = 5000 * difficulty
+    minAtkCooldown = 10000 * difficulty
+    maxHuntTime = 15000 * difficulty
+    minHuntTime = 20000 * difficulty
+    looseTrailTime = 5000 * difficulty
+    ghostSpeed = 100 * difficulty
     ghostSightSpeed = ghostSpeed
     ghostCloseSpeed = ghostSpeed
     wallHacks = false
-    sightRange = 160
-    timeBeforeAtkAfterLightsOff = 2000
-    immunitySpawnTime = 1000
+    sightRange = 160 * difficulty
     flashingGhost = 300
     animation.runImageAnimation(
     ghost,
@@ -167,6 +165,38 @@ function setGhostStats () {
     flashingGhost,
     true
     )
+}
+function setDifficulty () {
+    if (!(infoDisplayed)) {
+        infoDisplayed = true
+        if (openedMenu) {
+            inputGhostType.close()
+        }
+        setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard"), miniMenu.createMenuItem("Normal"), miniMenu.createMenuItem("Easy")])
+        setDifficultyMenu.setTitle("SET DIFFICULTY")
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 100)
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 6)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 9)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
+        setDifficultyMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
+            if (selection == "Hard") {
+                game.splash("HARDDD")
+                difficulty = 0
+            } else if (false) {
+            	
+            } else {
+                game.splash("ez")
+            }
+        })
+        inputGhostType.close()
+    }
 }
 function gameOver () {
     controller.moveSprite(mainCharacter, 0, 0)
@@ -192,10 +222,12 @@ function setStates () {
     openedMenu = false
 }
 function setPlayerStats () {
-    playerVelocity = 100
+    playerVelocity = 100 / difficulty
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
     incenseCount = 1
-    incenseDuration = 3000
+    incenseDuration = 3000 / difficulty
+    immunitySpawnTime = 1000 / difficulty
+    timeBeforeAtkAfterLightsOff = 2000 / difficulty
 }
 function setGhostType () {
     ghostList = [
@@ -225,12 +257,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
-let infoDisplayed = false
 let isHouseFloorTile = false
 let canHunt = false
-let ghostHunt = false
-let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
+let immunitySpawnTime = 0
+let ghostHunt = false
+let setDifficultyMenu: miniMenu.MenuSprite = null
+let infoDisplayed = false
 let minHuntTime = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
@@ -262,6 +295,7 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
+let difficulty = 0
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
@@ -426,6 +460,7 @@ let openDoor = assets.tile`myTile7`
 let closedDoor = assets.tile`doorClose`
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+difficulty = 1
 setWalls()
 setGhostStats()
 setGhostType()
@@ -937,6 +972,8 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 110)
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
+        setDifficulty()
     }
 })
 game.onUpdateInterval(300, function () {

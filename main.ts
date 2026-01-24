@@ -92,13 +92,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     }
     mainCharacter.setImage(assets.image`hidden`)
 })
-function gameOver () {
-    changeHuntOrColorState = true
-    if (openedMenu) {
-        inputGhostType.close()
-    }
-    ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[ghostList.indexOf(currentGhostType)], skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
-    ghostReveal.setTitle("The Ghost was:")
+function noSelectMenu () {
     tiles.placeOnTile(ghostReveal, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16 - 2, scene.cameraProperty(CameraProperty.Y) / 16 - 1))
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
@@ -112,6 +106,16 @@ function gameOver () {
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 9)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Border, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 0)
+}
+function gameOver () {
+    controller.moveSprite(mainCharacter, 0, 0)
+    changeHuntOrColorState = true
+    if (openedMenu) {
+        inputGhostType.close()
+    }
+    ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[ghostList.indexOf(currentGhostType)], skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
+    ghostReveal.setTitle("The Ghost was:")
+    noSelectMenu()
     ghostReveal.onButtonPressed(controller.A, function (selection, selectedIndex) {
         game.gameOver(win)
     })
@@ -173,6 +177,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
+let isHouseFloorTile = false
+let ghostInfo = false
+let canHunt = false
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
@@ -363,6 +370,7 @@ ghost = sprites.create(img`
 ghost.setScale(0, ScaleAnchor.Middle)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
+let door = assets.tile`door`
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
 setWalls()
@@ -373,18 +381,6 @@ let ghostHunt = false
 ghostHunt = false
 win = false
 openedMenu = false
-forever(function () {
-    if (sight.isInSight(
-    ghost,
-    mainCharacter,
-    sightRange,
-    wallHacks
-    )) {
-        ghostSight = true
-        pause(looseTrailTime)
-        ghostSight = false
-    }
-})
 forever(function () {
     if (currentGhostType == "Mimic") {
         while (true) {
@@ -398,6 +394,18 @@ forever(function () {
         pause(randint(minMimicCooldown, maxMimicCooldown))
     } else {
         pause(9999999999)
+    }
+})
+forever(function () {
+    if (sight.isInSight(
+    ghost,
+    mainCharacter,
+    sightRange,
+    wallHacks
+    )) {
+        ghostSight = true
+        pause(looseTrailTime)
+        ghostSight = false
     }
 })
 forever(function () {
@@ -720,43 +728,82 @@ forever(function () {
     }
 })
 forever(function () {
-    if (!(changeHuntOrColorState)) {
-        color.setPalette(
-        color.originalPalette
-        )
-        ghostReadyToHunt = false
-        ghostHunt = false
-        if (!(wallHacks)) {
-            ghostSight = false
+    if (canHunt) {
+        if (!(changeHuntOrColorState)) {
+            tileUtil.setWalls(door, false)
+            color.setPalette(
+            color.originalPalette
+            )
+            ghostReadyToHunt = false
+            ghostHunt = false
+            if (!(wallHacks)) {
+                ghostSight = false
+            }
+            ghost.setScale(0, ScaleAnchor.Middle)
+            pause(randint(minAtkCooldown, maxAtkCooldown))
         }
-        ghost.setScale(0, ScaleAnchor.Middle)
-        pause(randint(minAtkCooldown, maxAtkCooldown))
-    }
-    if (!(changeHuntOrColorState)) {
-        ghostReadyToHunt = true
-        color.setPalette(
-        color.Adventure
-        )
-        if (openedMenu) {
-            openedMenu = false
-            inputGhostType.close()
-            controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+        if (!(changeHuntOrColorState)) {
+            tileUtil.setWalls(door, true)
+            ghostReadyToHunt = true
+            color.setPalette(
+            color.Adventure
+            )
+            if (openedMenu) {
+                openedMenu = false
+                inputGhostType.close()
+                controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+            }
+            pause(timeBeforeAtkAfterLightsOff)
+            tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+            ghostHunt = true
+            ghost.changeScale(1, ScaleAnchor.Middle)
+            immortalPlayer = true
+            pause(immunitySpawnTime)
+            immortalPlayer = false
+            pause(randint(minHuntTime, maxHuntTime))
         }
-        pause(timeBeforeAtkAfterLightsOff)
-        tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-        ghostHunt = true
-        ghost.changeScale(1, ScaleAnchor.Middle)
-        immortalPlayer = true
-        pause(immunitySpawnTime)
-        immortalPlayer = false
-        pause(randint(minHuntTime, maxHuntTime))
     }
 })
 forever(function () {
     if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
-        changeHuntOrColorState = true
+        if (ghostInfo) {
+            ghostReveal.close()
+        }
+        ghostInfo = false
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
     } else {
         changeHuntOrColorState = false
+    }
+})
+forever(function () {
+    isHouseFloorTile = false
+    for (let tile of floorTiles) {
+        if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+            isHouseFloorTile = true
+            break;
+        }
+    }
+    if (!(isHouseFloorTile)) {
+        for (let tile of hideTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+                isHouseFloorTile = true
+                break;
+            }
+        }
+    }
+    if (isHouseFloorTile) {
+        canHunt = true
+    } else {
+        canHunt = false
     }
 })
 game.onUpdateInterval(300, function () {

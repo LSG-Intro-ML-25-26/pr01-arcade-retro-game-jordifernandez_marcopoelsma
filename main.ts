@@ -862,6 +862,7 @@ forever(function () {
         game.showLongText("Press A to open the book.", DialogLayout.Bottom)
         game.showLongText("Press A to select a ghost.", DialogLayout.Bottom)
         game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
+        game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
         pause(2000)
     }
 })

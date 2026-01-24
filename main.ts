@@ -48,6 +48,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(openedMenu) && !(openOtherMenu)) {
         if (incenseCount > 0) {
             incenseCount = incenseCount - 1
+            info.setLife(incenseCount)
             immortalPlayer = true
             ghostSight = false
             incenseState = true
@@ -205,6 +206,7 @@ function setDifficulty () {
                 setPlayerStats()
                 incenseCount = 2
             }
+            info.setLife(incenseCount)
             setGhostStats()
             isDifficultySetted = true
             openOtherMenu = false
@@ -245,10 +247,14 @@ function setStates () {
     isDifficultySetted = false
     difficulty = 1
 }
+info.onLifeZero(function () {
+    info.changeLifeBy(-1)
+})
 function setPlayerStats () {
     playerVelocity = 100 / difficulty
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
     incenseCount = 1
+    info.setLife(incenseCount)
     incenseDuration = 3000 / difficulty
     immunitySpawnTime = 1000 / difficulty
     timeBeforeAtkAfterLightsOff = 2000 / difficulty
@@ -478,6 +484,7 @@ assets.animation`difficulty`,
 true
 )
 tiles.placeOnRandomTile(difficultyNPC, sprites.castle.tileGrass2)
+spriteutils.setLifeImage(assets.tile`incenseNoBackground`)
 scene.cameraFollowSprite(mainCharacter)
 ghost = sprites.create(img`
     ........................

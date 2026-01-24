@@ -44,7 +44,7 @@ function ghostAbilitiesList () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(ghostReadyToHunt) && !(openedMenu)) {
+    if (canHunt && (!(ghostReadyToHunt) && !(openedMenu))) {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
@@ -177,7 +177,6 @@ let yTile = 0
 let xTile = 0
 let ghostInfo = false
 let isHouseFloorTile = false
-let canHunt = false
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
@@ -189,6 +188,7 @@ let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let ghostReadyToHunt = false
+let canHunt = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false

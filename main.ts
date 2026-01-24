@@ -44,7 +44,7 @@ function ghostAbilitiesList () {
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (canHunt && (!(ghostReadyToHunt) && !(openedMenu))) {
+    if (!(ghostReadyToHunt) && !(openedMenu)) {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
@@ -177,6 +177,7 @@ let yTile = 0
 let xTile = 0
 let ghostInfo = false
 let isHouseFloorTile = false
+let canHunt = false
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
@@ -188,7 +189,6 @@ let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let ghostReadyToHunt = false
-let canHunt = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false
@@ -339,6 +339,7 @@ mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
 scene.cameraFollowSprite(mainCharacter)
 game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
+game.showLongText("(Press A to open the book for guessing the ghost type in the ghost spawn room)", DialogLayout.Bottom)
 ghost = sprites.create(img`
     ........................
     ........................

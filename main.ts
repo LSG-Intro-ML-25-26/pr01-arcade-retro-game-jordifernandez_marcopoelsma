@@ -779,8 +779,10 @@ forever(function () {
     }
     if (isHouseFloorTile) {
         canHunt = true
+        changeHuntOrColorState = false
     } else {
         canHunt = false
+        changeHuntOrColorState = true
     }
 })
 forever(function () {
@@ -825,7 +827,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Glinks more frequently!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently!")])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }

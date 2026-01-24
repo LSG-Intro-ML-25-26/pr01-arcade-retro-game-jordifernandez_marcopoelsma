@@ -219,7 +219,7 @@ function setDifficulty () {
             setDifficultyMenu.close()
         })
         pauseUntil(() => controller.A.isPressed() || controller.B.isPressed())
-        pause(2000)
+        pause(1000)
     }
 }
 function gameOver () {
@@ -1034,7 +1034,6 @@ forever(function () {
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
         setDifficulty()
     }
-    pause(300)
 })
 forever(function () {
     if (isDifficultySetted) {

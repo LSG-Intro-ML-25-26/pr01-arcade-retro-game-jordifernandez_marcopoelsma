@@ -1072,7 +1072,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
@@ -1090,7 +1090,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
@@ -1099,7 +1099,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
@@ -1120,7 +1120,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`info`)) {

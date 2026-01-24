@@ -244,6 +244,12 @@
         "tilemapTile": true,
         "displayName": "incenseBurning"
     },
+    "tile41": {
+        "data": "hwQQABAAAADxERERERERHx8RERERERHxERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERHxEREREREfHxERERERERHw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "floor1"
+    },
     "nivel4": {
         "id": "nivel4",
         "mimeType": "application/mkcd-tilemap",
@@ -352,7 +358,8 @@
             "myTiles.tile33",
             "myTiles.tile36",
             "myTiles.tile37",
-            "myTiles.tile40"
+            "myTiles.tile40",
+            "myTiles.tile41"
         ],
         "displayName": "TangleWood"
     },

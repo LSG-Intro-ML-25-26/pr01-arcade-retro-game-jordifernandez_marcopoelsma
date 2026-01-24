@@ -82,6 +82,8 @@ namespace myTiles {
     export const tile38 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile40 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile41 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -194,7 +196,7 @@ namespace myTiles {
 ....................
 ....................
 ....................
-`, [myTiles.transparency16,myTiles.tile5,myTiles.tile7,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile8,myTiles.tile16,myTiles.tile20,myTiles.tile21,myTiles.tile22,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26,myTiles.tile27,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tileGrass1,myTiles.tile31,myTiles.tile32,myTiles.tile33,myTiles.tile36,myTiles.tile37,myTiles.tile40], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile5,myTiles.tile7,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile8,myTiles.tile16,myTiles.tile20,myTiles.tile21,myTiles.tile22,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26,myTiles.tile27,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tileGrass1,myTiles.tile31,myTiles.tile32,myTiles.tile33,myTiles.tile36,myTiles.tile37,myTiles.tile40,myTiles.tile41], TileScale.Sixteen);
         }
         return null;
     })
@@ -282,6 +284,8 @@ namespace myTiles {
             case "tile38":return tile38;
             case "incenseBurning":
             case "tile40":return tile40;
+            case "floor1":
+            case "tile41":return tile41;
         }
         return null;
     })

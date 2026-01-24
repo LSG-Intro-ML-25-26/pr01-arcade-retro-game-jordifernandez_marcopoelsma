@@ -108,6 +108,27 @@ function noSelectMenu () {
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Border, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 0)
 }
+function setGhostStats () {
+    maxAtkCooldown = 5000
+    minAtkCooldown = 10000
+    maxHuntTime = 15000
+    minHuntTime = 20000
+    looseTrailTime = 5000
+    ghostSpeed = 100
+    ghostSightSpeed = ghostSpeed
+    ghostCloseSpeed = ghostSpeed
+    wallHacks = false
+    sightRange = 160
+    timeBeforeAtkAfterLightsOff = 2000
+    immunitySpawnTime = 1000
+    flashingGhost = 300
+    animation.runImageAnimation(
+    ghost,
+    assets.animation`ghostAnimation`,
+    flashingGhost,
+    true
+    )
+}
 function gameOver () {
     controller.moveSprite(mainCharacter, 0, 0)
     changeHuntOrColorState = true
@@ -124,28 +145,18 @@ function gameOver () {
         game.gameOver(win)
     })
 }
-function setBaseStats () {
+function setStates () {
+    changeHuntOrColorState = false
+    ghostHunt = false
+    win = false
+    incenseState = false
+    openedMenu = false
+}
+function setPlayerStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-    maxAtkCooldown = 5000
-    minAtkCooldown = 10000
-    maxHuntTime = 15000
-    minHuntTime = 20000
-    looseTrailTime = 5000
-    ghostSpeed = 100
-    ghostSightSpeed = ghostSpeed
-    ghostCloseSpeed = ghostSpeed
-    wallHacks = false
-    sightRange = 160
-    timeBeforeAtkAfterLightsOff = 2000
-    immunitySpawnTime = 2000
-    flashingGhost = 300
-    animation.runImageAnimation(
-    ghost,
-    assets.animation`ghostAnimation`,
-    flashingGhost,
-    true
-    )
+    incenseCount = 1
+    incenseDuration = 3000
 }
 function setGhostType () {
     ghostList = [
@@ -178,16 +189,23 @@ let xTile = 0
 let ghostInfo = false
 let isHouseFloorTile = false
 let canHunt = false
+let incenseDuration = 0
+let incenseCount = 0
+let incenseState = false
+let ghostHunt = false
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
 let minHuntTime = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
+let win = false
+let changeHuntOrColorState = false
 let currentGhostType = ""
 let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
+let openedMenu = false
 let ghostReadyToHunt = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
@@ -204,9 +222,6 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
-let openedMenu = false
-let win = false
-let changeHuntOrColorState = false
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
@@ -371,19 +386,31 @@ let door = assets.tile`door`
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
 setWalls()
-setBaseStats()
+setGhostStats()
 setGhostType()
-changeHuntOrColorState = false
-let ghostHunt = false
-ghostHunt = false
-win = false
-openedMenu = false
+setPlayerStats()
+setStates()
+forever(function () {
+    if (controller.B.isPressed()) {
+        if (!(openedMenu)) {
+            if (incenseCount > 0) {
+                incenseCount = incenseCount - 1
+                immortalPlayer = true
+                ghostSight = false
+                incenseState = true
+                pause(incenseDuration)
+                immortalPlayer = false
+                incenseState = false
+            }
+        }
+    }
+})
 forever(function () {
     if (currentGhostType == "Mimic") {
         while (true) {
             currentGhostAbility = ghostList._pickRandom()
             if (currentGhostAbility != currentGhostType) {
-                setBaseStats()
+                setGhostStats()
                 ghostAbilitiesList()
                 break;
             }
@@ -391,18 +418,6 @@ forever(function () {
         pause(randint(minMimicCooldown, maxMimicCooldown))
     } else {
         pause(9999999999)
-    }
-})
-forever(function () {
-    if (sight.isInSight(
-    ghost,
-    mainCharacter,
-    sightRange,
-    wallHacks
-    )) {
-        ghostSight = true
-        pause(looseTrailTime)
-        ghostSight = false
     }
 })
 forever(function () {
@@ -722,6 +737,20 @@ forever(function () {
             . . . . . f f f f f f . . . . . 
             . . . . . f f . . f f . . . . . 
             `)
+    }
+})
+forever(function () {
+    if (!(incenseState)) {
+        if (sight.isInSight(
+        ghost,
+        mainCharacter,
+        sightRange,
+        wallHacks
+        )) {
+            ghostSight = true
+            pause(looseTrailTime)
+            ghostSight = false
+        }
     }
 })
 forever(function () {

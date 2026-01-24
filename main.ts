@@ -116,7 +116,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
                     win = true
                 }
             }
-            gameOver()
         })
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             openedMenu = false
@@ -220,8 +219,22 @@ function setDifficulty () {
         pause(1000)
     }
 }
-function gameOver () {
-    gameOver2 = true
+function setStates () {
+    changeHuntOrColorState = false
+    ghostHunt = false
+    win = false
+    incenseState = false
+    openedMenu = false
+    isDifficultySetted = false
+    isHouseFloorTile = false
+    gameOver = false
+    difficulty = 1
+}
+info.onLifeZero(function () {
+    info.changeLifeBy(-1)
+})
+function gameOver2 () {
+    gameOver = true
     immortalPlayer = true
     changeHuntOrColorState = true
     canHunt = false
@@ -239,20 +252,6 @@ function gameOver () {
         game.gameOver(win)
     })
 }
-function setStates () {
-    changeHuntOrColorState = false
-    ghostHunt = false
-    win = false
-    incenseState = false
-    openedMenu = false
-    isDifficultySetted = false
-    isHouseFloorTile = false
-    gameOver2 = false
-    difficulty = 1
-}
-info.onLifeZero(function () {
-    info.changeLifeBy(-1)
-})
 function setPlayerStats () {
     playerVelocity = 100 / difficulty
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -285,7 +284,7 @@ function setGhostType () {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(immortalPlayer) && !(incenseState)) {
-        gameOver()
+        gameOver2()
     }
 })
 let yTile = 0
@@ -293,11 +292,11 @@ let xTile = 0
 let infoDisplayed = false
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
+let canHunt = false
+let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
-let canHunt = false
 let changeHuntOrColorState = false
-let gameOver2 = false
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let isDifficultySetted = false
 let minHuntTime = 0
@@ -918,7 +917,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (!(gameOver2)) {
+    if (!(gameOver)) {
         for (let tile of floorTiles) {
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
                 isHouseFloorTile = true

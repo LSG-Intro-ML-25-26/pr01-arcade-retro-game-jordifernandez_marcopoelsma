@@ -451,8 +451,6 @@ let ghost: Sprite = null
 let incenseDuration = 0
 let incense: Sprite = null
 let mainCharacter: Sprite = null
-music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
-music.setVolume(32)
 tiles.setCurrentTilemap(tilemap`TangleWood`)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -1177,6 +1175,34 @@ forever(function () {
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
         setDifficulty()
+    }
+})
+forever(function () {
+    if (ghostReadyToHunt) {
+        if (ghostSight) {
+            music.play(music.createSong(assets.song`huntbBeat0`), music.PlaybackMode.UntilDone)
+        } else {
+            music.play(music.createSong(assets.song`readyToHuntbBeat0`), music.PlaybackMode.UntilDone)
+        }
+    } else {
+        if (canHunt) {
+            music.play(music.createSong(assets.song`beat0`), music.PlaybackMode.UntilDone)
+        } else {
+            music.play(music.createSong(assets.song`chill0`), music.PlaybackMode.UntilDone)
+        }
+    }
+    if (ghostReadyToHunt) {
+        if (ghostSight) {
+            music.play(music.createSong(assets.song`huntbBeat3`), music.PlaybackMode.UntilDone)
+        } else {
+            music.play(music.createSong(assets.song`readyToHuntbBeat3`), music.PlaybackMode.UntilDone)
+        }
+    } else {
+        if (canHunt) {
+            music.play(music.createSong(assets.song`beat3`), music.PlaybackMode.UntilDone)
+        } else {
+            music.play(music.createSong(assets.song`chill1`), music.PlaybackMode.UntilDone)
+        }
     }
 })
 forever(function () {

@@ -45,7 +45,7 @@ function ghostAbilitiesList () {
     }
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(openedMenu)) {
+    if (!(openedMenu) && !(openOtherMenu)) {
         if (incenseCount > 0) {
             incenseCount = incenseCount - 1
             immortalPlayer = true
@@ -83,7 +83,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(ghostReadyToHunt) && !(openedMenu)) {
+    if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu)) {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
@@ -167,8 +167,9 @@ function setGhostStats () {
     )
 }
 function setDifficulty () {
-    if (!(infoDisplayed)) {
-        infoDisplayed = true
+    if (!(isDifficultySetted)) {
+        openOtherMenu = true
+        controller.moveSprite(mainCharacter, 0, 0)
         if (openedMenu) {
             inputGhostType.close()
         }
@@ -185,17 +186,27 @@ function setDifficulty () {
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 9)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
+        tiles.placeOnTile(setDifficultyMenu, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
         setDifficultyMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (selection == "Hard") {
-                game.splash("HARDDD")
-                difficulty = 0
-            } else if (false) {
-            	
-            } else {
-                game.splash("ez")
+                difficulty = 1.5
+            } else if (selection == "Normal") {
+                difficulty = 1
+            } else if (selection == "Easy") {
+                difficulty = 0.5
             }
+            isDifficultySetted = true
+            openOtherMenu = false
+            controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+            setDifficultyMenu.close()
         })
-        inputGhostType.close()
+        setDifficultyMenu.onButtonPressed(controller.B, function (selection, selectedIndex) {
+            openOtherMenu = false
+            controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+            setDifficultyMenu.close()
+        })
+        pauseUntil(() => controller.A.isPressed() || controller.B.isPressed())
+        pause(2000)
     }
 }
 function gameOver () {
@@ -220,6 +231,8 @@ function setStates () {
     win = false
     incenseState = false
     openedMenu = false
+    isDifficultySetted = false
+    difficulty = 1
 }
 function setPlayerStats () {
     playerVelocity = 100 / difficulty
@@ -257,14 +270,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
+let infoDisplayed = false
 let isHouseFloorTile = false
 let canHunt = false
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
 let ghostHunt = false
 let setDifficultyMenu: miniMenu.MenuSprite = null
-let infoDisplayed = false
+let isDifficultySetted = false
 let minHuntTime = 0
+let difficulty = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
 let win = false
@@ -279,6 +294,7 @@ let incense: Sprite = null
 let incenseState = false
 let immortalPlayer = false
 let incenseCount = 0
+let openOtherMenu = false
 let openedMenu = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
@@ -295,7 +311,6 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
-let difficulty = 0
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
@@ -460,12 +475,11 @@ let openDoor = assets.tile`myTile7`
 let closedDoor = assets.tile`doorClose`
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-difficulty = 1
 setWalls()
+setStates()
 setGhostStats()
 setGhostType()
 setPlayerStats()
-setStates()
 forever(function () {
     if (currentGhostType == "Mimic") {
         while (true) {
@@ -817,6 +831,7 @@ forever(function () {
 })
 forever(function () {
     if (canHunt) {
+        isDifficultySetted = true
         if (!(changeHuntOrColorState)) {
             tileUtil.replaceAllTiles(closedDoor, openDoor)
             tileUtil.setWalls(openDoor, false)

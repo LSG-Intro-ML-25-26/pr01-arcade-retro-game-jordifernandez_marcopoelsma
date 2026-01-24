@@ -123,9 +123,6 @@ function gameOver () {
         game.gameOver(win)
     })
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Demon`, function (sprite, location) {
-	
-})
 function setBaseStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -177,8 +174,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
-let isHouseFloorTile = false
 let ghostInfo = false
+let isHouseFloorTile = false
 let canHunt = false
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
@@ -765,26 +762,6 @@ forever(function () {
     }
 })
 forever(function () {
-    if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
-        if (ghostInfo) {
-            ghostReveal.close()
-        }
-        ghostInfo = false
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
-            noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
-        }
-    } else {
-        changeHuntOrColorState = false
-    }
-})
-forever(function () {
     isHouseFloorTile = false
     for (let tile of floorTiles) {
         if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
@@ -804,6 +781,74 @@ forever(function () {
         canHunt = true
     } else {
         canHunt = false
+    }
+})
+forever(function () {
+    if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
+        if (ghostInfo) {
+            ghostReveal.close()
+        }
+        ghostInfo = false
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[1], skullList[1]), miniMenu.createMenuItem("You can't hide, run!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Mimic`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Contantly mimics others abilities!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Glinks more frequently!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base, fast when chasing!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
+        if (!(ghostInfo)) {
+            ghostInfo = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Blind, can only see closely!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
     }
 })
 game.onUpdateInterval(300, function () {

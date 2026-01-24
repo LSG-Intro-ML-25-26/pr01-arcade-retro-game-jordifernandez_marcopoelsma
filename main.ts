@@ -77,6 +77,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             incenseDuration / 6,
             false
             )
+            incense.z = -1
             pause(incenseDuration)
             immortalPlayer = false
             incenseState = false
@@ -511,8 +512,9 @@ animation.runImageAnimation(
 incense,
 assets.animation`incienso quemado`,
 incenseDuration / 6,
-false
+true
 )
+incense.z = -1
 scene.cameraFollowSprite(mainCharacter)
 ghost = sprites.create(img`
     ........................

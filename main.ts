@@ -112,10 +112,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
         tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
-            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
-                if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                    win = true
+            if (canHunt) {
+                if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
+                    if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                        win = true
+                    }
                 }
+                gameOver2()
             }
         })
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
@@ -293,7 +296,6 @@ let xTile = 0
 let infoDisplayed = false
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
-let canHunt = false
 let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
@@ -306,6 +308,7 @@ let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
 let win = false
 let currentGhostType = ""
+let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null

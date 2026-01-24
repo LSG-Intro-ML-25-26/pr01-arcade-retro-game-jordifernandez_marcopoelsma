@@ -72,7 +72,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             animation.runImageAnimation(
             incense,
             assets.animation`incienso quemado`,
-            500,
+            incenseDuration / 6,
             false
             )
             pause(incenseDuration)
@@ -213,12 +213,12 @@ function setGhostType () {
     assets.image`RevenantSkull`,
     assets.image`YureiSkull`
     ]
-    currentGhostAbility = ghostList._pickRandom()
+    currentGhostAbility = "Mimic"
     currentGhostType = currentGhostAbility
     ghostAbilitiesList()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (!(immortalPlayer)) {
+    if (!(immortalPlayer) && !(incenseState)) {
         gameOver()
     }
 })
@@ -765,6 +765,7 @@ forever(function () {
 })
 forever(function () {
     if (!(incenseState)) {
+        pause(incenseDuration)
         if (sight.isInSight(
         ghost,
         mainCharacter,

@@ -338,8 +338,6 @@ scene.setBackgroundImage(img`
 mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
 scene.cameraFollowSprite(mainCharacter)
-game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
-game.showLongText("(Press A to open the book for guessing the ghost type in the ghost spawn room)", DialogLayout.Bottom)
 ghost = sprites.create(img`
     ........................
     ........................
@@ -855,6 +853,14 @@ forever(function () {
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`info`)) {
+        game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
+        game.showLongText("Read the ghost behavior on the corresponding skulls.", DialogLayout.Bottom)
+        game.showLongText("Observe the ghost's behavior.", DialogLayout.Bottom)
+        game.showLongText("Press A to open the book.", DialogLayout.Bottom)
+        game.showLongText("Press A to select a ghost.", DialogLayout.Bottom)
+        game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
+        pause(2000)
     }
 })
 game.onUpdateInterval(300, function () {

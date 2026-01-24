@@ -189,12 +189,23 @@ function setDifficulty () {
         tiles.placeOnTile(setDifficultyMenu, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
         setDifficultyMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (selection == "Hard") {
-                difficulty = 1.5
+                difficulty = 1.1
+                setPlayerStats()
+                incenseCount = 0
+                for (let wall of hideTiles) {
+                    tileUtil.setWalls(wall, true)
+                    tileUtil.coverAllTiles(wall, assets.tile`miMosaico`)
+                }
             } else if (selection == "Normal") {
                 difficulty = 1
+                setPlayerStats()
+                incenseCount = 1
             } else if (selection == "Easy") {
-                difficulty = 0.5
+                difficulty = 0.9
+                setPlayerStats()
+                incenseCount = 2
             }
+            setGhostStats()
             isDifficultySetted = true
             openOtherMenu = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -312,6 +323,7 @@ let flashingGhost = 0
 let currentGhostAbility = ""
 let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
+let hideTiles: Image[] = []
 let ghost: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
@@ -470,7 +482,7 @@ ghost = sprites.create(img`
     `, SpriteKind.Enemy)
 ghost.setScale(0, ScaleAnchor.Middle)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
-let hideTiles = [assets.tile`escondite`]
+hideTiles = [assets.tile`escondite`]
 let openDoor = assets.tile`myTile7`
 let closedDoor = assets.tile`doorClose`
 ghostSpawnRoom = floorTiles._pickRandom()
@@ -990,6 +1002,7 @@ forever(function () {
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
         setDifficulty()
     }
+    pause(300)
 })
 game.onUpdateInterval(300, function () {
     if (ghostHunt == true) {

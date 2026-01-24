@@ -7,7 +7,8 @@ function setWalls () {
     assets.tile`isla de cocina`,
     assets.tile`miMosaico`,
     assets.tile`transparency16`,
-    assets.tile`turquesa`
+    assets.tile`turquesa`,
+    assets.tile`outsideWall`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)
@@ -421,7 +422,8 @@ ghost = sprites.create(img`
 ghost.setScale(0, ScaleAnchor.Middle)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
 let hideTiles = [assets.tile`escondite`]
-let door = assets.tile`door`
+let openDoor = assets.tile`myTile7`
+let closedDoor = assets.tile`doorClose`
 ghostSpawnRoom = floorTiles._pickRandom()
 tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
 setWalls()
@@ -781,7 +783,8 @@ forever(function () {
 forever(function () {
     if (canHunt) {
         if (!(changeHuntOrColorState)) {
-            tileUtil.setWalls(door, false)
+            tileUtil.replaceAllTiles(closedDoor, openDoor)
+            tileUtil.setWalls(openDoor, false)
             color.setPalette(
             color.originalPalette
             )
@@ -794,7 +797,8 @@ forever(function () {
             pause(randint(minAtkCooldown, maxAtkCooldown))
         }
         if (!(changeHuntOrColorState)) {
-            tileUtil.setWalls(door, true)
+            tileUtil.replaceAllTiles(openDoor, closedDoor)
+            tileUtil.setWalls(closedDoor, true)
             ghostReadyToHunt = true
             color.setPalette(
             color.Adventure

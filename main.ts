@@ -96,21 +96,87 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         miniMenu.createMenuItem(ghostList[4], skullList[4]),
         miniMenu.createMenuItem(ghostList[5], skullList[5])
         ])
+        inputGhostType.setFrame(img`
+            ..................................................................
+            ............fff........fff.............fff..............ffff......
+            ...........fddbf......fbdbf...........fbdbf............fbddf......
+            ...........fddbbf.....fdddffff........fdddffff...fff..ffddbff.....
+            ...........fddddffffffbdddbddbffffffffbdddbddbffffddffddddddf.....
+            ...fff....fdddddfddddddddbbddddddddddddddbbddddddfdddddbccddf.....
+            .fffddf..fddffffddddddddddbbddddddddddddddbbdddddffbddbbddff......
+            .fdbddfffddfffdddfffffbdddbddbffffffffbdddbddbfffefddccbddf.......
+            .fdddcddddffeffffeeeeefbdbfddfeeeeeeeefbdbfddfeeeefffcddddf.......
+            .fbddcddddfeeeeeeeeeeeefffffffeeeeeeeeefffffffeeeeeeefdddddf......
+            ..ffdbbbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffffddf.....
+            ...fddbcddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddfff..
+            ....fddccffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffddddf.
+            ....fdddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddddf.
+            ...fddbdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbbf.
+            ...fddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdfddbf..
+            ...ffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddfff...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+            ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+            .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+            .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+            .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+            ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fbddbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fdddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fddbddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbff..
+            ..ffbbbbffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbdddddbf.
+            .fbddbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddddf.
+            .fdddddddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefbddbddbf.
+            .fbdddddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbbbbff..
+            ..ffbddbfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbddf...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddddf...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffbddbf...
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ....fddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddf....
+            ...fffddfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffff...
+            ..fbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefffddf...
+            .fbbddfdfeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdbddf...
+            .fddddfffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefdddf....
+            .fddddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffccddf....
+            ..fffddffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddcbddf...
+            .....fddfffffeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefddbbbdff..
+            ......fdddddfeeeeeeefffffffeeeeeeeeefffffffeeeeeeeeeeeefddddcddbf.
+            .......fddddcfffeeeefddfbdbfeeeeeeeefddfbdbfeeeeeffffeffddddcdddf.
+            .......fddbccddfefffbddbdddbffffffffbddbdddbfffffdddfffddfffddbdf.
+            ......ffddbbddbffdddddbbddddddddddddddbbddddddddddffffddf..fddfff.
+            .....fddccbdddddfddddddbbddddddddddddddbbddddddddfdddddf....fff...
+            .....fddddddffddffffbddbdddbffffffffbddbdddbffffffddddf...........
+            .....ffbddff..fff...ffffdddf........ffffdddf.....fbbddf...........
+            ......fddbf............fbdbf...........fbdbf......fbddf...........
+            ......ffff..............fff.............fff........fff............
+            ..................................................................
+            `)
         inputGhostType.setTitle("INPUT GHOST TYPE")
-        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
-        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 100)
-        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 120)
+        inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 14)
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
         inputGhostType.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 2)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 6)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 9)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
-        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
-        tiles.placeOnTile(inputGhostType, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 13)
+        inputGhostType.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 11)
+        inputGhostType.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (canHunt) {
                 if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
@@ -135,19 +201,43 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite,
     mainCharacter.setImage(assets.image`hidden`)
 })
 function noSelectMenu () {
-    tiles.placeOnTile(ghostReveal, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16 - 2, scene.cameraProperty(CameraProperty.Y) / 16 - 1))
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
+    ghostReveal.setFrame(img`
+        ..bbabbaabbaabbaabbbbb..
+        .bddbaddbaddbaddbabbddb.
+        addddbaddbaddbaddbadddda
+        addddbbaabbaabbaabbdddda
+        abddbaaaaaaaaaaaaaabddba
+        bbabaaaaaaaaaaaaaaaabbab
+        babbaaaaaaaaaaaaaaaabadb
+        abdaaaaaaaaaaaaaaaaaadda
+        addaaaaaaaaaaaaaaaaaadba
+        bdabaaaaaaaaaaaaaaaabbab
+        babbaaaaaaaaaaaaaaaabadb
+        abdaaaaaaaaaaaaaaaaaadda
+        addaaaaaaaaaaaaaaaaaadba
+        bdabaaaaaaaaaaaaaaaabbab
+        babbaaaaaaaaaaaaaaaabadb
+        abdaaaaaaaaaaaaaaaaaadda
+        addaaaaaaaaaaaaaaaaaadba
+        bdabaaaaaaaaaaaaaaaabbab
+        babbaaaaaaaaaaaaaaaababb
+        abddbaaaaaaaaaaaaaabddba
+        addddbbaabbaabbaabbdddda
+        addddabddabddabddabdddda
+        .addbbabddabddabddabdda.
+        ..aaabbaabbaabbaabbaaa..
+        `)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 9)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 10)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Border, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 0)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.BorderColor, 12)
+    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
 }
 function setGhostStats () {
     maxAtkCooldown = 5000 * difficulty
@@ -984,9 +1074,8 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
             noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
         if (!(infoDisplayed)) {
@@ -996,7 +1085,6 @@ forever(function () {
             }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[1], skullList[1]), miniMenu.createMenuItem("You can't hide, run!")])
             noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Mimic`)) {
         if (!(infoDisplayed)) {
@@ -1004,9 +1092,8 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities")])
             noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
         if (!(infoDisplayed)) {
@@ -1014,9 +1101,8 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently")])
             noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
         if (!(infoDisplayed)) {
@@ -1027,7 +1113,7 @@ forever(function () {
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base..."), miniMenu.createMenuItem("Fast when chasing!")])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+            ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
         if (!(infoDisplayed)) {
@@ -1035,9 +1121,8 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely")])
             noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`info`)) {
         game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)

@@ -80,6 +80,8 @@ namespace myTiles {
     export const tile39 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile38 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile40 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -165,7 +167,7 @@ namespace myTiles {
 ................................
 `, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.greenOuterNorth0,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.darkGroundSouthEast1,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundEast,sprites.dungeon.greenOuterWest1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterSouth1,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterEast1,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.greenOuterWest0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.darkGroundNorthEast1,sprites.dungeon.darkGroundNorthWest1,myTiles.tile6,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile7], TileScale.Sixteen);
             case "TangleWood":
-            case "nivel2":return tiles.createTilemap(hex`14001a000000000000000000000000000000000000000000000000000000000000000000000404040404040000000000000000000000000000040404040404000000000000000000000000000004040707040400000000000000000000000000000404070704040000000000000000000000000000040407070404000000000000000000000000000004040506040400000000000000000000000000000404040404040000000000000000000000000000040404040404000000000003030303030303030301010101010800000000000303030303030303030101010101080000000000030303000000000000080108080108000000000003030309000000000008010808010800000000000303030a090000000008010808010800000000000303030a0900000000080102020108000000000003030309000000000008010101010800000000001a191a00000000000008080808080800000000151416141500000000000000000000000000000014151614150000000000000000000000000000001414161515000000000000000000000000001515141516151212121212121212121200000000141514151614120c120d120e12121212000000001514171616160b0b0b0b0b0b0b181212000000001514161616160b0b0b0b0b0b0b18121200000000151515141315120f12101211121212120000000014141515151412121212121212121212000000`, img`
+            case "nivel2":return tiles.createTilemap(hex`14001a000000000000000000000000000000000000000000000000000000000000000000000404040404040000000000000000000000000000040404040404000000000000000000000000000004040707040400000000000000000000000000000404070704040000000000000000000000000000040407070404000000000000000000000000000004040506040400000000000000000000000000000404040404040000000000000000000000000000040404040404000000000003030303030303030301010101010800000000000303030303030303030101010101080000000000030303000000000000080108080108000000000003030309000000000008010808010800000000000303030a090000000008010808010800000000000303030a0900000000080102020108000000000003030309000000000008010101010800000000001a191a00000000000008080808080800000000151416141500000000000000000000000000000014151614150000000000000000000000000000001414161515000000000000000000000000001515141516151212121212121212121200000000141514151614120c120d120e12121212000000001514171616160b0b0b0b0b0b0b1b1212000000001514161616160b0b0b0b0b0b0b18121200000000151515141315120f12101211121212120000000014141515151412121212121212121212000000`, img`
 ....................
 ....................
 ....................
@@ -192,7 +194,7 @@ namespace myTiles {
 ....................
 ....................
 ....................
-`, [myTiles.transparency16,myTiles.tile5,myTiles.tile7,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile8,myTiles.tile16,myTiles.tile20,myTiles.tile21,myTiles.tile22,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26,myTiles.tile27,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tileGrass1,myTiles.tile31,myTiles.tile32,myTiles.tile33,myTiles.tile36,myTiles.tile37], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile5,myTiles.tile7,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile8,myTiles.tile16,myTiles.tile20,myTiles.tile21,myTiles.tile22,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26,myTiles.tile27,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tileGrass1,myTiles.tile31,myTiles.tile32,myTiles.tile33,myTiles.tile36,myTiles.tile37,myTiles.tile40], TileScale.Sixteen);
         }
         return null;
     })
@@ -278,6 +280,8 @@ namespace myTiles {
             case "tile39":return tile39;
             case "difficulty":
             case "tile38":return tile38;
+            case "incenseBurning":
+            case "tile40":return tile40;
         }
         return null;
     })

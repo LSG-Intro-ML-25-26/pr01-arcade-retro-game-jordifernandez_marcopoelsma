@@ -309,8 +309,6 @@ let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let ghostReadyToHunt = false
-let incenseDuration = 0
-let incense: Sprite = null
 let incenseState = false
 let immortalPlayer = false
 let incenseCount = 0
@@ -334,6 +332,8 @@ let wallList: Image[] = []
 let ghostSpawnRoom: Image = null
 let hideTiles: Image[] = []
 let ghost: Sprite = null
+let incenseDuration = 0
+let incense: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
@@ -488,6 +488,31 @@ true
 )
 tiles.placeOnRandomTile(difficultyNPC, sprites.castle.tileGrass2)
 spriteutils.setLifeImage(assets.tile`incenseNoBackground`)
+incense = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
+tiles.placeOnRandomTile(incense, assets.tile`incenseBurning`)
+animation.runImageAnimation(
+incense,
+assets.animation`incienso quemado`,
+incenseDuration / 6,
+false
+)
 scene.cameraFollowSprite(mainCharacter)
 ghost = sprites.create(img`
     ........................
@@ -1018,7 +1043,7 @@ forever(function () {
         game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
         game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
         pause(2000)
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`)) {
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`) || tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseBurning`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
             if (openedMenu) {

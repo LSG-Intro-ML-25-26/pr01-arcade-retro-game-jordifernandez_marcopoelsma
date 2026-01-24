@@ -136,7 +136,7 @@ function noSelectMenu () {
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
@@ -224,7 +224,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
-let ghostInfo = false
+let infoDisplayed = false
 let isHouseFloorTile = false
 let canHunt = false
 let ghostHunt = false
@@ -841,13 +841,13 @@ forever(function () {
 })
 forever(function () {
     if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
-        if (ghostInfo) {
+        if (infoDisplayed) {
             ghostReveal.close()
         }
-        ghostInfo = false
+        infoDisplayed = false
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
             if (openedMenu) {
                 inputGhostType.close()
             }
@@ -856,8 +856,8 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
             if (openedMenu) {
                 inputGhostType.close()
             }
@@ -866,8 +866,8 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Mimic`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
             if (openedMenu) {
                 inputGhostType.close()
             }
@@ -876,8 +876,8 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
             if (openedMenu) {
                 inputGhostType.close()
             }
@@ -886,8 +886,8 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
             if (openedMenu) {
                 inputGhostType.close()
             }
@@ -897,11 +897,12 @@ forever(function () {
             miniMenu.createMenuItem("Fast when chasing!")
             ])
             noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
-        if (!(ghostInfo)) {
-            ghostInfo = true
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
             if (openedMenu) {
                 inputGhostType.close()
             }
@@ -918,6 +919,24 @@ forever(function () {
         game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
         game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
         pause(2000)
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            if (openedMenu) {
+                inputGhostType.close()
+            }
+            ghostReveal = miniMenu.createMenuFromArray([
+            miniMenu.createMenuItem("Incense", assets.tile`incenseNoBackground`),
+            miniMenu.createMenuItem("Press B to use"),
+            miniMenu.createMenuItem("Grants immunity"),
+            miniMenu.createMenuItem("Grants invisibility"),
+            miniMenu.createMenuItem("Duration: " + incenseDuration + " seconds")
+            ])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 5)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 110)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
+        }
     }
 })
 game.onUpdateInterval(300, function () {

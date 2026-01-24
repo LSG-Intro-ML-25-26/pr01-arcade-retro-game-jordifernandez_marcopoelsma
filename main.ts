@@ -24,7 +24,7 @@ function ghostAbilitiesList () {
         )
     } else if (currentGhostAbility == "Demon") {
         maxAtkCooldown = minAtkCooldown
-        minAtkCooldown = minAtkCooldown * 0.5
+        minAtkCooldown = minAtkCooldown * 0
     } else if (currentGhostAbility == "Revenant") {
         ghostSpeed = ghostSpeed * 0.5
         ghostSightSpeed = ghostSightSpeed * 1.5

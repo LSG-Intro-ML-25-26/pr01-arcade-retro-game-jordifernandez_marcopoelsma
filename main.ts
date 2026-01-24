@@ -43,6 +43,44 @@ function ghostAbilitiesList () {
         maxMimicCooldown = 6000
     }
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (!(openedMenu)) {
+        if (incenseCount > 0) {
+            incenseCount = incenseCount - 1
+            immortalPlayer = true
+            ghostSight = false
+            incenseState = true
+            incense = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Food)
+            incense.setPosition(mainCharacter.x, mainCharacter.y)
+            animation.runImageAnimation(
+            incense,
+            assets.animation`incienso quemado`,
+            500,
+            false
+            )
+            pause(incenseDuration)
+            immortalPlayer = false
+            incenseState = false
+        }
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(ghostReadyToHunt) && !(openedMenu)) {
         openedMenu = true
@@ -155,7 +193,7 @@ function setStates () {
 function setPlayerStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-    incenseCount = 1
+    incenseCount = 2
     incenseDuration = 3000
 }
 function setGhostType () {
@@ -189,9 +227,6 @@ let xTile = 0
 let ghostInfo = false
 let isHouseFloorTile = false
 let canHunt = false
-let incenseDuration = 0
-let incenseCount = 0
-let incenseState = false
 let ghostHunt = false
 let immunitySpawnTime = 0
 let timeBeforeAtkAfterLightsOff = 0
@@ -201,12 +236,16 @@ let playerVelocity = 0
 let win = false
 let changeHuntOrColorState = false
 let currentGhostType = ""
-let immortalPlayer = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
-let openedMenu = false
 let ghostReadyToHunt = false
+let incenseDuration = 0
+let incense: Sprite = null
+let incenseState = false
+let immortalPlayer = false
+let incenseCount = 0
+let openedMenu = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false
@@ -390,21 +429,6 @@ setGhostStats()
 setGhostType()
 setPlayerStats()
 setStates()
-forever(function () {
-    if (controller.B.isPressed()) {
-        if (!(openedMenu)) {
-            if (incenseCount > 0) {
-                incenseCount = incenseCount - 1
-                immortalPlayer = true
-                ghostSight = false
-                incenseState = true
-                pause(incenseDuration)
-                immortalPlayer = false
-                incenseState = false
-            }
-        }
-    }
-})
 forever(function () {
     if (currentGhostType == "Mimic") {
         while (true) {

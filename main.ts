@@ -6,7 +6,8 @@ function setWalls () {
     assets.tile`miMosaico7`,
     assets.tile`isla de cocina`,
     assets.tile`miMosaico`,
-    assets.tile`transparency16`
+    assets.tile`transparency16`,
+    assets.tile`turquesa`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)
@@ -97,7 +98,7 @@ function noSelectMenu () {
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
     ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
     ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
@@ -815,7 +816,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Contantly mimics others abilities!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities!")])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
@@ -835,7 +836,11 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base, fast when chasing!")])
+            ghostReveal = miniMenu.createMenuFromArray([
+            miniMenu.createMenuItem(ghostList[4], skullList[4]),
+            miniMenu.createMenuItem("Slow at base"),
+            miniMenu.createMenuItem("Fast when chasing!")
+            ])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }
@@ -845,7 +850,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Blind, can only see closely!")])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely!")])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)
         }

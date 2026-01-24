@@ -214,7 +214,7 @@ function setGhostType () {
     assets.image`RevenantSkull`,
     assets.image`YureiSkull`
     ]
-    currentGhostAbility = "Mimic"
+    currentGhostAbility = ghostList._pickRandom()
     currentGhostType = currentGhostAbility
     ghostAbilitiesList()
 }

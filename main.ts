@@ -338,7 +338,7 @@ scene.setBackgroundImage(img`
 mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
 scene.cameraFollowSprite(mainCharacter)
-game.showLongText("FIND THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
+game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
 ghost = sprites.create(img`
     ........................
     ........................

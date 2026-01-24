@@ -824,8 +824,8 @@ forever(function () {
         }
     }
     if (!(isHouseFloorTile)) {
-        for (let tile of hideTiles) {
-            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+        for (let tile2 of hideTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
                 isHouseFloorTile = true
                 break;
             }
@@ -891,11 +891,7 @@ forever(function () {
             if (openedMenu) {
                 inputGhostType.close()
             }
-            ghostReveal = miniMenu.createMenuFromArray([
-            miniMenu.createMenuItem(ghostList[4], skullList[4]),
-            miniMenu.createMenuItem("Slow at base"),
-            miniMenu.createMenuItem("Fast when chasing!")
-            ])
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base..."), miniMenu.createMenuItem("Fast when chasing!")])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 200)

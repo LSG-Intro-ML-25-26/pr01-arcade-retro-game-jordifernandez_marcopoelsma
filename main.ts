@@ -121,6 +121,9 @@ function gameOver () {
         game.gameOver(win)
     })
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Demon`, function (sprite, location) {
+	
+})
 function setBaseStats () {
     playerVelocity = 100
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -205,9 +208,6 @@ let ghost: Sprite = null
 let mainCharacter: Sprite = null
 music.play(music.createSong(assets.song`laOdiaElMili`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(32)
-mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-mainCharacter.setPosition(190, 240)
-scene.cameraFollowSprite(mainCharacter)
 tiles.setCurrentTilemap(tilemap`TangleWood`)
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -331,6 +331,9 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
+mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
+scene.cameraFollowSprite(mainCharacter)
 game.showLongText("FIND THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
 ghost = sprites.create(img`
     ........................
@@ -745,6 +748,13 @@ forever(function () {
         pause(immunitySpawnTime)
         immortalPlayer = false
         pause(randint(minHuntTime, maxHuntTime))
+    }
+})
+forever(function () {
+    if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
+        changeHuntOrColorState = true
+    } else {
+        changeHuntOrColorState = false
     }
 })
 game.onUpdateInterval(300, function () {

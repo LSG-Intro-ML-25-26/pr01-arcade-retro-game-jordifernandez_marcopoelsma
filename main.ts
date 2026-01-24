@@ -266,18 +266,41 @@ function setDifficulty () {
         }
         setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard"), miniMenu.createMenuItem("Normal"), miniMenu.createMenuItem("Easy")])
         setDifficultyMenu.setTitle("SET DIFFICULTY")
-        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
-        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 100)
-        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 5)
+        setDifficultyMenu.setFrame(img`
+            .....cccccccccccccc.....
+            ...cbd111111111111dbc...
+            ..cd1111111111111111dc..
+            .cd111111111111111111dc.
+            .b11111111111111111111b.
+            cd11111111111111111111dc
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            c1111111111111111111111c
+            cd11111111111111111111dc
+            cb11111111111111111111bc
+            ccd111111111111111111dc.
+            .ccd1111111111111111dcc.
+            ..ccbd111111111111dbcc..
+            ...cccccccccccccccccc...
+            ...cccccccccccccccc.....
+            ........................
+            `)
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 105)
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 64)
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 1)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 6)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Background, 6)
-        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 9)
-        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 1)
-        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 0)
-        tiles.placeOnTile(setDifficultyMenu, tiles.getTileLocation(scene.cameraProperty(CameraProperty.X) / 16, scene.cameraProperty(CameraProperty.Y) / 16))
+        setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 13)
+        setDifficultyMenu.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         setDifficultyMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (selection == "Hard") {
                 difficulty = 1.1

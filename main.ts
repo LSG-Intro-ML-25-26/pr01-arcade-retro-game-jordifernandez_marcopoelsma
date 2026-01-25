@@ -328,8 +328,9 @@ function setDifficulty () {
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
         })
-        pauseUntil(() => controller.A.isPressed() || controller.B.isPressed())
-        pause(1000)
+        while (openOtherMenu) {
+            pause(2000)
+        }
     }
 }
 function setStates () {

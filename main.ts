@@ -688,7 +688,7 @@ setGhostStats()
 setGhostType()
 setPlayerStats()
 forever(function () {
-    if (ghostHunt) {
+    if (ghostReadyToHunt) {
         if (!(ghostSight)) {
             if (!(generatedPath)) {
                 randomTile = randint(0, floorTiles.length)
@@ -705,7 +705,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (ghostHunt && !(incenseState)) {
+    if (ghostReadyToHunt && !(incenseState)) {
         if (!(hiding) || wallHacks) {
             for (let index = 0; index < looseTrailTime / 100; index++) {
                 pause(100)
@@ -730,7 +730,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (ghostHunt) {
+    if (ghostReadyToHunt) {
         if (ghostSight && !(hiding)) {
             pause(300)
             if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
@@ -742,7 +742,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (ghostHunt && !(incenseState)) {
+    if (ghostReadyToHunt && !(incenseState)) {
         if (!(hiding) || wallHacks) {
             if (sight.isInSight(
             ghost,

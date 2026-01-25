@@ -85,7 +85,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu)) {
+    if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
         openedMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         inputGhostType = miniMenu.createMenuFromArray([
@@ -261,9 +261,6 @@ function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
-        if (openedMenu) {
-            inputGhostType.close()
-        }
         setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard"), miniMenu.createMenuItem("Normal"), miniMenu.createMenuItem("Easy")])
         setDifficultyMenu.setTitle("SET DIFFICULTY")
         setDifficultyMenu.setFrame(img`
@@ -322,11 +319,13 @@ function setDifficulty () {
             info.setLife(incenseCount)
             setGhostStats()
             isDifficultySetted = true
+            openedMenu = true
             openOtherMenu = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
         })
         setDifficultyMenu.onButtonPressed(controller.B, function (selection, selectedIndex) {
+            openedMenu = true
             openOtherMenu = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
@@ -405,7 +404,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let yTile = 0
 let xTile = 0
-let infoDisplayed = false
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
 let gameOver = false
@@ -424,6 +422,7 @@ let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
+let infoDisplayed = false
 let ghostReadyToHunt = false
 let incenseState = false
 let immortalPlayer = false
@@ -1003,6 +1002,7 @@ forever(function () {
 })
 forever(function () {
     if (!(incenseState)) {
+        pause(incenseDuration)
         if (sight.isInSight(
         ghost,
         mainCharacter,
@@ -1013,8 +1013,6 @@ forever(function () {
             pause(looseTrailTime)
             ghostSight = false
         }
-    } else {
-        pause(incenseDuration)
     }
 })
 forever(function () {
@@ -1092,45 +1090,30 @@ forever(function () {
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[1], skullList[1]), miniMenu.createMenuItem("You can't hide, run!")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Mimic`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently")])
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base..."), miniMenu.createMenuItem("Fast when chasing!")])
             noSelectMenu()
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
@@ -1140,9 +1123,6 @@ forever(function () {
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely")])
             noSelectMenu()
         }
@@ -1158,9 +1138,6 @@ forever(function () {
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`) || tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseBurning`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
-            if (openedMenu) {
-                inputGhostType.close()
-            }
             ghostReveal = miniMenu.createMenuFromArray([
             miniMenu.createMenuItem("Incense", assets.tile`incenseNoBackground`),
             miniMenu.createMenuItem("Press \"B\" to use"),
@@ -1175,7 +1152,9 @@ forever(function () {
             ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
-        setDifficulty()
+        if (!(infoDisplayed)) {
+            setDifficulty()
+        }
     }
 })
 forever(function () {

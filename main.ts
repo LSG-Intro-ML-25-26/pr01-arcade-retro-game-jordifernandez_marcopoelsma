@@ -314,6 +314,7 @@ function setDifficulty () {
             }
             info.setLife(incenseCount)
             setGhostStats()
+            setGhostType()
             isDifficultySetted = true
             openOtherMenu = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -347,23 +348,22 @@ info.onLifeZero(function () {
     info.changeLifeBy(-1)
 })
 function gameOver2 () {
+    color.setPalette(
+    color.originalPalette
+    )
+    infoDisplayed = true
     gameOver = true
     immortalPlayer = true
+    incenseState = true
     changeHuntOrColorState = true
     canHunt = false
     controller.moveSprite(mainCharacter, 0, 0)
-    if (openedMenu) {
-        inputGhostType.close()
-    }
     ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[ghostList.indexOf(currentGhostType)], skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
     ghostReveal.setTitle("The Ghost was:")
     noSelectMenu()
-    ghostReveal.onButtonPressed(controller.A, function (selection, selectedIndex) {
-        game.gameOver(win)
-    })
-    ghostReveal.onButtonPressed(controller.B, function (selection, selectedIndex) {
-        game.gameOver(win)
-    })
+    pauseUntil(() => controller.A.isPressed() || controller.B.isPressed())
+    ghostReveal.close()
+    game.gameOver(win)
 }
 function setPlayerStats () {
     playerVelocity = 100 / difficulty

@@ -15,7 +15,8 @@
         "animation": "*",
         "arcade-character-animations": "github:microsoft/arcade-character-animations#v0.0.2",
         "sprite-scaling": "*",
-        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.0.1"
+        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.0.1",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0"
     },
     "files": [
         "main.blocks",

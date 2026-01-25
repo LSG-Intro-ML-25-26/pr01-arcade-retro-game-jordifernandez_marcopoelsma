@@ -178,12 +178,6 @@
         "tilemapTile": true,
         "displayName": "incenseDefault"
     },
-    "tile34": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8A8AAAAAAADv/gAAAAAAAO/+AAAAAADw7g8AAAAAAPDuDwAAAAAA7/4AAAAAAADv/gAAAAAA8O4PAAAAAADw7g8AAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "incenseNoBackground"
-    },
     "tile35": {
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
@@ -291,6 +285,12 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "hideDown"
+    },
+    "tile34": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8A8AAAAAAADv/gAAAAAAAO/+AAAAAADw7g8AAAAAAPDuDwAAAAAA7/4AAAAAAADv/gAAAAAA8O4PAAAAAADw7g8AAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "incenseNoBackground"
     },
     "nivel4": {
         "id": "nivel4",

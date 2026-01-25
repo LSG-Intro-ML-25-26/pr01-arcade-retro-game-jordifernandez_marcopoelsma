@@ -253,12 +253,6 @@ function setGhostStats () {
     true
     )
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`hideLeft`, function (sprite, location) {
-    if (!(wallHacks)) {
-        ghostSight = false
-    }
-    mainCharacter.setImage(assets.image`hidden`)
-})
 function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
@@ -406,8 +400,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         gameOver2()
     }
 })
-let yTile = 0
-let xTile = 0
+let lostTrail = false
+let hiding = false
+let randomTile = 0
+let generatedPath = false
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
 let gameOver = false
@@ -578,6 +574,26 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
+let tileRows_x16 = tiles.tilemapRows() * 16
+let tileColumns_x16 = tiles.tilemapColumns() * 16
+let ghostDirection = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
 mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 let difficultyNPC = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -672,18 +688,79 @@ setGhostStats()
 setGhostType()
 setPlayerStats()
 forever(function () {
-    if (currentGhostType == "Mimic") {
-        while (true) {
-            currentGhostAbility = ghostList._pickRandom()
-            if (currentGhostAbility != currentGhostType) {
-                setGhostStats()
-                ghostAbilitiesList()
-                break;
+    if (ghostHunt) {
+        if (!(ghostSight)) {
+            if (!(generatedPath)) {
+                randomTile = randint(0, floorTiles.length)
+                tiles.placeOnRandomTile(ghostDirection, floorTiles[randomTile])
+                generatedPath = true
+            } else {
+                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(ghostDirection)), ghostSpeed)
+                pause(300)
+                if (spriteutils.distanceBetween(ghost, ghostDirection) < 3) {
+                    generatedPath = false
+                }
             }
         }
-        pause(randint(minMimicCooldown, maxMimicCooldown))
+    }
+})
+forever(function () {
+    if (ghostHunt && !(incenseState)) {
+        if (!(hiding) || wallHacks) {
+            for (let index = 0; index < looseTrailTime / 100; index++) {
+                pause(100)
+                if (sight.isInSight(
+                ghost,
+                mainCharacter,
+                sightRange,
+                wallHacks
+                )) {
+                    lostTrail = false
+                    break;
+                }
+            }
+            if (lostTrail) {
+                ghostSight = false
+            } else {
+                lostTrail = true
+            }
+        }
     } else {
-        pause(9999999999)
+        pause(incenseDuration)
+    }
+})
+forever(function () {
+    if (ghostHunt) {
+        if (ghostSight && !(hiding)) {
+            pause(300)
+            if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
+                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostCloseSpeed)
+            } else {
+                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostSightSpeed)
+            }
+        }
+    }
+})
+forever(function () {
+    if (ghostHunt && !(incenseState)) {
+        if (!(hiding) || wallHacks) {
+            if (sight.isInSight(
+            ghost,
+            mainCharacter,
+            sightRange,
+            wallHacks
+            )) {
+                generatedPath = false
+                ghostSight = true
+            }
+        }
+    } else {
+        pause(incenseDuration)
+    }
+})
+forever(function () {
+    if (hiding) {
+        ghostSight = false
     }
 })
 forever(function () {
@@ -1006,27 +1083,13 @@ forever(function () {
     }
 })
 forever(function () {
-    if (!(incenseState)) {
-        if (sight.isInSight(
-        ghost,
-        mainCharacter,
-        sightRange,
-        wallHacks
-        )) {
-            ghostSight = true
-            pause(looseTrailTime)
-            ghostSight = false
-        }
-    } else {
-        pause(incenseDuration)
-    }
-})
-forever(function () {
     if (canHunt) {
         isDifficultySetted = true
         if (!(changeHuntOrColorState)) {
             tileUtil.replaceAllTiles(closedDoor, openDoor)
             tileUtil.setWalls(openDoor, false)
+            generatedPath = false
+            lostTrail = false
             color.setPalette(
             color.originalPalette
             )
@@ -1062,29 +1125,18 @@ forever(function () {
     }
 })
 forever(function () {
-    if (!(gameOver)) {
-        for (let tile of floorTiles) {
-            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
-                isHouseFloorTile = true
+    if (currentGhostType == "Mimic") {
+        while (true) {
+            currentGhostAbility = ghostList._pickRandom()
+            if (currentGhostAbility != currentGhostType) {
+                setGhostStats()
+                ghostAbilitiesList()
                 break;
             }
         }
-        if (!(isHouseFloorTile)) {
-            for (let tile2 of hideTiles) {
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
-                    isHouseFloorTile = true
-                    break;
-                }
-            }
-        }
-        if (isHouseFloorTile) {
-            canHunt = true
-            changeHuntOrColorState = false
-            isHouseFloorTile = false
-        } else {
-            canHunt = false
-            changeHuntOrColorState = true
-        }
+        pause(randint(minMimicCooldown, maxMimicCooldown))
+    } else {
+        pause(9999999999)
     }
 })
 forever(function () {
@@ -1201,24 +1253,32 @@ forever(function () {
         sprites.destroy(difficultyNPC)
     }
 })
-game.onUpdateInterval(300, function () {
-    if (ghostHunt == true) {
-        if (ghostSight) {
-            if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
-                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostCloseSpeed)
-            } else {
-                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostSightSpeed)
+forever(function () {
+    if (!(gameOver)) {
+        for (let tile of floorTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+                isHouseFloorTile = true
+                hiding = false
+                break;
             }
-        } else {
-            while (true) {
-                let index = 0
-                xTile = randint(0, tiles.tilemapRows())
-                yTile = randint(0, tiles.tilemapRows())
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(xTile, yTile), floorTiles[index])) {
-                    scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.getTileLocation(xTile, yTile)), ghostSpeed)
+        }
+        if (!(isHouseFloorTile)) {
+            for (let tile2 of hideTiles) {
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
+                    hiding = true
+                    ghostSight = false
+                    isHouseFloorTile = true
                     break;
                 }
             }
+        }
+        if (isHouseFloorTile) {
+            canHunt = true
+            changeHuntOrColorState = false
+            isHouseFloorTile = false
+        } else {
+            canHunt = false
+            changeHuntOrColorState = true
         }
     }
 })

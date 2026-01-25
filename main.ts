@@ -16,7 +16,7 @@ function setWalls () {
 }
 function ghostAbilitiesList () {
     if (currentGhostAbility == "Oni") {
-        flashingGhost = flashingGhost * 0.33
+        flashingGhost = flashingGhost * 0.2
         animation.runImageAnimation(
         ghost,
         assets.animation`ghostAnimation`,

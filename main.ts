@@ -8,7 +8,9 @@ function setWalls () {
     assets.tile`miMosaico`,
     assets.tile`transparency16`,
     assets.tile`turquesa`,
-    assets.tile`outsideWall`
+    assets.tile`outsideWall`,
+    assets.tile`noTextureWall`,
+    assets.tile`noTextureFurniture`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)
@@ -193,12 +195,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         })
     }
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`escondite`, function (sprite, location) {
-    if (!(wallHacks)) {
-        ghostSight = false
-    }
-    mainCharacter.setImage(assets.image`hidden`)
-})
 function noSelectMenu () {
     ghostReveal.setFrame(img`
         ..bbabbaabbaabbaabbbbb..
@@ -257,6 +253,12 @@ function setGhostStats () {
     true
     )
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`hideLeft`, function (sprite, location) {
+    if (!(wallHacks)) {
+        ghostSight = false
+    }
+    mainCharacter.setImage(assets.image`hidden`)
+})
 function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
@@ -659,7 +661,7 @@ ghost = sprites.create(img`
     `, SpriteKind.Enemy)
 ghost.setScale(0, ScaleAnchor.Middle)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
-hideTiles = [assets.tile`escondite`]
+hideTiles = [assets.tile`hideLeft`]
 let openDoor = assets.tile`myTile7`
 let closedDoor = assets.tile`doorClose`
 ghostSpawnRoom = floorTiles._pickRandom()

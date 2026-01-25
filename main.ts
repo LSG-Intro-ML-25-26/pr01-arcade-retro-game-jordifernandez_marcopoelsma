@@ -299,9 +299,9 @@ function setDifficulty () {
                 difficulty = 1.1
                 setPlayerStats()
                 incenseCount = 0
-                for (let wall of hideTiles) {
-                    tileUtil.setWalls(wall, true)
-                    tileUtil.coverAllTiles(wall, assets.tile`miMosaico`)
+                for (let wall2 of hideTiles) {
+                    tileUtil.setWalls(wall2, true)
+                    tileUtil.coverAllTiles(wall2, assets.tile`miMosaico`)
                 }
             } else if (selection == "Normal") {
                 difficulty = 1

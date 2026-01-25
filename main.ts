@@ -329,8 +329,11 @@ function setDifficulty () {
             setDifficultyMenu.close()
         })
         while (openOtherMenu) {
-            pause(2000)
+            pause(1000)
         }
+        done = true
+        pause(1500)
+        done = false
     }
 }
 function setStates () {
@@ -409,6 +412,7 @@ let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
+let done = false
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let isDifficultySetted = false
 let minHuntTime = 0
@@ -1127,6 +1131,7 @@ forever(function () {
             noSelectMenu()
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`info`)) {
+        controller.moveSprite(mainCharacter, 0, 0)
         game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
         game.showLongText("Read the ghost behavior on the corresponding skulls.", DialogLayout.Bottom)
         game.showLongText("Observe the ghost's behavior.", DialogLayout.Bottom)
@@ -1134,7 +1139,10 @@ forever(function () {
         game.showLongText("Press A to select a ghost.", DialogLayout.Bottom)
         game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
         game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
+        controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+        done = true
         pause(2000)
+        done = false
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`) || tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseBurning`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true

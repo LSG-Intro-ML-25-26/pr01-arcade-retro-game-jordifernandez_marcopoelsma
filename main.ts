@@ -320,13 +320,11 @@ function setDifficulty () {
             setGhostStats()
             isDifficultySetted = true
             openOtherMenu = false
-            infoDisplayed = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
         })
         setDifficultyMenu.onButtonPressed(controller.B, function (selection, selectedIndex) {
             openOtherMenu = false
-            infoDisplayed = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
         })
@@ -1153,7 +1151,6 @@ forever(function () {
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
         if (!(infoDisplayed)) {
-            infoDisplayed = true
             setDifficulty()
         }
     }

@@ -661,7 +661,7 @@ ghost = sprites.create(img`
     `, SpriteKind.Enemy)
 ghost.setScale(0, ScaleAnchor.Middle)
 let floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
-hideTiles = [assets.tile`hideLeft`]
+hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
 let openDoor = assets.tile`myTile7`
 let closedDoor = assets.tile`doorClose`
 ghostSpawnRoom = floorTiles._pickRandom()

@@ -1082,6 +1082,7 @@ forever(function () {
 forever(function () {
     if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
         if (infoDisplayed) {
+            infoDisplayed = false
             ghostReveal.close()
         }
         infoDisplayed = false

@@ -397,7 +397,7 @@ function setGhostType () {
     assets.image`RevenantSkull`,
     assets.image`YureiSkull`
     ]
-    currentGhostAbility = ghostList._pickRandom()
+    currentGhostAbility = "Demon"
     currentGhostType = currentGhostAbility
     ghostAbilitiesList()
 }
@@ -1014,6 +1014,7 @@ forever(function () {
         wallHacks
         )) {
             ghostSight = true
+        } else {
             pause(looseTrailTime)
             ghostSight = false
         }
@@ -1056,7 +1057,9 @@ forever(function () {
             ghost.changeScale(1, ScaleAnchor.Middle)
             immortalPlayer = true
             pause(immunitySpawnTime)
-            immortalPlayer = false
+            if (!(incenseState)) {
+                immortalPlayer = false
+            }
             pause(randint(minHuntTime, maxHuntTime))
         }
     }
@@ -1202,7 +1205,7 @@ forever(function () {
     }
 })
 game.onUpdateInterval(300, function () {
-    if (ghostHunt == true) {
+    if (ghostHunt) {
         if (ghostSight) {
             if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {
                 scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostCloseSpeed)

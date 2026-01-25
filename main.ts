@@ -1005,7 +1005,6 @@ forever(function () {
 })
 forever(function () {
     if (!(incenseState)) {
-        pause(incenseDuration)
         if (sight.isInSight(
         ghost,
         mainCharacter,
@@ -1016,6 +1015,8 @@ forever(function () {
             pause(looseTrailTime)
             ghostSight = false
         }
+    } else {
+        pause(incenseDuration)
     }
 })
 forever(function () {

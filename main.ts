@@ -45,7 +45,7 @@ function ghostAbilitiesList () {
     }
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(openedMenu) && !(openOtherMenu)) {
+    if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
         if (incenseCount > 0) {
             incenseCount = incenseCount - 1
             info.setLife(incenseCount)
@@ -319,14 +319,14 @@ function setDifficulty () {
             info.setLife(incenseCount)
             setGhostStats()
             isDifficultySetted = true
-            openedMenu = true
             openOtherMenu = false
+            infoDisplayed = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
         })
         setDifficultyMenu.onButtonPressed(controller.B, function (selection, selectedIndex) {
-            openedMenu = true
             openOtherMenu = false
+            infoDisplayed = false
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             setDifficultyMenu.close()
         })
@@ -422,11 +422,11 @@ let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
-let infoDisplayed = false
 let ghostReadyToHunt = false
 let incenseState = false
 let immortalPlayer = false
 let incenseCount = 0
+let infoDisplayed = false
 let openOtherMenu = false
 let openedMenu = false
 let maxMimicCooldown = 0
@@ -1153,6 +1153,7 @@ forever(function () {
         }
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
         if (!(infoDisplayed)) {
+            infoDisplayed = true
             setDifficulty()
         }
     }

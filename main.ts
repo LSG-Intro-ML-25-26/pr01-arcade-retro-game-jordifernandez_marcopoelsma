@@ -219,7 +219,7 @@ function setUtilTiles () {
     assets.tile`isla de cocina`,
     assets.tile`miMosaico`,
     assets.tile`transparency16`,
-    assets.tile`turquesa`,
+    assets.tile`white`,
     assets.tile`outsideWall`,
     assets.tile`noTextureWall`,
     assets.tile`noTextureFurniture`,
@@ -664,7 +664,7 @@ function setDifficultySprite () {
     500,
     true
     )
-    tiles.placeOnRandomTile(difficultyNPC, sprites.castle.tileGrass2)
+    tiles.placeOnRandomTile(difficultyNPC, sprites.castle.tileDarkGrass2)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(immortalPlayer) && !(incenseState)) {
@@ -1264,7 +1264,7 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
             ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileGrass2)) {
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`transparency16`)) {
         if (!(infoDisplayed)) {
             setDifficulty()
         }

@@ -158,17 +158,14 @@ function setUtilTiles () {
     floorTiles = [
     assets.tile`miMosaico2`,
     assets.tile`moqueta`,
-    assets.tile`moqueta morada`,
+    assets.tile`moqueta2`,
     assets.tile`bathroom`,
     assets.tile`floor1`,
     assets.tile`moqueta1`,
     assets.tile`suelo3`,
     assets.tile`floor2`,
-    assets.tile`noTextureFloor`,
-    assets.tile`noTextureDifferentFloor`,
-    assets.tile`moqueta2`,
-    assets.tile`myTile4`,
-    assets.tile`floor4`
+    assets.tile`floor4`,
+    assets.tile`myTile4`
     ]
     otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`openDoorNOSPAWN`]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
@@ -193,7 +190,6 @@ function setUtilTiles () {
 function setPlayerSpawnAndCam () {
     mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
     tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
-    scene.cameraFollowSprite(mainCharacter)
 }
 function noSelectMenu () {
     ghostReveal.setFrame(img`
@@ -1093,6 +1089,9 @@ forever(function () {
             . . . . . f f . . f f . . . . . 
             `)
     }
+})
+forever(function () {
+    scene.cameraFollowSprite(mainCharacter)
 })
 forever(function () {
     if (canHunt) {

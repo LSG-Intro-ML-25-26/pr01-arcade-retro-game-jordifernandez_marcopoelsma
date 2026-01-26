@@ -666,7 +666,6 @@ let ghostReadyToHunt = false
 let minHuntTime = 0
 let difficulty = 0
 let ghostReveal: miniMenu.MenuSprite = null
-let mainCharacter: Sprite = null
 let wallList: Image[] = []
 let closedDoor: Image = null
 let openDoor: Image = null
@@ -688,8 +687,10 @@ let maxAtkCooldown = 0
 let ghost: Sprite = null
 let flashingGhost = 0
 let currentGhostAbility = ""
+let mainCharacter: Sprite = null
 setMap()
 setSpriteUtils()
+scene.cameraFollowSprite(mainCharacter)
 forever(function () {
     if (ghostReadyToHunt) {
         if (!(ghostSight)) {
@@ -1089,9 +1090,6 @@ forever(function () {
             . . . . . f f . . f f . . . . . 
             `)
     }
-})
-forever(function () {
-    scene.cameraFollowSprite(mainCharacter)
 })
 forever(function () {
     if (canHunt) {

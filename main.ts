@@ -203,8 +203,11 @@ function setUtilTiles () {
     assets.tile`floor1`,
     assets.tile`moqueta1`,
     assets.tile`suelo3`,
-    assets.tile`floor2`
+    assets.tile`floor2`,
+    assets.tile`noTextureFloor`,
+    assets.tile`noTextureDifferentFloor`
     ]
+    otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`openDoorNOSPAWN`]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
     openDoor = assets.tile`myTile7`
     closedDoor = assets.tile`doorClose`
@@ -701,6 +704,7 @@ let wallList: Image[] = []
 let closedDoor: Image = null
 let openDoor: Image = null
 let hideTiles: Image[] = []
+let otherHouseTilescantSpawn: Image[] = []
 let floorTiles: Image[] = []
 let incenseDuration = 0
 let mainCharacter: Sprite = null
@@ -1302,6 +1306,13 @@ forever(function () {
 forever(function () {
     if (!(gameOver)) {
         for (let tile of floorTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+                isHouseFloorTile = true
+                hiding = false
+                break;
+            }
+        }
+        for (let tile of otherHouseTilescantSpawn) {
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
                 isHouseFloorTile = true
                 hiding = false

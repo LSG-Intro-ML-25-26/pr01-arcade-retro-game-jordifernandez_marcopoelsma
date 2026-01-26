@@ -1,21 +1,3 @@
-function setWalls () {
-    wallList = [
-    assets.tile`mesa L`,
-    assets.tile`mesaR`,
-    assets.tile`mesa`,
-    assets.tile`miMosaico7`,
-    assets.tile`isla de cocina`,
-    assets.tile`miMosaico`,
-    assets.tile`transparency16`,
-    assets.tile`turquesa`,
-    assets.tile`outsideWall`,
-    assets.tile`noTextureWall`,
-    assets.tile`noTextureFurniture`
-    ]
-    for (let wall of wallList) {
-        tileUtil.setWalls(wall, true)
-    }
-}
 function ghostAbilitiesList () {
     if (currentGhostAbility == "Oni") {
         flashingGhost = flashingGhost * 0.2
@@ -170,7 +152,6 @@ function setMap () {
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         `)
-    setWalls()
     setUtilTiles()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -214,10 +195,36 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function setUtilTiles () {
-    floorTiles = [assets.tile`miMosaico2`, assets.tile`moqueta`, assets.tile`moqueta morada`]
+    floorTiles = [
+    assets.tile`miMosaico2`,
+    assets.tile`moqueta`,
+    assets.tile`moqueta morada`,
+    assets.tile`bathroom`,
+    assets.tile`floor1`,
+    assets.tile`moqueta1`,
+    assets.tile`suelo3`,
+    assets.tile`floor2`
+    ]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
     openDoor = assets.tile`myTile7`
     closedDoor = assets.tile`doorClose`
+    wallList = [
+    assets.tile`mesa L`,
+    assets.tile`mesaR`,
+    assets.tile`mesa`,
+    assets.tile`miMosaico7`,
+    assets.tile`isla de cocina`,
+    assets.tile`miMosaico`,
+    assets.tile`transparency16`,
+    assets.tile`turquesa`,
+    assets.tile`outsideWall`,
+    assets.tile`noTextureWall`,
+    assets.tile`noTextureFurniture`,
+    assets.tile`myTile2`
+    ]
+    for (let wall of wallList) {
+        tileUtil.setWalls(wall, true)
+    }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
@@ -685,6 +692,7 @@ let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
 let ghostReadyToHunt = false
+let wallList: Image[] = []
 let closedDoor: Image = null
 let openDoor: Image = null
 let hideTiles: Image[] = []
@@ -713,7 +721,6 @@ let maxAtkCooldown = 0
 let ghost: Sprite = null
 let flashingGhost = 0
 let currentGhostAbility = ""
-let wallList: Image[] = []
 setMap()
 setSpriteUtils()
 forever(function () {

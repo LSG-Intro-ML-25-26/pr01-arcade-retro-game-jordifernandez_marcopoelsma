@@ -354,7 +354,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
             inputGhostType.close()
-            pause(100)
+            pause(1000)
             openedMenu = false
         })
     }

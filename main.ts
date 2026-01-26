@@ -373,6 +373,7 @@ function setPlayerStats () {
     incenseDuration = 3000 / difficulty
     immunitySpawnTime = 1000 / difficulty
     timeBeforeAtkAfterLightsOff = 2000 / difficulty
+    roamToHideTileChance = 10 / difficulty
 }
 function setGhostType () {
     ghostList = [
@@ -403,7 +404,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let lostTrail = false
 let hiding = false
 let randomTile = 0
+let random = 0
 let generatedPath = false
+let roamToHideTileChance = 0
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
 let gameOver = false
@@ -691,7 +694,12 @@ forever(function () {
     if (ghostReadyToHunt) {
         if (!(ghostSight)) {
             if (!(generatedPath)) {
-                randomTile = randint(0, floorTiles.length)
+                random = randint(0, roamToHideTileChance)
+                if (random == 0) {
+                    randomTile = randint(0, hideTiles.length)
+                } else {
+                    randomTile = randint(0, floorTiles.length)
+                }
                 tiles.placeOnRandomTile(ghostDirection, floorTiles[randomTile])
                 generatedPath = true
             } else {

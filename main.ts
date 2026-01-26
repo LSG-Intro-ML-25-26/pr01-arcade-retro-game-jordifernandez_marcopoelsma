@@ -167,7 +167,7 @@ function setUtilTiles () {
     assets.tile`floor4`,
     assets.tile`myTile4`
     ]
-    otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`openDoorNOSPAWN`]
+    otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`floorWithDoor1`]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
     openDoor = assets.tile`myTile7`
     closedDoor = assets.tile`doorClose`

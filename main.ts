@@ -356,9 +356,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             }
         })
         inputGhostType.onButtonPressed(controller.B, function (selection, selectedIndex) {
-            openedMenu = false
-            inputGhostType.close()
             controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+            inputGhostType.close()
+            pause(100)
+            openedMenu = false
         })
     }
 })
@@ -1232,6 +1233,7 @@ forever(function () {
     }
 })
 forever(function () {
+    pauseUntil(() => !(openedMenu))
     if (!(incenseState) && controller.B.isPressed()) {
         if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
             if (incenseCount > 0) {

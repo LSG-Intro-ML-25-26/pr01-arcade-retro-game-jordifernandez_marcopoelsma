@@ -576,9 +576,14 @@ function gameOver2 () {
     ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[ghostList.indexOf(currentGhostType)], skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
     ghostReveal.setTitle("The Ghost was:")
     noSelectMenu()
-    pauseUntil(() => controller.A.isPressed() || controller.B.isPressed())
-    ghostReveal.close()
-    game.gameOver(win)
+    ghostReveal.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        ghostReveal.close()
+        game.gameOver(win)
+    })
+    ghostReveal.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        ghostReveal.close()
+        game.gameOver(win)
+    })
 }
 function setPlayerStats () {
     playerVelocity = 100 / difficulty

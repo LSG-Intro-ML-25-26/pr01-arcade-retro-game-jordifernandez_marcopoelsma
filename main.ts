@@ -187,68 +187,6 @@ function setUtilTiles () {
         tileUtil.setWalls(wall, true)
     }
 }
-function setPlayerSpawnAndCam () {
-    mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-    tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
-}
-function noSelectMenu () {
-    ghostReveal.setFrame(img`
-        ..bbabbaabbaabbaabbbbb..
-        .bddbaddbaddbaddbabbddb.
-        addddbaddbaddbaddbadddda
-        addddbbaabbaabbaabbdddda
-        abddbccccccccccccccbddba
-        bbabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbabb
-        abddbccccccccccccccbddba
-        addddbbaabbaabbaabbdddda
-        addddabddabddabddabdddda
-        .addbbabddabddabddabdda.
-        ..aaabbaabbaabbaabbaaa..
-        `)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 11)
-    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
-}
-function setGhostStats () {
-    maxAtkCooldown = 5000 * difficulty
-    minAtkCooldown = 10000 * difficulty
-    maxHuntTime = 15000 * difficulty
-    minHuntTime = 20000 * difficulty
-    looseTrailTime = 5000 * difficulty
-    ghostSpeed = 100 * difficulty
-    ghostSightSpeed = ghostSpeed
-    ghostCloseSpeed = ghostSpeed
-    wallHacks = false
-    sightRange = 160 * difficulty
-    flashingGhost = 300
-    animation.runImageAnimation(
-    ghost,
-    assets.animation`ghostAnimation`,
-    flashingGhost,
-    true
-    )
-}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
         openedMenu = true
@@ -359,6 +297,68 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         })
     }
 })
+function setPlayerSpawnAndCam () {
+    mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+    tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
+}
+function noSelectMenu () {
+    ghostReveal.setFrame(img`
+        ..bbabbaabbaabbaabbbbb..
+        .bddbaddbaddbaddbabbddb.
+        addddbaddbaddbaddbadddda
+        addddbbaabbaabbaabbdddda
+        abddbccccccccccccccbddba
+        bbabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbabb
+        abddbccccccccccccccbddba
+        addddbbaabbaabbaabbdddda
+        addddabddabddabddabdddda
+        .addbbabddabddabddabdda.
+        ..aaabbaabbaabbaabbaaa..
+        `)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 11)
+    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+}
+function setGhostStats () {
+    maxAtkCooldown = 5000 * difficulty
+    minAtkCooldown = 10000 * difficulty
+    maxHuntTime = 15000 * difficulty
+    minHuntTime = 20000 * difficulty
+    looseTrailTime = 5000 * difficulty
+    ghostSpeed = 100 * difficulty
+    ghostSightSpeed = ghostSpeed
+    ghostCloseSpeed = ghostSpeed
+    wallHacks = false
+    sightRange = 160 * difficulty
+    flashingGhost = 300
+    animation.runImageAnimation(
+    ghost,
+    assets.animation`ghostAnimation`,
+    flashingGhost,
+    true
+    )
+}
 function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
@@ -651,6 +651,9 @@ let done = false
 let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let isDifficultySetted = false
+let minHuntTime = 0
+let difficulty = 0
+let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
 let win = false
 let currentGhostType = ""
@@ -663,9 +666,6 @@ let infoDisplayed = false
 let openOtherMenu = false
 let openedMenu = false
 let ghostReadyToHunt = false
-let minHuntTime = 0
-let difficulty = 0
-let ghostReveal: miniMenu.MenuSprite = null
 let wallList: Image[] = []
 let closedDoor: Image = null
 let openDoor: Image = null

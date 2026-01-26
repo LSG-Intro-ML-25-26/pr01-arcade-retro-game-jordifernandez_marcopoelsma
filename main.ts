@@ -205,7 +205,10 @@ function setUtilTiles () {
     assets.tile`suelo3`,
     assets.tile`floor2`,
     assets.tile`noTextureFloor`,
-    assets.tile`noTextureDifferentFloor`
+    assets.tile`noTextureDifferentFloor`,
+    assets.tile`moqueta2`,
+    assets.tile`myTile4`,
+    assets.tile`floor4`
     ]
     otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`openDoorNOSPAWN`]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]

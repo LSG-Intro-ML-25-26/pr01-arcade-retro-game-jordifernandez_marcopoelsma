@@ -154,46 +154,6 @@ function setMap () {
         `)
     setUtilTiles()
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
-        if (incenseCount > 0) {
-            incenseCount = incenseCount - 1
-            info.setLife(incenseCount)
-            immortalPlayer = true
-            ghostSight = false
-            incenseState = true
-            incense = sprites.create(img`
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, SpriteKind.Food)
-            incense.setPosition(mainCharacter.x, mainCharacter.y)
-            animation.runImageAnimation(
-            incense,
-            assets.animation`incienso quemado`,
-            incenseDuration / 6,
-            false
-            )
-            incense.z = -1
-            pause(incenseDuration)
-            immortalPlayer = false
-            incenseState = false
-        }
-    }
-})
 function setUtilTiles () {
     floorTiles = [
     assets.tile`miMosaico2`,
@@ -215,22 +175,83 @@ function setUtilTiles () {
     openDoor = assets.tile`myTile7`
     closedDoor = assets.tile`doorClose`
     wallList = [
-    assets.tile`mesa L`,
-    assets.tile`mesaR`,
+    assets.tile`myTile2`,
+    assets.tile`outsideWall`,
     assets.tile`mesa`,
     assets.tile`miMosaico7`,
     assets.tile`isla de cocina`,
     assets.tile`miMosaico`,
     assets.tile`transparency16`,
     assets.tile`white`,
-    assets.tile`outsideWall`,
-    assets.tile`noTextureWall`,
     assets.tile`noTextureFurniture`,
-    assets.tile`myTile2`
+    assets.tile`noTextureWall`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)
     }
+}
+function setPlayerSpawnAndCam () {
+    mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+    tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
+    scene.cameraFollowSprite(mainCharacter)
+}
+function noSelectMenu () {
+    ghostReveal.setFrame(img`
+        ..bbabbaabbaabbaabbbbb..
+        .bddbaddbaddbaddbabbddb.
+        addddbaddbaddbaddbadddda
+        addddbbaabbaabbaabbdddda
+        abddbccccccccccccccbddba
+        bbabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbabb
+        abddbccccccccccccccbddba
+        addddbbaabbaabbaabbdddda
+        addddabddabddabddabdddda
+        .addbbabddabddabddabdda.
+        ..aaabbaabbaabbaabbaaa..
+        `)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 11)
+    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+}
+function setGhostStats () {
+    maxAtkCooldown = 5000 * difficulty
+    minAtkCooldown = 10000 * difficulty
+    maxHuntTime = 15000 * difficulty
+    minHuntTime = 20000 * difficulty
+    looseTrailTime = 5000 * difficulty
+    ghostSpeed = 100 * difficulty
+    ghostSightSpeed = ghostSpeed
+    ghostCloseSpeed = ghostSpeed
+    wallHacks = false
+    sightRange = 160 * difficulty
+    flashingGhost = 300
+    animation.runImageAnimation(
+    ghost,
+    assets.animation`ghostAnimation`,
+    flashingGhost,
+    true
+    )
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
@@ -341,69 +362,46 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         })
     }
 })
-function setPlayerSpawnAndCam () {
-    mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-    tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
-    scene.cameraFollowSprite(mainCharacter)
-}
-function noSelectMenu () {
-    ghostReveal.setFrame(img`
-        ..bbabbaabbaabbaabbbbb..
-        .bddbaddbaddbaddbabbddb.
-        addddbaddbaddbaddbadddda
-        addddbbaabbaabbaabbdddda
-        abddbccccccccccccccbddba
-        bbabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbabb
-        abddbccccccccccccccbddba
-        addddbbaabbaabbaabbdddda
-        addddabddabddabddabdddda
-        .addbbabddabddabddabdda.
-        ..aaabbaabbaabbaabbaaa..
-        `)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 11)
-    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
-}
-function setGhostStats () {
-    maxAtkCooldown = 5000 * difficulty
-    minAtkCooldown = 10000 * difficulty
-    maxHuntTime = 15000 * difficulty
-    minHuntTime = 20000 * difficulty
-    looseTrailTime = 5000 * difficulty
-    ghostSpeed = 100 * difficulty
-    ghostSightSpeed = ghostSpeed
-    ghostCloseSpeed = ghostSpeed
-    wallHacks = false
-    sightRange = 160 * difficulty
-    flashingGhost = 300
-    animation.runImageAnimation(
-    ghost,
-    assets.animation`ghostAnimation`,
-    flashingGhost,
-    true
-    )
-}
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
+        if (incenseCount > 0) {
+            incenseCount = incenseCount - 1
+            info.setLife(incenseCount)
+            immortalPlayer = true
+            ghostSight = false
+            incenseState = true
+            incense = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Food)
+            incense.setPosition(mainCharacter.x, mainCharacter.y)
+            animation.runImageAnimation(
+            incense,
+            assets.animation`incienso quemado`,
+            incenseDuration / 6,
+            false
+            )
+            incense.z = -1
+            pause(incenseDuration)
+            immortalPlayer = false
+            incenseState = false
+        }
+    }
+})
 function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
@@ -691,9 +689,11 @@ let changeHuntOrColorState = false
 let done = false
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let isDifficultySetted = false
-let minHuntTime = 0
-let difficulty = 0
-let ghostReveal: miniMenu.MenuSprite = null
+let incenseDuration = 0
+let incense: Sprite = null
+let incenseState = false
+let immortalPlayer = false
+let incenseCount = 0
 let playerVelocity = 0
 let win = false
 let currentGhostType = ""
@@ -702,22 +702,20 @@ let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
+let infoDisplayed = false
+let openOtherMenu = false
+let openedMenu = false
 let ghostReadyToHunt = false
+let minHuntTime = 0
+let difficulty = 0
+let ghostReveal: miniMenu.MenuSprite = null
+let mainCharacter: Sprite = null
 let wallList: Image[] = []
 let closedDoor: Image = null
 let openDoor: Image = null
 let hideTiles: Image[] = []
 let otherHouseTilescantSpawn: Image[] = []
 let floorTiles: Image[] = []
-let incenseDuration = 0
-let mainCharacter: Sprite = null
-let incense: Sprite = null
-let incenseState = false
-let immortalPlayer = false
-let incenseCount = 0
-let infoDisplayed = false
-let openOtherMenu = false
-let openedMenu = false
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false
@@ -1267,7 +1265,7 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
             ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`transparency16`)) {
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileDarkGrass2)) {
         if (!(infoDisplayed)) {
             setDifficulty()
         }
@@ -1322,14 +1320,12 @@ forever(function () {
                 break;
             }
         }
-        if (!(isHouseFloorTile)) {
-            for (let tile2 of hideTiles) {
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
-                    hiding = true
-                    ghostSight = false
-                    isHouseFloorTile = true
-                    break;
-                }
+        for (let tile2 of hideTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
+                hiding = true
+                ghostSight = false
+                isHouseFloorTile = true
+                break;
             }
         }
         if (isHouseFloorTile) {

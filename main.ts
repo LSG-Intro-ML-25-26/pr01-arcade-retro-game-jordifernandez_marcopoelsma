@@ -362,46 +362,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         })
     }
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
-        if (incenseCount > 0) {
-            incenseCount = incenseCount - 1
-            info.setLife(incenseCount)
-            immortalPlayer = true
-            ghostSight = false
-            incenseState = true
-            incense = sprites.create(img`
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, SpriteKind.Food)
-            incense.setPosition(mainCharacter.x, mainCharacter.y)
-            animation.runImageAnimation(
-            incense,
-            assets.animation`incienso quemado`,
-            incenseDuration / 6,
-            false
-            )
-            incense.z = -1
-            pause(incenseDuration)
-            immortalPlayer = false
-            incenseState = false
-        }
-    }
-})
 function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
@@ -682,18 +642,18 @@ let ghostDirection: Sprite = null
 let roamToHideTileChance = 0
 let timeBeforeAtkAfterLightsOff = 0
 let immunitySpawnTime = 0
+let immortalPlayer = false
+let incenseDuration = 0
+let incense: Sprite = null
 let gameOver = false
 let isHouseFloorTile = false
+let incenseState = false
 let ghostHunt = false
 let changeHuntOrColorState = false
 let done = false
+let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let isDifficultySetted = false
-let incenseDuration = 0
-let incense: Sprite = null
-let incenseState = false
-let immortalPlayer = false
-let incenseCount = 0
 let playerVelocity = 0
 let win = false
 let currentGhostType = ""
@@ -1268,6 +1228,48 @@ forever(function () {
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileDarkGrass2)) {
         if (!(infoDisplayed)) {
             setDifficulty()
+        }
+    }
+})
+forever(function () {
+    if (!(incenseState) && controller.B.isPressed()) {
+        if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
+            if (incenseCount > 0) {
+                incenseCount = incenseCount - 1
+                info.setLife(incenseCount)
+                immortalPlayer = true
+                ghostSight = false
+                incenseState = true
+                incense = sprites.create(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    `, SpriteKind.Food)
+                incense.setPosition(mainCharacter.x, mainCharacter.y)
+                animation.runImageAnimation(
+                incense,
+                assets.animation`incienso quemado`,
+                incenseDuration / 6,
+                false
+                )
+                incense.z = -1
+                pause(incenseDuration)
+                immortalPlayer = false
+                incenseState = false
+            }
         }
     }
 })

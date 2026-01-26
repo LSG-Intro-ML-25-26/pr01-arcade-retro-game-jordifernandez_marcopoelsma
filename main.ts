@@ -1331,7 +1331,6 @@ forever(function () {
         if (isHouseFloorTile) {
             canHunt = true
             changeHuntOrColorState = false
-            isHouseFloorTile = false
         } else {
             canHunt = false
             changeHuntOrColorState = true

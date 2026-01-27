@@ -1,12 +1,7 @@
 function ghostAbilitiesList () {
     if (currentGhostAbility == "Oni") {
         flashingGhost = flashingGhost * 0.2
-        animation.runImageAnimation(
-        ghost,
-        assets.animation`ghostAnimation`,
-        flashingGhost,
-        true
-        )
+        setGhostAnimation()
     } else if (currentGhostAbility == "Demon") {
         maxAtkCooldown = minAtkCooldown
         minAtkCooldown = minAtkCooldown * 0
@@ -254,12 +249,7 @@ function setGhostStats () {
     wallHacks = false
     sightRange = 160 * difficulty
     flashingGhost = 300
-    animation.runImageAnimation(
-    ghost,
-    assets.animation`ghostAnimation`,
-    flashingGhost,
-    true
-    )
+    setGhostAnimation()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
@@ -562,6 +552,14 @@ function gameOver2 () {
         game.gameOver(win)
     })
 }
+function setGhostAnimation () {
+    animation.runImageAnimation(
+    ghost,
+    assets.animation`ghostAnimation`,
+    flashingGhost,
+    true
+    )
+}
 function setPlayerStats () {
     playerVelocity = 100 / difficulty
     controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
@@ -662,6 +660,7 @@ let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
+let ghost: Sprite = null
 let selectedDiff: Sprite = null
 let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
@@ -701,7 +700,6 @@ let ghostSightSpeed = 0
 let ghostSpeed = 0
 let minAtkCooldown = 0
 let maxAtkCooldown = 0
-let ghost: Sprite = null
 let flashingGhost = 0
 let currentGhostAbility = ""
 let mainCharacter: Sprite = null

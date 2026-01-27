@@ -374,7 +374,7 @@ function setDifficulty () {
     if (!(isDifficultySetted)) {
         openOtherMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
-        setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard"), miniMenu.createMenuItem("Normal"), miniMenu.createMenuItem("Easy")])
+        setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard", assets.image`difficultyHard`), miniMenu.createMenuItem("Normal", assets.image`baseKull`), miniMenu.createMenuItem("Easy", assets.image`difficultyEasy`)])
         setDifficultyMenu.setTitle("SET DIFFICULTY")
         setDifficultyMenu.setFrame(img`
             .....cccccccccccccc.....
@@ -403,7 +403,7 @@ function setDifficulty () {
             ........................
             `)
         setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 105)
-        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 64)
+        setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 96)
         setDifficultyMenu.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 1)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Alignment, 0)
         setDifficultyMenu.setStyleProperty(miniMenu.StyleKind.Selected, miniMenu.StyleProperty.Alignment, 1)
@@ -629,7 +629,7 @@ function setGhostType () {
 function setDifficultySprite () {
     animation.runImageAnimation(
     difficultyNPC,
-    assets.animation`difficulty`,
+    assets.animation`difficultySelect`,
     500,
     true
     )

@@ -223,7 +223,12 @@ function setUtilTiles () {
     assets.tile`kitchenKnive`,
     assets.tile`kitchenPaSecar`,
     assets.tile`kitchenFreezer`,
-    assets.tile`white`
+    assets.tile`white`,
+    assets.tile`vanQlo`,
+    assets.tile`closedUL0`,
+    assets.tile`closedUR`,
+    assets.tile`closetDR`,
+    assets.tile`closetDL0`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

@@ -669,6 +669,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let lostTrail = false
 let hiding = false
+let ghostCanStartMoving = false
 let randomTile = 0
 let random = 0
 let generatedPath = false
@@ -744,10 +745,18 @@ forever(function () {
                 tiles.placeOnRandomTile(ghostDirection, floorTiles[randomTile])
                 generatedPath = true
             } else {
-                scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(ghostDirection)), ghostSpeed)
-                pause(300)
-                if (spriteutils.distanceBetween(ghost, ghostDirection) < 3) {
-                    generatedPath = false
+                if (ghostCanStartMoving) {
+                    scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(ghostDirection)), ghostSpeed)
+                    pause(350)
+                    if (spriteutils.distanceBetween(ghost, ghostDirection) < 3) {
+                        generatedPath = false
+                    }
+                } else {
+                    if (scene.spriteIsFollowingPath(ghost)) {
+                        if (spriteutils.distanceBetween(ghost, ghostDirection) < 9999999999) {
+                            generatedPath = false
+                        }
+                    }
                 }
             }
         }
@@ -833,6 +842,8 @@ forever(function () {
         if (!(changeHuntOrColorState)) {
             tileUtil.replaceAllTiles(closedDoor, openDoor)
             tileUtil.setWalls(openDoor, false)
+            ghostCanStartMoving = false
+            tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
             changeToNormalPalette()
             generatedPath = false
             lostTrail = false
@@ -856,6 +867,7 @@ forever(function () {
             }
             pause(timeBeforeAtkAfterLightsOff)
             tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+            ghostCanStartMoving = true
             ghostHunt = true
             ghost.changeScale(1, ScaleAnchor.Middle)
             immortalPlayer = true

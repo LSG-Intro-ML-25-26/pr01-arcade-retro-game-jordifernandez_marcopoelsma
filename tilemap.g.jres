@@ -424,12 +424,6 @@
         "tilemapTile": true,
         "displayName": "myTile3"
     },
-    "tile70": {
-        "data": "hwQQABAAAAARERERYWZmZhERERFhZmZmEREREWFmZmYRERERYWZmZhERERFhZmZmEREREWFmZmYRERERYWZmZhERERFhZmZmFREREWFmZmZVERERYWZmZlUVERFhZmZmVRUREWFmZmZVFRERYWZmZlUVERFhZmZmVRUREWFmZmZVFRERYWZmZg==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "van light"
-    },
     "tile72": {
         "data": "hwQQABAAAAAREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREWERERERERERYRERERERERZhERERERERFmEREREREREWYWERERERERZmYRERERERFmZhYREREREWZmZhERERERZmZmZhERERFmZmZmZhEREQ==",
         "mimeType": "image/x-mkcd-f4",
@@ -459,6 +453,12 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "grassOutOfBounds"
+    },
+    "tile70": {
+        "data": "hwQQABAAAAARERERYWZmZhERERFhZmZmEREREWFmZmYRERERYWZmZhERERFhZmZmEREREWFmZmYUERERYWZmZkQRERFhZmZmRBQREWFmZmZERBERYWZmZkREERFhZmZmREQREWFmZmZERBERYWZmZkREERFhZmZmREQREWFmZmZERBERYWZmZg==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "van light"
     },
     "nivel4": {
         "id": "nivel4",

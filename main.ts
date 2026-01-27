@@ -768,6 +768,21 @@ forever(function () {
     }
 })
 forever(function () {
+    if (currentGhostType == "Mimic") {
+        while (true) {
+            currentGhostAbility = ghostList._pickRandom()
+            if (currentGhostAbility != currentGhostType) {
+                setGhostStats()
+                ghostAbilitiesList()
+                break;
+            }
+        }
+        pause(randint(minMimicCooldown, maxMimicCooldown))
+    } else {
+        pause(9999999999)
+    }
+})
+forever(function () {
     if (ghostReadyToHunt && !(incenseState)) {
         if (!(hiding) || wallHacks) {
             if (sight.isInSight(
@@ -1151,21 +1166,6 @@ forever(function () {
     }
 })
 forever(function () {
-    if (currentGhostType == "Mimic") {
-        while (true) {
-            currentGhostAbility = ghostList._pickRandom()
-            if (currentGhostAbility != currentGhostType) {
-                setGhostStats()
-                ghostAbilitiesList()
-                break;
-            }
-        }
-        pause(randint(minMimicCooldown, maxMimicCooldown))
-    } else {
-        pause(9999999999)
-    }
-})
-forever(function () {
     if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
         if (infoDisplayed) {
             infoDisplayed = false
@@ -1245,6 +1245,44 @@ forever(function () {
     }
 })
 forever(function () {
+    if (!(gameOver)) {
+        for (let tile of floorTiles) {
+            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+                isHouseFloorTile = true
+                hiding = false
+                break;
+            }
+        }
+        if (!(isHouseFloorTile)) {
+            for (let tile of otherHouseTilescantSpawn) {
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
+                    isHouseFloorTile = true
+                    hiding = false
+                    break;
+                }
+            }
+            if (!(isHouseFloorTile)) {
+                for (let tile2 of hideTiles) {
+                    if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
+                        hiding = true
+                        ghostSight = false
+                        isHouseFloorTile = true
+                        break;
+                    }
+                }
+            }
+        }
+        if (isHouseFloorTile) {
+            canHunt = true
+            changeHuntOrColorState = false
+            isHouseFloorTile = false
+        } else {
+            canHunt = false
+            changeHuntOrColorState = true
+        }
+    }
+})
+forever(function () {
     if (!(incenseState) && controller.B.isPressed()) {
         if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
             if (incenseCount > 0) {
@@ -1317,38 +1355,5 @@ forever(function () {
 forever(function () {
     if (isDifficultySetted) {
         sprites.destroy(difficultyNPC)
-    }
-})
-forever(function () {
-    if (!(gameOver)) {
-        for (let tile of floorTiles) {
-            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
-                isHouseFloorTile = true
-                hiding = false
-                break;
-            }
-        }
-        for (let tile of otherHouseTilescantSpawn) {
-            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
-                isHouseFloorTile = true
-                hiding = false
-                break;
-            }
-        }
-        for (let tile2 of hideTiles) {
-            if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile2)) {
-                hiding = true
-                ghostSight = false
-                isHouseFloorTile = true
-                break;
-            }
-        }
-        if (isHouseFloorTile) {
-            canHunt = true
-            changeHuntOrColorState = false
-        } else {
-            canHunt = false
-            changeHuntOrColorState = true
-        }
     }
 })

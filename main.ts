@@ -375,7 +375,7 @@ function setDifficulty () {
         incenseState = true
         openOtherMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
-        setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard", assets.image`difficultyHard`), miniMenu.createMenuItem("Normal", assets.image`baseKull`), miniMenu.createMenuItem("Easy", assets.image`mainPlayerR`)])
+        setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard", assets.image`hard`), miniMenu.createMenuItem("Normal", assets.image`baseKull`), miniMenu.createMenuItem("Easy", assets.image`easy`)])
         setDifficultyMenu.setTitle("SET DIFFICULTY")
         setDifficultyMenu.setFrame(img`
             .....cccccccccccccc.....

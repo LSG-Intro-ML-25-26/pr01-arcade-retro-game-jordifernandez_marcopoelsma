@@ -206,7 +206,12 @@ function setUtilTiles () {
     assets.tile`vanCornerL`,
     assets.tile`vanGlass`,
     assets.tile`vanGlessCorner`,
-    assets.tile`grassOutOfBounds`
+    assets.tile`grassOutOfBounds`,
+    assets.tile`kitchen sink`,
+    assets.tile`kitchenFogones`,
+    assets.tile`kitchenTable`,
+    assets.tile`kitchenKnive`,
+    assets.tile`kitchenPaSecar`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

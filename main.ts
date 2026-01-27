@@ -417,7 +417,7 @@ function setDifficulty () {
                 difficulty = 1.1
                 setPlayerStats()
                 incenseCount = 0
-                selectedDiff = sprites.create(assets.image`difficultyHard`, SpriteKind.Player)
+                selectedDiff = sprites.create(assets.image`hard`, SpriteKind.Food)
                 for (let wall2 of hideTiles) {
                     tileUtil.setWalls(wall2, true)
                     tileUtil.coverAllTiles(wall2, assets.tile`miMosaico`)
@@ -426,12 +426,12 @@ function setDifficulty () {
                 difficulty = 1
                 setPlayerStats()
                 incenseCount = 1
-                selectedDiff = sprites.create(assets.image`baseKull`, SpriteKind.Player)
+                selectedDiff = sprites.create(assets.image`baseKull`, SpriteKind.Food)
             } else if (selection == "Easy") {
                 difficulty = 0.9
                 setPlayerStats()
                 incenseCount = 2
-                selectedDiff = sprites.create(assets.image`mainPlayerR`, SpriteKind.Player)
+                selectedDiff = sprites.create(assets.image`easy`, SpriteKind.Food)
             }
             info.setLife(incenseCount)
             tiles.placeOnRandomTile(selectedDiff, selectDiffTile)

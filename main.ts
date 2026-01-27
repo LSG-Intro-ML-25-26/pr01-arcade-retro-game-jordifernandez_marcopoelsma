@@ -184,7 +184,7 @@ function setUtilTiles () {
     assets.tile`isla de cocina`,
     assets.tile`miMosaico`,
     assets.tile`transparency16`,
-    assets.tile`white`,
+    assets.tile`miMosaico7`,
     assets.tile`noTextureFurniture`,
     assets.tile`noTextureWall`,
     assets.tile`fenceL`,
@@ -206,7 +206,6 @@ function setUtilTiles () {
     assets.tile`vanCornerL`,
     assets.tile`vanGlass`,
     assets.tile`vanGlessCorner`,
-    assets.tile`white`,
     assets.tile`grassOutOfBounds`
     ]
     for (let wall of wallList) {

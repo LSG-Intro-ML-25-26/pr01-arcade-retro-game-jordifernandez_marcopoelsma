@@ -412,12 +412,6 @@
         "tilemapTile": true,
         "displayName": "incenseBurning"
     },
-    "tile33": {
-        "data": "hwQQABAAAAAzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMz8z8zMzMzMzPv/jMzMzMzM+/+MzMzMzPz7j8zMzMzM/PuPzMzMzMz7/4zMzMzMzPv/jMzMzMz8+4/MzMzMzPz7j8zMzMzMzP/MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMw==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "incenseDefault"
-    },
     "tile20": {
         "data": "hwQQABAAAAD//////////xEREf////8fERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER//////////8RERH/////HxEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREQ==",
         "mimeType": "image/x-mkcd-f4",
@@ -459,6 +453,12 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "van light"
+    },
+    "tile33": {
+        "data": "hwQQABAAAAAzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzPzPzMzMzMzM+/+MzMzMzMz7/4zMzMzM/PuPzMzMzMz8+4/MzMzMzPv/jMzMzMzM+/+MzMzMzPz7j8zMzMzM/PuPzMzMzMzM/8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "incenseDefault"
     },
     "nivel4": {
         "id": "nivel4",

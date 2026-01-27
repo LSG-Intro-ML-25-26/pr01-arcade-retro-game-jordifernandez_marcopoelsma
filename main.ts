@@ -173,7 +173,7 @@ function setUtilTiles () {
     closedDoor = assets.tile`doorClose`
     wallList = [
     assets.tile`myTile2`,
-    assets.tile`outsideWall`,
+    assets.tile`transparency16`,
     assets.tile`mesa`,
     assets.tile`miMosaico7`,
     assets.tile`isla de cocina`,

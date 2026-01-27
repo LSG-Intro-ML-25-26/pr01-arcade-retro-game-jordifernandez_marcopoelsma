@@ -220,24 +220,6 @@
         "tilemapTile": true,
         "displayName": "floor1"
     },
-    "tile18": {
-        "data": "hwQQABAAAABmZmlmZmZmZpZmZmZmZmZpZmZmZmZmZmZmZmaWZmZmZmZmZmZmaWZmZmlmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaWZmlmZmZmZmZmZmZmaWZmZmZmZmZmZmaWZmZmZmZmZmZpZmlmZmZmZmZmZmZmlmZmZmZmZmZmZmZpZmZg==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "moqueta1"
-    },
-    "tile9": {
-        "data": "hwQQABAAAAC7u7ururu7u7u7u6qqu7u7u7ur2q26u7u7u6rd3aq7u7ur2t3drbq7u6rd3d3dqrur2t3d3d2tuqrd3d3d3d2qqt3d3d3d3aqr2t3d3d2turuq3d3d3aq7u6va3d2turu7u6rd3aq7u7u7q9qturu7u7u7qqq7u7u7u7ururu7uw==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "moqueta"
-    },
-    "tile36": {
-        "data": "hwQQABAAAADu7u7u7u7u7u7u7u7l7u7uu7ur2q26u7u7u6rd3aq7u7ur2t3drbq7u6rd3d3dqrur2t3d3d2tuqrd3d3d3d2qqt3d3d3d3aqr2t3d3d2turuq3d3d3aq7u6va3d2turu7u6rd3aq7u7u7q9qturu7u7u7qqq7u7u7u7ururu7uw==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "myTile7"
-    },
     "tile30": {
         "data": "hwQQABAAAACIgYiBiIGIgRERERERERERiIGIgYiBiIGIgYiBiIGIgYiBiIGIgYiBERERERERERGIgYiBiIGIgYiBiIGIgYiBiIGIgYiBiIEREREREREREYiBiIGIgYiBiIGIgYiBiIGIgYiBiIGIgRERERERERERiIGIgYiBiIGIgYiBiIGIgQ==",
         "mimeType": "image/x-mkcd-f4",
@@ -399,6 +381,24 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "setDiffTile"
+    },
+    "tile18": {
+        "data": "hwQQABAAAACIiImIiIiIiJiIiIiIiIiJiIiIiIiIiIiIiIiYiIiIiIiIiIiIiYiIiImIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiYiImIiIiIiIiIiIiIiYiIiIiIiIiIiIiYiIiIiIiIiIiJiImIiIiIiIiIiIiImIiIiIiIiIiIiIiJiIiA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "moqueta1"
+    },
+    "tile9": {
+        "data": "hwQQABAAAACIiIiYiYiIiIiIiJmZiIiIiIiYiZiJiIiIiJmIiJmIiIiYiYiImImIiJmIiIiImYiYiYiIiIiYiZmIiIiIiIiZmYiIiIiIiJmYiYiIiIiYiYiZiIiIiJmIiJiJiIiYiYiIiJmIiJmIiIiImImYiYiIiIiImZmIiIiIiIiYiYiIiA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "moqueta"
+    },
+    "tile36": {
+        "data": "hwQQABAAAADu7u7u7u7u7u7u7u7l7u7uiIiYiZiJiIiIiJmIiJmIiIiYiYiImImIiJmIiIiImYiYiYiIiIiYiZmIiIiIiIiZmYiIiIiIiJmYiYiIiIiYiYiZiIiIiJmIiJiJiIiYiYiIiJmIiJmIiIiImImYiYiIiIiImZmIiIiIiIiYiYiIiA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "myTile7"
     },
     "nivel4": {
         "id": "nivel4",

@@ -152,8 +152,8 @@ function setMap () {
 function changToHuntPalette () {
     color.startFadeFromCurrent(color.Adventure, 500)
     for (let index = 0; index < 500; index++) {
-        color.setColor(2, color.rgb(255, 0, 0))
         color.setColor(1, color.rgb(255, 255, 255))
+        color.setColor(2, color.rgb(255, 0, 0))
         color.setColor(15, color.rgb(0, 0, 0))
         pause(1)
     }
@@ -525,10 +525,21 @@ function setIncense () {
     incense.z = -1
 }
 function changeToNormalPalette () {
-    color.startFadeFromCurrent(color.originalPalette)
-    for (let index = 0; index < 500; index++) {
-        pause(1)
-    }
+    color.setColor(1, color.rgb(255, 255, 255))
+    color.setColor(2, color.rgb(255, 0, 0))
+    color.setColor(3, color.rgb(160, 160, 150))
+    color.setColor(4, color.rgb(255, 140, 60))
+    color.setColor(5, color.rgb(255, 255, 0))
+    color.setColor(6, color.rgb(18, 70, 45))
+    color.setColor(7, color.rgb(24, 82, 54))
+    color.setColor(8, color.rgb(14, 26, 43))
+    color.setColor(9, color.rgb(150, 175, 190))
+    color.setColor(10, color.rgb(120, 30, 180))
+    color.setColor(11, color.rgb(106, 27, 154))
+    color.setColor(12, color.rgb(59, 20, 95))
+    color.setColor(13, color.rgb(210, 176, 154))
+    color.setColor(14, color.rgb(75, 46, 30))
+    color.setColor(15, color.rgb(0, 0, 0))
 }
 info.onLifeZero(function () {
     info.changeLifeBy(-1)
@@ -545,7 +556,7 @@ function setSpriteUtils () {
     setDifficultySprite()
 }
 function gameOver2 () {
-    color.startFadeFromCurrent(color.originalPalette)
+    changeToNormalPalette()
     infoDisplayed = true
     gameOver = true
     immortalPlayer = true
@@ -582,9 +593,6 @@ function setPlayerStats () {
     immunitySpawnTime = 1000 / difficulty
     timeBeforeAtkAfterLightsOff = 2000 / difficulty
     roamToHideTileChance = 10 / difficulty
-}
-function setOriginalPalette () {
-	
 }
 function setOtherSpriteUtils () {
     ghostDirection = sprites.create(img`
@@ -719,6 +727,7 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let mainCharacter: Sprite = null
+changeToNormalPalette()
 setMap()
 setSpriteUtils()
 scene.cameraFollowSprite(mainCharacter)

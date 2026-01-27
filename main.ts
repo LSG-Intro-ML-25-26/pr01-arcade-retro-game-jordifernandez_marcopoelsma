@@ -372,6 +372,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function setDifficulty () {
     if (!(isDifficultySetted)) {
+        incenseState = true
         openOtherMenu = true
         controller.moveSprite(mainCharacter, 0, 0)
         setDifficultyMenu = miniMenu.createMenuFromArray([miniMenu.createMenuItem("Hard", assets.image`difficultyHard`), miniMenu.createMenuItem("Normal", assets.image`baseKull`), miniMenu.createMenuItem("Easy", assets.image`difficultyEasy`)])
@@ -445,9 +446,8 @@ function setDifficulty () {
         while (openOtherMenu) {
             pause(1000)
         }
-        done = true
         pause(1500)
-        done = false
+        incenseState = false
     }
 }
 function setGhost () {
@@ -655,12 +655,11 @@ let incenseDuration = 0
 let incense: Sprite = null
 let gameOver = false
 let isHouseFloorTile = false
-let incenseState = false
 let ghostHunt = false
 let changeHuntOrColorState = false
-let done = false
 let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
+let incenseState = false
 let isDifficultySetted = false
 let playerVelocity = 0
 let win = false
@@ -1215,9 +1214,7 @@ forever(function () {
         game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
         game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
         controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-        done = true
         pause(2000)
-        done = false
     } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`) || tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseBurning`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
@@ -1241,7 +1238,6 @@ forever(function () {
     }
 })
 forever(function () {
-    pauseUntil(() => !(openedMenu))
     if (!(incenseState) && controller.B.isPressed()) {
         if (!(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
             if (incenseCount > 0) {

@@ -236,7 +236,8 @@ function setUtilTiles () {
     assets.tile`brokenFloorRU0`,
     assets.tile`brokenFloorLD0`,
     assets.tile`bujeroRU`,
-    assets.tile`bujeroLD`
+    assets.tile`bujeroLD`,
+    assets.tile`tableTop`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

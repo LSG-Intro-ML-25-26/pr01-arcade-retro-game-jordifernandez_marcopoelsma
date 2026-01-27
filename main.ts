@@ -195,7 +195,7 @@ function setUtilTiles () {
     }
 }
 function setPlayerSpawnAndCam () {
-    mainCharacter = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+    mainCharacter = sprites.create(assets.image`mainPlayerR`, SpriteKind.Player)
     tiles.placeOnRandomTile(mainCharacter, assets.tile`myTile3`)
 }
 function noSelectMenu () {
@@ -803,6 +803,127 @@ forever(function () {
     }
 })
 forever(function () {
+    if (canHunt) {
+        isDifficultySetted = true
+        if (!(changeHuntOrColorState)) {
+            tileUtil.replaceAllTiles(closedDoor, openDoor)
+            tileUtil.setWalls(openDoor, false)
+            generatedPath = false
+            lostTrail = false
+            color.setPalette(
+            color.originalPalette
+            )
+            ghostReadyToHunt = false
+            ghostHunt = false
+            if (!(wallHacks)) {
+                ghostSight = false
+            }
+            ghost.setScale(0, ScaleAnchor.Middle)
+            pause(randint(minAtkCooldown, maxAtkCooldown))
+        }
+        if (!(changeHuntOrColorState)) {
+            tileUtil.replaceAllTiles(openDoor, closedDoor)
+            tileUtil.setWalls(closedDoor, true)
+            ghostReadyToHunt = true
+            color.setPalette(
+            color.Adventure
+            )
+            if (openedMenu) {
+                openedMenu = false
+                inputGhostType.close()
+                controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+            }
+            pause(timeBeforeAtkAfterLightsOff)
+            tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
+            ghostHunt = true
+            ghost.changeScale(1, ScaleAnchor.Middle)
+            immortalPlayer = true
+            pause(immunitySpawnTime)
+            immortalPlayer = false
+            pause(randint(minHuntTime, maxHuntTime))
+        }
+    }
+})
+forever(function () {
+    if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
+        if (infoDisplayed) {
+            infoDisplayed = false
+            ghostReveal.close()
+        }
+        infoDisplayed = false
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
+            noSelectMenu()
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[1], skullList[1]), miniMenu.createMenuItem("You can't hide, run!")])
+            noSelectMenu()
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Mimic`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities")])
+            noSelectMenu()
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently")])
+            noSelectMenu()
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base..."), miniMenu.createMenuItem("Fast when chasing!")])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
+            ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely")])
+            noSelectMenu()
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`info`)) {
+        controller.moveSprite(mainCharacter, 0, 0)
+        game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
+        game.showLongText("Read the ghost behavior on the corresponding skulls.", DialogLayout.Bottom)
+        game.showLongText("Observe the ghost's behavior.", DialogLayout.Bottom)
+        game.showLongText("Press A to open the book.", DialogLayout.Bottom)
+        game.showLongText("Press A to select a ghost.", DialogLayout.Bottom)
+        game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
+        game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
+        controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
+        pause(2000)
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`) || tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseBurning`)) {
+        if (!(infoDisplayed)) {
+            infoDisplayed = true
+            ghostReveal = miniMenu.createMenuFromArray([
+            miniMenu.createMenuItem("Incense", assets.tile`incenseNoBackground`),
+            miniMenu.createMenuItem("Press \"B\" to use"),
+            miniMenu.createMenuItem("Grants: immunity"),
+            miniMenu.createMenuItem("Grants: invisibility"),
+            miniMenu.createMenuItem("Duration: " + incenseDuration / 1000 + " seconds")
+            ])
+            noSelectMenu()
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 5)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 90)
+            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
+            ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+        }
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), selectDiffTile)) {
+        if (!(infoDisplayed)) {
+            setDifficulty()
+        }
+    }
+})
+forever(function () {
     if (characterAnimations.matchesRule(mainCharacter, characterAnimations.rule(Predicate.Moving))) {
         characterAnimations.loopFrames(
         mainCharacter,
@@ -965,128 +1086,12 @@ forever(function () {
         characterAnimations.rule(Predicate.MovingLeft)
         )
     } else {
-        mainCharacter.setImage(assets.image`mainPlayerR`)
-    }
-})
-forever(function () {
-    if (canHunt) {
-        isDifficultySetted = true
-        if (!(changeHuntOrColorState)) {
-            tileUtil.replaceAllTiles(closedDoor, openDoor)
-            tileUtil.setWalls(openDoor, false)
-            generatedPath = false
-            lostTrail = false
-            color.setPalette(
-            color.originalPalette
-            )
-            ghostReadyToHunt = false
-            ghostHunt = false
-            if (!(wallHacks)) {
-                ghostSight = false
-            }
-            ghost.setScale(0, ScaleAnchor.Middle)
-            pause(randint(minAtkCooldown, maxAtkCooldown))
-        }
-        if (!(changeHuntOrColorState)) {
-            tileUtil.replaceAllTiles(openDoor, closedDoor)
-            tileUtil.setWalls(closedDoor, true)
-            ghostReadyToHunt = true
-            color.setPalette(
-            color.Adventure
-            )
-            if (openedMenu) {
-                openedMenu = false
-                inputGhostType.close()
-                controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-            }
-            pause(timeBeforeAtkAfterLightsOff)
-            tiles.placeOnRandomTile(ghost, ghostSpawnRoom)
-            ghostHunt = true
-            ghost.changeScale(1, ScaleAnchor.Middle)
-            immortalPlayer = true
-            pause(immunitySpawnTime)
-            immortalPlayer = false
-            pause(randint(minHuntTime, maxHuntTime))
-        }
-    }
-})
-forever(function () {
-    if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`myTile3`)) {
-        if (infoDisplayed) {
-            infoDisplayed = false
-            ghostReveal.close()
-        }
-        infoDisplayed = false
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Demon`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[0], skullList[0]), miniMenu.createMenuItem("Attacks more frequently")])
-            noSelectMenu()
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Deogen`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[1], skullList[1]), miniMenu.createMenuItem("You can't hide, run!")])
-            noSelectMenu()
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Mimic`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[2], skullList[2]), miniMenu.createMenuItem("Mimics others abilities")])
-            noSelectMenu()
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Oni`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[3], skullList[3]), miniMenu.createMenuItem("Blinks more frequently")])
-            noSelectMenu()
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Revenant`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[4], skullList[4]), miniMenu.createMenuItem("Slow at base..."), miniMenu.createMenuItem("Fast when chasing!")])
-            noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 3)
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
-            ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely")])
-            noSelectMenu()
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`info`)) {
-        controller.moveSprite(mainCharacter, 0, 0)
-        game.showLongText("FIND AND PURIFY THE GHOST ROOM AND GUESS THE GHOST TYPE!", DialogLayout.Bottom)
-        game.showLongText("Read the ghost behavior on the corresponding skulls.", DialogLayout.Bottom)
-        game.showLongText("Observe the ghost's behavior.", DialogLayout.Bottom)
-        game.showLongText("Press A to open the book.", DialogLayout.Bottom)
-        game.showLongText("Press A to select a ghost.", DialogLayout.Bottom)
-        game.showLongText("Press B to exit the book.", DialogLayout.Bottom)
-        game.showLongText("WATCH OUT, ALL GHOST BLINK!", DialogLayout.Bottom)
-        controller.moveSprite(mainCharacter, playerVelocity, playerVelocity)
-        pause(2000)
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseDefault`) || tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`incenseBurning`)) {
-        if (!(infoDisplayed)) {
-            infoDisplayed = true
-            ghostReveal = miniMenu.createMenuFromArray([
-            miniMenu.createMenuItem("Incense", assets.tile`incenseNoBackground`),
-            miniMenu.createMenuItem("Press \"B\" to use"),
-            miniMenu.createMenuItem("Grants: immunity"),
-            miniMenu.createMenuItem("Grants: invisibility"),
-            miniMenu.createMenuItem("Duration: " + incenseDuration / 1000 + " seconds")
-            ])
-            noSelectMenu()
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 5)
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 90)
-            ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
-            ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
-        }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), selectDiffTile)) {
-        if (!(infoDisplayed)) {
-            setDifficulty()
-        }
+        characterAnimations.loopFrames(
+        mainCharacter,
+        assets.animation`playerStandingStill`,
+        300,
+        characterAnimations.rule(Predicate.NotMoving)
+        )
     }
 })
 forever(function () {

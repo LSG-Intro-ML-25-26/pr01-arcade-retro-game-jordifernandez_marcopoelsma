@@ -429,7 +429,7 @@ function setDifficulty () {
                 selectedDiff = sprites.create(assets.image`hard`, SpriteKind.Food)
                 for (let wall2 of hideTiles) {
                     tileUtil.setWalls(wall2, true)
-                    tileUtil.coverAllTiles(wall2, assets.tile`miMosaico`)
+                    tileUtil.coverAllTiles(wall2, assets.tile`outsideWall`)
                 }
             } else if (selection == "Normal") {
                 difficulty = 1

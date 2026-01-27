@@ -814,7 +814,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (ghostReadyToHunt) {
+    if (ghostHunt) {
         if (ghostSight && !(hiding)) {
             pause(300)
             if (spriteutils.distanceBetween(mainCharacter, ghost) < 48) {

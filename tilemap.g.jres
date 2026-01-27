@@ -244,12 +244,6 @@
         "tilemapTile": true,
         "displayName": "suelo3"
     },
-    "tile29": {
-        "data": "hwQQABAAAADd3d3d3d3d3c3MzMzMzMzczczMzMzMzNzNzMzMzMzM3M3MzMzMzMzczczMzMzMzNzNzMzMzMzM3M3MzMzMzMzczczMzMzMzNzNzMzMzMzM3M3MzMzMzMzczczMzMzMzNzNzMzMzMzM3M3MzMzMzMzczczMzMzMzNzd3d3d3d3d3Q==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "floor2"
-    },
     "tile12": {
         "data": "hwQQABAAAADx3d3d3d3dH9/d3d3d3d393d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3e7u7t3d3d3d7u7u3d3d3d3e3e3d3d3d3d3d3d3d3d3d393d3d3d3f3x3d3d3d3dHw==",
         "mimeType": "image/x-mkcd-f4",
@@ -261,12 +255,6 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "mesa L"
-    },
-    "tile47": {
-        "data": "hwQQABAAAADMzMvMvMy8zMvMvMzMzLy8vMy8zMzMzMzMzMzMzMzMzMzMzMzMy7zMzMzMzMzLzMvMy7zMvMzMzMzLzMu8zMzMzLzMzMzMzMzMvMzMzMzLvMy8zMzMzMu8zMzMy8y8zLzLzMy8zLzMzMzMzLzMzMzMzMzMzMvMzMvMzMvMy8y8zA==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "moqueta2"
     },
     "tile48": {
         "data": "hwQQABAAAAAREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREQ==",
@@ -399,6 +387,18 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "myTile7"
+    },
+    "tile47": {
+        "data": "hwQQABAAAAARERsRsRGxERsRsREREbGxsRGxERERERERERERERERERERERERG7EREREREREbERsRG7ERsREREREbERuxEREREbERERERERERsREREREbsRGxERERERuxERERGxGxEbEbERGxEbEREREREbERERERERERERsRERsRERsRGxGxEQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "moqueta2"
+    },
+    "tile29": {
+        "data": "hwQQABAAAABmZmZmZmZmZnZ3d3d3d3dndnd3d3d3d2d2d3d3d3d3Z3Z3d3d3d3dndnd3d3d3d2d2d3d3d3d3Z3Z3d3d3d3dndnd3d3d3d2d2d3d3d3d3Z3Z3d3d3d3dndnd3d3d3d2d2d3d3d3d3Z3Z3d3d3d3dndnd3d3d3d2dmZmZmZmZmZg==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "floor2"
     },
     "nivel4": {
         "id": "nivel4",

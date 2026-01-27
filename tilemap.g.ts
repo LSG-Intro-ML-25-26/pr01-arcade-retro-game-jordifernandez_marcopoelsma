@@ -83,13 +83,9 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile35 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile29 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile12 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile11 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile47 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile48 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
@@ -134,6 +130,10 @@ namespace myTiles {
     export const tile9 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile36 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile47 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile29 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -343,14 +343,10 @@ namespace myTiles {
             case "tile39":return tile39;
             case "suelo3":
             case "tile35":return tile35;
-            case "floor2":
-            case "tile29":return tile29;
             case "mesaR":
             case "tile12":return tile12;
             case "mesa L":
             case "tile11":return tile11;
-            case "moqueta2":
-            case "tile47":return tile47;
             case "white":
             case "tile48":return tile48;
             case "info":
@@ -395,6 +391,10 @@ namespace myTiles {
             case "tile9":return tile9;
             case "myTile7":
             case "tile36":return tile36;
+            case "moqueta2":
+            case "tile47":return tile47;
+            case "floor2":
+            case "tile29":return tile29;
         }
         return null;
     })

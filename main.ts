@@ -247,8 +247,8 @@ function noSelectMenu () {
     ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
 }
 function setGhostStats () {
-    maxAtkCooldown = 5000 * difficulty
-    minAtkCooldown = 10000 * difficulty
+    maxAtkCooldown = 5000 / difficulty
+    minAtkCooldown = 10000 / difficulty
     maxHuntTime = 15000 * difficulty
     minHuntTime = 20000 * difficulty
     looseTrailTime = 5000 * difficulty

@@ -789,7 +789,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (ghostReadyToHunt && !(incenseState)) {
+    if (ghostHunt && !(incenseState)) {
         if (!(hiding) || wallHacks) {
             for (let index = 0; index < looseTrailTime / 100; index++) {
                 pause(100)
@@ -841,7 +841,7 @@ forever(function () {
     }
 })
 forever(function () {
-    if (ghostReadyToHunt && !(incenseState)) {
+    if (ghostHunt && !(incenseState)) {
         if (!(hiding) || wallHacks) {
             if (sight.isInSight(
             ghost,

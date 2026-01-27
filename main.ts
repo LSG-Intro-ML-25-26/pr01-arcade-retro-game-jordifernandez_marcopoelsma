@@ -172,7 +172,17 @@ function setUtilTiles () {
     assets.tile`myTile4`
     ]
     selectDiffTile = assets.tile`setDiffTile`
-    otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`floorWithDoor1`]
+    otherHouseTilescantSpawn = [
+    assets.tile`mesa L`,
+    assets.tile`mesaR`,
+    assets.tile`floorWithDoor1`,
+    assets.tile`moquetaDoorR`,
+    assets.tile`moquetaDoorL`,
+    assets.tile`bathrooDoor`,
+    assets.tile`romboRoomDoorL0`,
+    assets.tile`romboRoomDoorR`,
+    assets.tile`suelArmarioD`
+    ]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
     openDoor = assets.tile`myTile7`
     closedDoor = assets.tile`doorClose`

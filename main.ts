@@ -181,7 +181,12 @@ function setUtilTiles () {
     assets.tile`bathrooDoor`,
     assets.tile`romboRoomDoorL0`,
     assets.tile`romboRoomDoorR`,
-    assets.tile`suelArmarioD`
+    assets.tile`suelArmarioD`,
+    assets.tile`TablemoquetaL0`,
+    assets.tile`TablemoquetaR`,
+    assets.tile`moquetaTableLR0`,
+    assets.tile`moquetaTableL0`,
+    assets.tile`moquetaTableR`
     ]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
     openDoor = assets.tile`myTile7`

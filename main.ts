@@ -167,6 +167,7 @@ function setUtilTiles () {
     assets.tile`floor4`,
     assets.tile`myTile4`
     ]
+    selectDiffTile = assets.tile`setDiffTile`
     otherHouseTilescantSpawn = [assets.tile`mesa L`, assets.tile`mesaR`, assets.tile`floorWithDoor1`]
     hideTiles = [assets.tile`hideLeft`, assets.tile`hideDown`, assets.tile`hideUp`]
     openDoor = assets.tile`myTile7`
@@ -417,6 +418,7 @@ function setDifficulty () {
                 difficulty = 1.1
                 setPlayerStats()
                 incenseCount = 0
+                selectedDiff = sprites.create(assets.image`difficultyHard`, SpriteKind.Player)
                 for (let wall2 of hideTiles) {
                     tileUtil.setWalls(wall2, true)
                     tileUtil.coverAllTiles(wall2, assets.tile`miMosaico`)
@@ -425,12 +427,15 @@ function setDifficulty () {
                 difficulty = 1
                 setPlayerStats()
                 incenseCount = 1
+                selectedDiff = sprites.create(assets.image`baseKull`, SpriteKind.Player)
             } else if (selection == "Easy") {
                 difficulty = 0.9
                 setPlayerStats()
                 incenseCount = 2
+                selectedDiff = sprites.create(assets.image`difficultyEasy`, SpriteKind.Player)
             }
             info.setLife(incenseCount)
+            tiles.placeOnRandomTile(selectedDiff, selectDiffTile)
             setGhostStats()
             setGhostType()
             isDifficultySetted = true
@@ -633,7 +638,7 @@ function setDifficultySprite () {
     500,
     true
     )
-    tiles.placeOnRandomTile(difficultyNPC, sprites.castle.tileDarkGrass2)
+    tiles.placeOnRandomTile(difficultyNPC, selectDiffTile)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(immortalPlayer) && !(incenseState)) {
@@ -657,6 +662,7 @@ let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
+let selectedDiff: Sprite = null
 let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let incenseState = false
@@ -681,6 +687,7 @@ let closedDoor: Image = null
 let openDoor: Image = null
 let hideTiles: Image[] = []
 let otherHouseTilescantSpawn: Image[] = []
+let selectDiffTile: Image = null
 let floorTiles: Image[] = []
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
@@ -1231,7 +1238,7 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 150)
             ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), sprites.castle.tileDarkGrass2)) {
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), selectDiffTile)) {
         if (!(infoDisplayed)) {
             setDifficulty()
         }

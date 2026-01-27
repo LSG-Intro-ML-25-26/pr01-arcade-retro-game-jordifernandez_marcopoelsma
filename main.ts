@@ -207,7 +207,7 @@ function setUtilTiles () {
     assets.tile`vanGlass`,
     assets.tile`vanGlessCorner`,
     assets.tile`white`,
-    assets.tile`transparency16`
+    assets.tile`grassOutOfBounds`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

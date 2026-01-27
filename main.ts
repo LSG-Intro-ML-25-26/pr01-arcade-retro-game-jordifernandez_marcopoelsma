@@ -197,7 +197,17 @@ function setUtilTiles () {
     assets.tile`fenceUp`,
     assets.tile`fenceCornerLup`,
     assets.tile`fecneCornerRdown`,
-    assets.tile`doorPermenantlyClosed`
+    assets.tile`doorPermenantlyClosed`,
+    assets.tile`vanInteriorWall`,
+    assets.tile`miMosaico4`,
+    assets.tile`vanWheel`,
+    assets.tile`van light`,
+    assets.tile`vanCornerR0`,
+    assets.tile`vanCornerL`,
+    assets.tile`vanGlass`,
+    assets.tile`vanGlessCorner`,
+    assets.tile`white`,
+    assets.tile`transparency16`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

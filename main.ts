@@ -211,7 +211,8 @@ function setUtilTiles () {
     assets.tile`kitchenFogones`,
     assets.tile`kitchenTable`,
     assets.tile`kitchenKnive`,
-    assets.tile`kitchenPaSecar`
+    assets.tile`kitchenPaSecar`,
+    assets.tile`kitchenFreezer`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

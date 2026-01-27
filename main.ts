@@ -149,6 +149,15 @@ function setMap () {
         `)
     setUtilTiles()
 }
+function changToHuntPalette () {
+    color.startFadeFromCurrent(color.Adventure, 500)
+    for (let index = 0; index < 500; index++) {
+        color.setColor(2, color.rgb(255, 0, 0))
+        color.setColor(1, color.rgb(255, 255, 255))
+        color.setColor(15, color.rgb(0, 0, 0))
+        pause(1)
+    }
+}
 function setUtilTiles () {
     floorTiles = [
     assets.tile`miMosaico2`,
@@ -515,6 +524,12 @@ function setIncense () {
     )
     incense.z = -1
 }
+function changeToNormalPalette () {
+    color.startFadeFromCurrent(color.originalPalette)
+    for (let index = 0; index < 500; index++) {
+        pause(1)
+    }
+}
 info.onLifeZero(function () {
     info.changeLifeBy(-1)
 })
@@ -567,6 +582,9 @@ function setPlayerStats () {
     immunitySpawnTime = 1000 / difficulty
     timeBeforeAtkAfterLightsOff = 2000 / difficulty
     roamToHideTileChance = 10 / difficulty
+}
+function setOriginalPalette () {
+	
 }
 function setOtherSpriteUtils () {
     ghostDirection = sprites.create(img`
@@ -806,7 +824,7 @@ forever(function () {
         if (!(changeHuntOrColorState)) {
             tileUtil.replaceAllTiles(closedDoor, openDoor)
             tileUtil.setWalls(openDoor, false)
-            color.startFadeFromCurrent(color.originalPalette)
+            changeToNormalPalette()
             generatedPath = false
             lostTrail = false
             ghostReadyToHunt = false
@@ -821,7 +839,7 @@ forever(function () {
             tileUtil.replaceAllTiles(openDoor, closedDoor)
             tileUtil.setWalls(closedDoor, true)
             ghostReadyToHunt = true
-            color.startFadeFromCurrent(color.Adventure)
+            changToHuntPalette()
             if (openedMenu) {
                 openedMenu = false
                 inputGhostType.close()

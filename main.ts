@@ -703,6 +703,9 @@ let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
 let mainCharacter: Sprite = null
+color.setPalette(
+color.originalPalette
+)
 setMap()
 setSpriteUtils()
 scene.cameraFollowSprite(mainCharacter)
@@ -810,9 +813,6 @@ forever(function () {
             tileUtil.setWalls(openDoor, false)
             generatedPath = false
             lostTrail = false
-            color.setPalette(
-            color.originalPalette
-            )
             ghostReadyToHunt = false
             ghostHunt = false
             if (!(wallHacks)) {
@@ -825,9 +825,7 @@ forever(function () {
             tileUtil.replaceAllTiles(openDoor, closedDoor)
             tileUtil.setWalls(closedDoor, true)
             ghostReadyToHunt = true
-            color.setPalette(
-            color.Adventure
-            )
+            color.startFade(color.originalPalette, color.Adventure)
             if (openedMenu) {
                 openedMenu = false
                 inputGhostType.close()
@@ -841,6 +839,7 @@ forever(function () {
             pause(immunitySpawnTime)
             immortalPlayer = false
             pause(randint(minHuntTime, maxHuntTime))
+            color.startFade(color.Adventure, color.originalPalette)
         }
     }
 })

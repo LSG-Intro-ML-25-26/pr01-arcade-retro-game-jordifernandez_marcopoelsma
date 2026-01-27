@@ -215,13 +215,15 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile107 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile108 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile109 = image.ofBuffer(hex``);
+    export const tile104 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile110 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile111 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile108 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile109 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile112 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
@@ -567,14 +569,16 @@ namespace myTiles {
             case "tile106":return tile106;
             case "miMosaico8":
             case "tile107":return tile107;
-            case "brokenFloorLU1":
-            case "tile108":return tile108;
-            case "brokenFloorRU1":
-            case "tile109":return tile109;
+            case "miMosaico5":
+            case "tile104":return tile104;
             case "brokenFloorLD1":
             case "tile110":return tile110;
             case "brokenFloorLU0":
             case "tile111":return tile111;
+            case "brokenFloorLU1":
+            case "tile108":return tile108;
+            case "brokenFloorRU1":
+            case "tile109":return tile109;
             case "brokenFloorRU0":
             case "tile112":return tile112;
             case "brokenFloorLD0":

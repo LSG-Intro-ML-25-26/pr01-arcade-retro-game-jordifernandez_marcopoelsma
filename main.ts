@@ -577,7 +577,7 @@ function setGhost () {
         ........................
         `, SpriteKind.Enemy)
     ghost.setScale(0, ScaleAnchor.Middle)
-    ghostSpawnRoomIndex = randint(0, rooms.length)
+    ghostSpawnRoomIndex = randint(0, rooms.length - 1)
     ghostSpawnRoom = houseDefualtTiles[ghostSpawnRoomIndex]
     ghostSpawnRoomTiles = rooms[ghostSpawnRoomIndex]
 }

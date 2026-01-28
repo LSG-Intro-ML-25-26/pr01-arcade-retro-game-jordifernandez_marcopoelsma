@@ -3,9 +3,13 @@
 
 RUN FOR RAM
 
+Gameplay:
+https://youtu.be/Hm1EY0MJb8Y
 
-Made by JORDI FERNÁNDEZ and Marco Poelsma
+Made by:
+JORDI FERNÁNDEZ and Marco Poelsma
 
+Lore:
 A renowned architect is forced by his company to adopt a new, supposedly revolutionary architectural design software called MakeDesigns Arcade. At first, he’s genuinely excited: the interface is flashy, the tools promise faster workflows, and his creations seem to take shape with unsettling ease. For hours, he designs corridors, rooms, and impossible structures, convinced he’s witnessing the future of architecture.
 
 But when he reviews his work, something feels wrong. Several rooms are gone. There are no error messages, no warnings, no backup files. They’ve simply… vanished. Confused, the architect tries to rebuild them, yet every time he saves the project, other sections of the building distort or disappear. He starts to question his own memory, checking old sketches and printed blueprints, only to confirm his growing fear: those rooms did exist.

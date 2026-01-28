@@ -1,3 +1,96 @@
+function isPlayerInGhostRoom () {
+    if (ghostSpawnRoomIndex == 0) {
+        for (let index = 0; index <= roomKitchen.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomKitchen[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 1) {
+        for (let index = 0; index <= roomHallway.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomHallway[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 2) {
+        for (let index = 0; index <= roomTVRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomTVRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 3) {
+        for (let index = 0; index <= roomDinningRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomDinningRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 4) {
+        for (let index = 0; index <= roomBedRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomBedRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 5) {
+        for (let index = 0; index <= roomBathRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomBathRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 6) {
+        for (let index = 0; index <= roomLockerRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomLockerRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 7) {
+        for (let index = 0; index <= roomEntranceRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomEntranceRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 8) {
+        for (let index = 0; index <= roomStorageRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomStorageRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else {
+        for (let index = 0; index <= roomRuinsRoom.length; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomRuinsRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    }
+}
 function ghostAbilitiesList () {
     if (currentGhostAbility == "Oni") {
         flashingGhost = flashingGhost * 0.2
@@ -343,12 +436,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (canHunt) {
-                for (let index = 0; index <= rooms[ghostSpawnRoomIndex].length; index++) {
-                    if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoomTiles[index])) {
-                        if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                            win = true
-                        }
-                    }
+                if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                    win = true
+                    isPlayerInGhostRoom()
                 }
                 gameOver2()
             }
@@ -503,18 +593,6 @@ function setDifficulty () {
     }
 }
 function setRooms () {
-    rooms = [
-    roomKitchen,
-    roomHallway,
-    roomTVRoom,
-    roomDinningRoom,
-    roomBedRoom,
-    roomBathRoom,
-    roomLockerRoom,
-    roomEntranceRoom,
-    roomStorageRoom,
-    roomRuinsRoom
-    ]
     roomKitchen = [assets.tile`miMosaico2`]
     roomHallway = [
     assets.tile`moqueta`,
@@ -570,7 +648,7 @@ function setGhost () {
         ........................
         `, SpriteKind.Enemy)
     ghost.setScale(0, ScaleAnchor.Middle)
-    ghostSpawnRoomIndex = randint(0, rooms.length)
+    ghostSpawnRoomIndex = 1
     ghostSpawnRoom = houseDefualtTiles[ghostSpawnRoomIndex]
     if (ghostSpawnRoomIndex == 0) {
         ghostSpawnRoomTiles = roomKitchen
@@ -674,7 +752,7 @@ function gameOver2 () {
     changeHuntOrColorState = true
     canHunt = false
     controller.moveSprite(mainCharacter, 0, 0)
-    ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[ghostList.indexOf(currentGhostType)], skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
+    ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(currentGhostType, skullList[ghostList.indexOf(currentGhostType)]), miniMenu.createMenuItem("Room", ghostSpawnRoom)])
     ghostReveal.setTitle("The Ghost was:")
     noSelectMenu()
     ghostReveal.onButtonPressed(controller.A, function (selection, selectedIndex) {
@@ -795,18 +873,9 @@ let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
+let ghostSpawnRoomTiles: Image[] = []
 let ghostSpawnRoom: Image = null
 let ghost: Sprite = null
-let roomRuinsRoom: Image[] = []
-let roomStorageRoom: Image[] = []
-let roomEntranceRoom: Image[] = []
-let roomLockerRoom: Image[] = []
-let roomBathRoom: Image[] = []
-let roomBedRoom: Image[] = []
-let roomDinningRoom: Image[] = []
-let roomTVRoom: Image[] = []
-let roomHallway: Image[] = []
-let roomKitchen: Image[] = []
 let selectedDiff: Sprite = null
 let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
@@ -816,11 +885,7 @@ let minHuntTime = 0
 let difficulty = 0
 let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
-let win = false
 let currentGhostType = ""
-let ghostSpawnRoomTiles: Image[] = []
-let ghostSpawnRoomIndex = 0
-let rooms: Image[][] = []
 let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
@@ -850,6 +915,18 @@ let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
+let roomRuinsRoom: Image[] = []
+let roomStorageRoom: Image[] = []
+let roomEntranceRoom: Image[] = []
+let roomLockerRoom: Image[] = []
+let roomBathRoom: Image[] = []
+let roomBedRoom: Image[] = []
+let roomDinningRoom: Image[] = []
+let roomTVRoom: Image[] = []
+let roomHallway: Image[] = []
+let win = false
+let roomKitchen: Image[] = []
+let ghostSpawnRoomIndex = 0
 let mainCharacter: Sprite = null
 changeToNormalPalette()
 setMap()

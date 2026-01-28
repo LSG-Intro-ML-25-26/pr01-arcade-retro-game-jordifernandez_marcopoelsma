@@ -363,7 +363,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function setPlayerSpawnAndCam () {
     mainCharacter = sprites.create(assets.image`mainPlayerR`, SpriteKind.Player)
-    tiles.placeOnRandomTile(mainCharacter, assets.tile`hideLeft`)
+    tiles.placeOnRandomTile(mainCharacter, assets.tile`playerSpawn`)
 }
 function noSelectMenu () {
     ghostReveal.setFrame(img`
@@ -796,6 +796,7 @@ let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
 let ghostSpawnRoom: Image = null
+let ghost: Sprite = null
 let roomRuinsRoom: Image[] = []
 let roomStorageRoom: Image[] = []
 let roomEntranceRoom: Image[] = []
@@ -824,7 +825,6 @@ let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
-let mainCharacter: Sprite = null
 let infoDisplayed = false
 let openOtherMenu = false
 let openedMenu = false
@@ -850,11 +850,11 @@ let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
-let ghost: Sprite = null
+let mainCharacter: Sprite = null
 changeToNormalPalette()
 setMap()
 setSpriteUtils()
-scene.cameraFollowSprite(ghost)
+scene.cameraFollowSprite(mainCharacter)
 forever(function () {
     if (ghostReadyToHunt) {
         if (!(ghostSight)) {

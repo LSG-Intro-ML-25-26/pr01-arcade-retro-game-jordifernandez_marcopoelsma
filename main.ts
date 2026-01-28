@@ -281,7 +281,13 @@ function setUtilTiles () {
     assets.tile`vaterD`,
     assets.tile`grifoBath`,
     assets.tile`sofaL`,
-    assets.tile`sofaR`
+    assets.tile`sofaR`,
+    assets.tile`bedUL`,
+    assets.tile`bedDR`,
+    assets.tile`bedML`,
+    assets.tile`bedCR`,
+    assets.tile`bedUR`,
+    assets.tile`bedDL`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

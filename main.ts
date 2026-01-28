@@ -590,6 +590,7 @@ function setStates () {
     isDifficultySetted = false
     isHouseFloorTile = false
     gameOver = false
+    win = false
     difficulty = 1
 }
 function setIncense () {

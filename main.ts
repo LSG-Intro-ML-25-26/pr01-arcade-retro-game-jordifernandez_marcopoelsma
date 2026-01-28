@@ -1,5 +1,5 @@
 function isPlayerInGhostRoom () {
-    for (let index = 0; index <= ghostSpawnRoomTiles.length; index++) {
+    for (let index = 0; index <= ghostSpawnRoomTiles.length - 1; index++) {
         if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoomTiles[index])) {
             win = true
             break;
@@ -849,9 +849,9 @@ forever(function () {
             if (!(generatedPath)) {
                 random = randint(0, roamToHideTileChance)
                 if (random == 0) {
-                    randomTile = randint(0, hideTiles.length)
+                    randomTile = randint(0, hideTiles.length - 1)
                 } else {
-                    randomTile = randint(0, houseDefualtTiles.length)
+                    randomTile = randint(0, houseDefualtTiles.length - 1)
                 }
                 tiles.placeOnRandomTile(ghostDirection, houseDefualtTiles[randomTile])
                 generatedPath = true

@@ -14,7 +14,7 @@ A renowned architect is forced by his company to adopt a new, supposedly revolut
 
 But when he reviews his work, something feels wrong. Several rooms are gone. There are no error messages, no warnings, no backup files. They’ve simply… vanished. Confused, the architect tries to rebuild them, yet every time he saves the project, other sections of the building distort or disappear. He starts to question his own memory, checking old sketches and printed blueprints, only to confirm his growing fear: those rooms did exist.
 
-As days pass, the glitches become more frequent—and more hostile. The designs seem to rearrange themselves, as if the software has a will of its own. Hallways leading nowhere. Doors that seal themselves shut. Spaces that defy all architectural logic. The studio fills with sleepless nights, cold coffee, and the constant hum of the laptop, as though something is always running in the background.
+As days pass, the glitches become more frequent and more hostile. The designs seem to rearrange themselves, as if the software has a will of its own. Hallways leading nowhere. Doors that seal themselves shut. Spaces that defy all architectural logic. The studio fills with sleepless nights, cold coffee, and the constant hum of the laptop, as though something is always running in the background.
 
 Driven to desperation, convinced the program is an unnatural abomination, the architect curses the developers who created it, swearing that no one should ever use such software again. In a final act of despair, broken by exhaustion, guilt, and the feeling of being consumed by his own creation, he takes his own life.
 

@@ -251,14 +251,6 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile18 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile126 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile127 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile128 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile129 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile124 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile130 = image.ofBuffer(hex``);
@@ -326,6 +318,14 @@ namespace myTiles {
     export const tile161 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile162 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile126 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile127 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile128 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile129 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -703,14 +703,6 @@ namespace myTiles {
             case "tile118":return tile118;
             case "moqueta1":
             case "tile18":return tile18;
-            case "mapTL":
-            case "tile126":return tile126;
-            case "MapTR":
-            case "tile127":return tile127;
-            case "mapLR":
-            case "tile128":return tile128;
-            case "mapLL":
-            case "tile129":return tile129;
             case "tableLtv":
             case "tile124":return tile124;
             case "tableRtv":
@@ -779,6 +771,14 @@ namespace myTiles {
             case "tile161":return tile161;
             case "tulihuevo":
             case "tile162":return tile162;
+            case "mapTL":
+            case "tile126":return tile126;
+            case "MapTR":
+            case "tile127":return tile127;
+            case "mapLR":
+            case "tile128":return tile128;
+            case "mapLL":
+            case "tile129":return tile129;
         }
         return null;
     })

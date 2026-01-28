@@ -245,8 +245,6 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile93 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile119 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile118 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile18 = image.ofBuffer(hex``);
@@ -311,8 +309,6 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile158 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile159 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile160 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile161 = image.ofBuffer(hex``);
@@ -326,6 +322,16 @@ namespace myTiles {
     export const tile128 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile129 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile163 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile164 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile165 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile166 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile119 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -411,7 +417,7 @@ namespace myTiles {
 ................................
 `, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.greenOuterNorth0,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.darkGroundSouthEast1,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundEast,sprites.dungeon.greenOuterWest1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterSouth1,sprites.dungeon.greenOuterSouthWest,sprites.dungeon.greenOuterSouthEast,sprites.dungeon.greenOuterSouth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterEast1,sprites.dungeon.darkGroundSouthWest0,sprites.dungeon.greenOuterWest0,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.greenInnerSouthEast,sprites.dungeon.greenInnerSouthWest,sprites.dungeon.greenInnerNorthWest,sprites.dungeon.greenInnerNorthEast,sprites.dungeon.darkGroundNorthEast1,sprites.dungeon.darkGroundNorthWest1,myTiles.tile6,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile7], TileScale.Sixteen);
             case "TangleWood":
-            case "nivel2":return tiles.createTilemap(hex`300023001d26242424242424242424242424242424242424242424242424242424242424242424242424242424242424242a1d1d1d201d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c1c1c1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d291d1d1d201d1d1d1d1d1d1d1c1d1c1c1c1d1c1c1c1c1c1c1d1c1c1c1c1c1d1c1d1c1d1c1c1c1c1d1d1c1c1c1d1c1d1d291d1d1d201d1d1d1d1d1d1c1d1d1d1c1c1d1d1d1d1d1c1c1d1d1d1d1d1d1d1d1c1d1d1d1d1c1d1d1d1d1d1d1c1c1d1d291d1d1d201d1d1d1d1d1c1d1d1d1d1d1c1d1c1c1c1414141414146b1464641414141414142b14141414141414141d1d291d1d1d201d1d1c1c1c1c1c1d1c14141414141414142727271461636260601427272714161616161616281e1e141d1c291d1d1d201d1c1d1d1d1c1d1d1d141f1f1f1f1f4f14272727141b1b1b1b691427272714591616161616141e1e141d1d291d1d1d201d1d1d1d1c1d1c1d1c141f494a1f1f1f14272727141b5e5f1b6a1427272714161606061616141414141d1c291d1d1d201d1d1d1d1c1d1c1d1c141f4b1f1f1f1f14272727141b1b1b1b651427272714161606061658141d1d1d1d1c291d1d1d201d1d1d1c1c1c1d1d1d141f1f1f1f4d1f14272727141b666768661427272714161606061657141c1c1c1c1d291d1d1d201d1d1d1d1c1d1d1d1d141f1f1f4e4c1f142727271418181818181427272714161606061616141d1c1d1c1d291c1d1d201d1d1c1c1c1c1c1d1c14501f1f1f1f1f14272727147a1818187b1427272714161604051616141d1c1d1d1c291d1d1d201d1d1d1c1c1c1d1c1470147271144042141414141479181818791414141414161616161616141d1c1d1d1d291d1d1d201d1d1d1c1d1c1d1d146c196d6e140303035151510303030303030303030303030303030351141d1c1c1d1d291d1d1d201d1d1d1d1c1d1c1c146f1919193f0303035503560303030303030351515103030303030351141d1d1c1c1d291d1d1d201d1d1d1d1d1c1c1d141414141414413e1414141414140303031414141414143d0101010107141d1c1d1d1d291d1d1d201d1d1c1d1d1d1d1d14787451511717171427272727140303031427272727143b0107070139141d1c1d1d1d291d1d1d201d1d1d141414141414777552531717171427272727140303031427272727143a0107070139141d1c1d1d1c291d1d1d201d1d1d144546454614737617175a5b17142727272714510303142727272714070102020107141d1c1d1d1d291d1d1d201d1c1d141a1a1a1a43171717175d5c17142727272714510303082727272714070101010107141d1c1d1c1d291d1d1d201d1c1d144447444714171717175253171427272727145403030827272727140707383c0707141d1d1d1d1d291d1d1d201d1c1d14141414141414141414141414141414141414141314141414141414141414141414141c1d1d1d1d291d1d1d201d1c1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1c1d1d201c1d101d1c211d1c1d1c1d1d1c1c1d1d1d1c1d1d1d1d291d1d1d201d1c1c1d1c1d1c1c1c1d1c1d1c1d1d1c1c1d1d1d201d1c101d1c211c1c1c1c1c1c1d1d1c1c1d1c1d1d1d1d291d1d1d292424242424242424242424242424242424242424221d1d101c1c2325252525252525252525252525252525221d1d1d1d1d1d1c1c1d1d1d1d1d1d1d1c1c1c1d1d1c361d1c1c1d1c101c1c332d2d2d2d2d2d2d2d2d2d2d2d2d2d321d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d1c361d1d1c1d1c101d1c073131313131313131313131313131351d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1c1d1c361c10101010101010313131313131313131313131313131341d1d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1c1c1c1d1d1d1c361c10101010371010090a090b090c090d090e090f09121507321d1d1d1d1d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1c1c361d1c111c1d2c1d1d482f2e2f2f2f2f2f2f2f2f2f2f2f2e2f301d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d361d1d1d1c1c1c1d1c361d1d1c1d1c1c1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c363636363636363636361c1d1c1c1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c1c1d1d1d1d1d1d1d1d1c1c1c1d1d1c1c1c1c1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c1c1d1d1c1d1d1c1c1c1c1d1c1c1c1c1c1d1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d`, img`
+            case "nivel2":return tiles.createTilemap(hex`300023001d26242424242424242424242424242424242424242424242424242424242424242424242424242424242424242a1d1d1d201d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c1c1c1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d291d1d1d201d1d1d1d1d1d1d1c1d1c1c1c1d1c1c1c1c1c1c1d1c1c1c1c1c1d1c1d1c1d1c1c1c1c1d1d1c1c1c1d1c1d1d291d1d1d201d1d1d1d1d1d1c1d1d1d1c1c1d1d1d1d1d1c1c1d1d1d1d1d1d1d1d1c1d1d1d1d1c1d1d1d1d1d1d1c1c1d1d291d1d1d201d1d1d1d1d1c1d1d1d1d1d1c1d1c1c1c1414141414146b1464641414141414142b14141414141414141d1d291d1d1d201d1d1c1c1c1c1c1d1c14141414141414142727271461636260601427272714161616161616281e1e141d1c291d1d1d201d1c1d1d1d1c1d1d1d141f1f1f1f1f4f14272727141b1b1b1b691427272714591616161616141e1e141d1d291d1d1d201d1d1d1d1c1d1c1d1c141f494a1f1f1f14272727141b5e5f1b6a1427272714161606061616141414141d1c291d1d1d201d1d1d1d1c1d1c1d1c141f4b1f1f1f1f14272727141b1b1b1b651427272714161606061658141d1d1d1d1c291d1d1d201d1d1d1c1c1c1d1d1d141f1f1f1f4d1f14272727141b666768661427272714161606061657141c1c1c1c1d291d1d1d201d1d1d1d1c1d1d1d1d141f1f1f4e4c1f142727271418181818181427272714161606061616141d1c1d1c1d291c1d1d201d1d1c1c1c1c1c1d1c14501f1f1f1f1f14272727147a1818187b1427272714161604051616141d1c1d1d1c291d1d1d201d1d1d1c1c1c1d1c1470147271144042141414141479181818791414141414161616161616141d1c1d1d1d291d1d1d201d1d1d1c1d1c1d1d146c196d6e14030303515151030303030303030303030303030303037f141d1c1c1d1d291d1d1d201d1d1d1d1c1d1c1c146f1919193f030303550356030303030303035151510303030303037e141d1d1c1c1d291d1d1d201d1d1d1d1d1c1c1d141414141414413e1414141414140303031414141414143d0101010107141d1c1d1d1d291d1d1d201d1d1c1d1d1d1d1d1478747c7d1717171427272727140303031427272727143b0107070139141d1c1d1d1d291d1d1d201d1d1d141414141414777552531717171427272727140303031427272727143a0107070139141d1c1d1d1c291d1d1d201d1d1d144546454614737617175a5b17142727272714510303142727272714070102020107141d1c1d1d1d291d1d1d201d1c1d141a1a1a1a43171717175d5c17142727272714510303082727272714070101010107141d1c1d1c1d291d1d1d201d1c1d144447444714171717175253171427272727145403030827272727140707383c0707141d1d1d1d1d291d1d1d201d1c1d14141414141414141414141414141414141414141314141414141414141414141414141c1d1d1d1d291d1d1d201d1c1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1c1d1d201c1d101d1c211d1c1d1c1d1d1c1c1d1d1d1c1d1d1d1d291d1d1d201d1c1c1d1c1d1c1c1c1d1c1d1c1d1d1c1c1d1d1d201d1c101d1c211c1c1c1c1c1c1d1d1c1c1d1c1d1d1d1d291d1d1d292424242424242424242424242424242424242424221d1d101c1c2325252525252525252525252525252525221d1d1d1d1d1d1c1c1d1d1d1d1d1d1d1c1c1c1d1d1c361d1c1c1d1c101c1c332d2d2d2d2d2d2d2d2d2d2d2d2d2d321d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d1c361d1d1c1d1c101d1c073131313131313131313131313131351d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1c1d1c361c10101010101010313131313131313131313131313131341d1d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1c1c1c1d1d1d1c361c10101010371010090a090b090c090d090e090f09121507321d1d1d1d1d1d1d1d1d1d1d1d1d1c1d1d1d1d1d1d1c1c361d1c111c1d2c1d1d482f2e2f2f2f2f2f2f2f2f2f2f2f2e2f301d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d361d1d1d1c1c1c1d1c361d1d1c1d1c1c1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c363636363636363636361c1d1c1c1d1d1d1d1d1d1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c1c1d1d1d1d1d1d1d1d1c1c1c1d1d1c1c1c1c1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1c1c1d1d1c1d1d1c1c1c1c1d1c1c1c1c1c1d1c1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d`, img`
 ................................................
 ................................................
 ................................................
@@ -447,7 +453,7 @@ namespace myTiles {
 ................................................
 ................................................
 ................................................
-`, [myTiles.transparency16,myTiles.tile5,myTiles.tile7,myTiles.tile9,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile16,myTiles.tile20,myTiles.tile21,myTiles.tile22,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26,myTiles.tile27,myTiles.tile32,myTiles.tile33,myTiles.tile36,myTiles.tile37,myTiles.tile40,myTiles.tile41,myTiles.tile18,myTiles.tile29,myTiles.tile30,myTiles.tile35,myTiles.tile47,sprites.castle.tileDarkGrass3,sprites.castle.tileDarkGrass1,myTiles.tile50,myTiles.tile51,myTiles.tile52,myTiles.tile54,myTiles.tile55,myTiles.tile56,myTiles.tile57,myTiles.tile58,myTiles.tile59,myTiles.tile8,myTiles.tile53,myTiles.tile62,myTiles.tile63,myTiles.tile65,myTiles.tile64,myTiles.tile48,myTiles.tile68,myTiles.tile69,myTiles.tile70,myTiles.tile71,myTiles.tile72,myTiles.tile73,myTiles.tile74,myTiles.tile76,myTiles.tile75,myTiles.tile80,myTiles.tile87,myTiles.tile88,myTiles.tile89,myTiles.tile90,myTiles.tile91,myTiles.tile92,myTiles.tile93,myTiles.tile94,myTiles.tile95,myTiles.tile97,myTiles.tile98,myTiles.tile99,myTiles.tile96,myTiles.tile100,myTiles.tile101,myTiles.tile102,myTiles.tile103,myTiles.tile108,myTiles.tile109,myTiles.tile110,myTiles.tile111,myTiles.tile112,myTiles.tile114,myTiles.tile104,myTiles.tile113,myTiles.tile115,myTiles.tile118,myTiles.tile119,myTiles.tile120,myTiles.tile121,myTiles.tile122,myTiles.tile117,myTiles.tile123,myTiles.tile125,myTiles.tile126,myTiles.tile127,myTiles.tile128,myTiles.tile129,myTiles.tile124,myTiles.tile130,myTiles.tile132,myTiles.tile133,myTiles.tile134,myTiles.tile135,myTiles.tile136,myTiles.tile143,myTiles.tile144,myTiles.tile145,myTiles.tile146,myTiles.tile147,myTiles.tile148,myTiles.tile150,myTiles.tile131,myTiles.tile138,myTiles.tile139,myTiles.tile140,myTiles.tile142,myTiles.tile149,myTiles.tile156,myTiles.tile137,myTiles.tile141,myTiles.tile151,myTiles.tile153,myTiles.tile154,myTiles.tile158,myTiles.tile160,myTiles.tile161,myTiles.tile162], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile5,myTiles.tile7,myTiles.tile9,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile16,myTiles.tile20,myTiles.tile21,myTiles.tile22,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26,myTiles.tile27,myTiles.tile32,myTiles.tile33,myTiles.tile36,myTiles.tile37,myTiles.tile40,myTiles.tile41,myTiles.tile18,myTiles.tile29,myTiles.tile30,myTiles.tile35,myTiles.tile47,sprites.castle.tileDarkGrass3,sprites.castle.tileDarkGrass1,myTiles.tile50,myTiles.tile51,myTiles.tile52,myTiles.tile54,myTiles.tile55,myTiles.tile56,myTiles.tile57,myTiles.tile58,myTiles.tile59,myTiles.tile8,myTiles.tile53,myTiles.tile62,myTiles.tile63,myTiles.tile65,myTiles.tile64,myTiles.tile48,myTiles.tile68,myTiles.tile69,myTiles.tile70,myTiles.tile71,myTiles.tile72,myTiles.tile73,myTiles.tile74,myTiles.tile76,myTiles.tile75,myTiles.tile80,myTiles.tile87,myTiles.tile88,myTiles.tile89,myTiles.tile90,myTiles.tile91,myTiles.tile92,myTiles.tile93,myTiles.tile94,myTiles.tile95,myTiles.tile97,myTiles.tile98,myTiles.tile99,myTiles.tile96,myTiles.tile100,myTiles.tile101,myTiles.tile102,myTiles.tile103,myTiles.tile108,myTiles.tile109,myTiles.tile110,myTiles.tile111,myTiles.tile112,myTiles.tile114,myTiles.tile104,myTiles.tile113,myTiles.tile115,myTiles.tile118,myTiles.tile119,myTiles.tile120,myTiles.tile121,myTiles.tile122,myTiles.tile117,myTiles.tile123,myTiles.tile125,myTiles.tile126,myTiles.tile127,myTiles.tile128,myTiles.tile129,myTiles.tile124,myTiles.tile130,myTiles.tile132,myTiles.tile133,myTiles.tile134,myTiles.tile135,myTiles.tile136,myTiles.tile143,myTiles.tile144,myTiles.tile145,myTiles.tile146,myTiles.tile147,myTiles.tile148,myTiles.tile150,myTiles.tile131,myTiles.tile138,myTiles.tile139,myTiles.tile140,myTiles.tile142,myTiles.tile149,myTiles.tile156,myTiles.tile137,myTiles.tile141,myTiles.tile151,myTiles.tile153,myTiles.tile154,myTiles.tile158,myTiles.tile160,myTiles.tile161,myTiles.tile162,myTiles.tile163,myTiles.tile164,myTiles.tile165,myTiles.tile166], TileScale.Sixteen);
         }
         return null;
     })
@@ -697,8 +703,6 @@ namespace myTiles {
             case "tile97":return tile97;
             case "moquetaDoorR":
             case "tile93":return tile93;
-            case "TablemoquetaR":
-            case "tile119":return tile119;
             case "TablemoquetaL0":
             case "tile118":return tile118;
             case "moqueta1":
@@ -763,8 +767,6 @@ namespace myTiles {
             case "tile154":return tile154;
             case "bedUL":
             case "tile158":return tile158;
-            case "miMosaico11":
-            case "tile159":return tile159;
             case "maceta":
             case "tile160":return tile160;
             case "girasol":
@@ -779,6 +781,16 @@ namespace myTiles {
             case "tile128":return tile128;
             case "mapLL":
             case "tile129":return tile129;
+            case "cactus":
+            case "tile163":return tile163;
+            case "portatil":
+            case "tile164":return tile164;
+            case "fruta":
+            case "tile165":return tile165;
+            case "marron":
+            case "tile166":return tile166;
+            case "TablemoquetaR":
+            case "tile119":return tile119;
         }
         return null;
     })

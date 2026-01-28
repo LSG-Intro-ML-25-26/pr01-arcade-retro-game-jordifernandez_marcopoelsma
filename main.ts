@@ -256,7 +256,32 @@ function setUtilTiles () {
     assets.tile`tableTop`,
     assets.tile`miMosaico10`,
     assets.tile`miMosaico5`,
-    assets.tile`miMosaico12`
+    assets.tile`miMosaico12`,
+    assets.tile`tableLtv`,
+    assets.tile`tableRtv`,
+    assets.tile`MapTR`,
+    assets.tile`mapLR`,
+    assets.tile`mapLL`,
+    assets.tile`MapTR`,
+    assets.tile`mañeraC`,
+    assets.tile`armarioD`,
+    assets.tile`armarioU`,
+    assets.tile`tv0`,
+    assets.tile`tvR`,
+    assets.tile`tvD`,
+    assets.tile`TVU`,
+    assets.tile`bañeraU`,
+    assets.tile`vaterU`,
+    assets.tile`espejoBaño`,
+    assets.tile`bañeraD`,
+    assets.tile`sofaU`,
+    assets.tile`sofaM`,
+    assets.tile`sofaD`,
+    assets.tile`mesitaTV`,
+    assets.tile`vaterD`,
+    assets.tile`grifoBath`,
+    assets.tile`sofaL`,
+    assets.tile`sofaR`
     ]
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)

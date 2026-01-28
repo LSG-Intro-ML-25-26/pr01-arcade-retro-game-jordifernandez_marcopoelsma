@@ -39,24 +39,6 @@ namespace myImages {
 . . . . f f f f f f . . . . . . 
 . . . . . . f f f . . . . . . . 
 `;
-            case "image6":
-            case "YureiSkull":return img`
-. . . . f f f f f f f f . . . . 
-. . f f 1 1 1 1 1 1 1 1 f f . . 
-. . f 1 1 1 1 1 1 1 1 1 1 f . . 
-. f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
-. f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
-f 1 1 f 1 f 1 1 1 1 f 1 f 1 1 f 
-f 1 1 1 f 1 1 1 1 1 1 f 1 1 1 f 
-f 1 1 f 1 f 1 1 1 1 f 1 f 1 1 f 
-f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
-. f 1 1 1 1 1 f f 1 1 1 1 1 f . 
-. . f 1 1 1 1 f f 1 1 1 1 f . . 
-. . . f 1 1 1 1 1 1 1 1 f . . . 
-. . . f 1 1 f 1 1 f 1 1 f . . . 
-. . . f 1 1 f 1 1 f 1 1 f . . . 
-. . . . f f f f f f f f . . . . 
-`;
             case "image7":
             case "DemonSkull":return img`
 2 . . . f f f f f f f f . . . 2 
@@ -273,6 +255,24 @@ f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f
 . . f 1 1 1 1 f f 1 1 1 1 f . . 
 . . . f 1 1 1 1 1 1 1 1 f . . . 
 . . . f 1 1 1 1 1 1 1 1 f . . . 
+. . . f 1 1 f 1 1 f 1 1 f . . . 
+. . . . f f f f f f f f . . . . 
+`;
+            case "image6":
+            case "YokaiSkull":return img`
+. . . . f f f f f f f f . . . . 
+. . f f 1 1 1 1 1 1 1 1 f f . . 
+. . f 1 1 1 1 1 1 1 1 1 1 f . . 
+. f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
+. f 1 1 1 1 1 1 1 1 1 1 1 1 f . 
+f 1 1 f 1 f 1 1 1 1 f 1 f 1 1 f 
+f 1 1 1 f 1 1 1 1 1 1 f 1 1 1 f 
+f 1 1 f 1 f 1 1 1 1 f 1 f 1 1 f 
+f 1 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+. f 1 1 1 1 1 f f 1 1 1 1 1 f . 
+. . f 1 1 1 1 f f 1 1 1 1 f . . 
+. . . f 1 1 1 1 1 1 1 1 f . . . 
+. . . f 1 1 f 1 1 f 1 1 f . . . 
 . . . f 1 1 f 1 1 f 1 1 f . . . 
 . . . . f f f f f f f f . . . . 
 `;

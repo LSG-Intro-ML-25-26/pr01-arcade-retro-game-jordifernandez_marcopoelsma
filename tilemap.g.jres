@@ -430,12 +430,6 @@
         "tilemapTile": true,
         "displayName": "Revenant0"
     },
-    "tile86": {
-        "data": "hwQQABAAAAAzMzP//zMzMzMz/xERPzMzM/8RERHxMzMzHxEfHxH/P/MREfERERHx8xERHx8REfHzERERERHx//MRERER/xHx8xERERH/EfHzERERERHx//MRER8fERHx8xER8REREfEzHxEfHxH/PzP/ERER8TMzMzP/ERE/MzMzMzP//zMzMw==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "Yurei0"
-    },
     "tile20": {
         "data": "hwQQABAAAAAzMzMzMzP//zMzMzMzM/EfMzMzMzMzEREzMzMzMzMRETMzMzMzMxERMzMzMzMzEREzMzMzMzMRETMzMzMzMxERMzMzMzMz//8zMzMzMzPxHzMzMzMzMxERMzMzMzMzEREzMzMzMzMRETMzMzMzMxERMzMzMzMzEREzMzMzMzMREQ==",
         "mimeType": "image/x-mkcd-f4",
@@ -471,12 +465,6 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "Revenant"
-    },
-    "tile26": {
-        "data": "hwQQABAAAAAzMzP//zP//zMz/xERP/EfM/8RERHxEREzHxEfHxH/H/MREfERERHx8xERHx8REfHzERERERHx//MRERER/xHx8xERERH/EfHzERERERHx//MRER8fERHx8xER8REREfEzHxEfHxH/HzP/ERER8RERMzP/ERE/EREzMzP//zMREQ==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "Yurei"
     },
     "tile33": {
         "data": "hwQQABAAAAAzMzMzMzP//zMzMzMzM/EfMzMzMzMzEREzMzMzMzPxHzMzMzMzM+/+MzMzMzMz7/4zMzMzM/PuHzMzMzMz8+4fMzMzMzPv/v8zMzMzM+/+HzMzMzPz7h8RMzMzM/PuHxEzMzMzM/8RETMzMzMzMxERMzMzMzMzEREzMzMzMzMREQ==",
@@ -730,6 +718,18 @@
         "tilemapTile": true,
         "displayName": "moquetaTableR"
     },
+    "tile86": {
+        "data": "hwQQABAAAAAzMzP//zMzMzMz/xERPzMzM/8RERHxMzMzHxEfHxH/P/MREfERERHx8xERHx8REfHzERERERHx//MRERER/xHx8xERERH/EfHzERERERHx//MRER8fERHx8xER8REREfEzHxEfHxH/PzP/ERER8TMzMzP/ERE/MzMzMzP//zMzMw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Yokai0"
+    },
+    "tile26": {
+        "data": "hwQQABAAAAAzMzP//zP//zMz/xERP/EfM/8RERHxEREzHxEfHxH/H/MREfERERHx8xERHx8REfHzERERERHx//MRERER/xHx8xERERH/EfHzERERERHx//MRER8fERHx8xER8REREfEzHxEfHxH/HzP/ERER8RERMzP/ERE/EREzMzP//zMREQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "YokaiVan"
+    },
     "nivel4": {
         "id": "nivel4",
         "mimeType": "application/mkcd-tilemap",
@@ -898,7 +898,8 @@
             "myTiles.tile119",
             "myTiles.tile120",
             "myTiles.tile121",
-            "myTiles.tile122"
+            "myTiles.tile122",
+            "myTiles.tile86"
         ],
         "displayName": "TangleWood"
     },

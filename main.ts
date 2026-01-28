@@ -25,7 +25,7 @@ function ghostAbilitiesList () {
         ghostCloseSpeed = ghostCloseSpeed * 0.5
         sightRange = 999999999999
         ghostSight = true
-    } else if (currentGhostAbility == "Yurei") {
+    } else if (currentGhostAbility == "Yokai") {
         sightRange = sightRange * 0.2
         looseTrailTime = looseTrailTime * 0.4
     } else if (currentGhostAbility == "Mimic") {
@@ -737,7 +737,7 @@ function setGhostType () {
     "Mimic",
     "Oni",
     "Revenant",
-    "Yurei"
+    "Yokai"
     ]
     skullList = [
     assets.image`DemonSkull`,
@@ -745,7 +745,7 @@ function setGhostType () {
     assets.image`MimicSkull`,
     assets.image`OniSkull`,
     assets.image`RevenantSkull`,
-    assets.image`YureiSkull`
+    assets.image`YokaiSkull`
     ]
     currentGhostAbility = ghostList._pickRandom()
     currentGhostType = currentGhostAbility
@@ -1028,7 +1028,7 @@ forever(function () {
             ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 70)
             ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         }
-    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`Yurei`)) {
+    } else if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), assets.tile`YokaiVan`)) {
         if (!(infoDisplayed)) {
             infoDisplayed = true
             ghostReveal = miniMenu.createMenuFromArray([miniMenu.createMenuItem(ghostList[5], skullList[5]), miniMenu.createMenuItem("Can only see closely")])

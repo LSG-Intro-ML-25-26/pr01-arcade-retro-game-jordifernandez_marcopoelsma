@@ -9,11 +9,6 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "hidden"
     },
-    "image6": {
-        "data": "hwQQAA8AAAAAAPD/DwAAAADwHxHxAAAA8B8REREPAADwEfHxEfH/AB8RER8REREPHxHx8REREQ8fERERERH/Dx8RERHxHxEPHxEREfEfEQ8fERERERH/Dx8R8fEREREPHxERHxEREQ/wEfHxEfH/APAfERERDwAAAPAfEfEAAAAAAPD/DwAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "YureiSkull"
-    },
     "image7": {
         "data": "hwQQAA8AAAAiAvD/DwAAACAiHxHxAAAA8CLx/xEPAADwIv//H/H/AB8f//8fESECH/H//x8RIQ8f8fH/ERH/Dx8RERHxHyECHxEREfEfIQ8f8fH/ERH/Dx/x//8fESEPHx///x8RIQLwIv//H/H/APAi8f8RDwAAICIfEfEAAAAiAvD/DwAAAA==",
         "mimeType": "image/x-mkcd-f4",
@@ -73,6 +68,11 @@
         "data": "hwQQABAAAAAAAAD//wAAAAAA/xERDwAAUPURERHxAAAFXxH/HxH/D/VREf8fERHx9VER/x8REfH1URERERER//VRERER/xHx9VERERH/EfH1URERERER//VREf8fERHx9VER/x8REfEFXxH/HxH/D1D1ERER8QAAAAD/EREPAAAAAAD//wAAAA==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "easy"
+    },
+    "image6": {
+        "data": "hwQQAA8AAAAAAPD/DwAAAADwHxHxAAAA8B8REREPAADwEfHxEfH/AB8RER8REREPHxHx8REREQ8fERERERH/Dx8RERHxHxEPHxEREfEfEQ8fERERERH/Dx8R8fEREREPHxERHxEREQ/wEfHxEfH/APAfERERDwAAAPAfEfEAAAAAAPD/DwAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "YokaiSkull"
     },
     "anim2": {
         "namespace": "myAnimations",

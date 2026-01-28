@@ -159,7 +159,8 @@ function changToHuntPalette () {
     }
 }
 function setUtilTiles () {
-    floorTiles = [
+    setRooms()
+    houseDefualtTiles = [
     assets.tile`miMosaico2`,
     assets.tile`moqueta`,
     assets.tile`moqueta2`,
@@ -247,63 +248,6 @@ function setUtilTiles () {
     for (let wall of wallList) {
         tileUtil.setWalls(wall, true)
     }
-}
-function setPlayerSpawnAndCam () {
-    mainCharacter = sprites.create(assets.image`mainPlayerR`, SpriteKind.Player)
-    tiles.placeOnRandomTile(mainCharacter, assets.tile`playerSpawn`)
-}
-function noSelectMenu () {
-    ghostReveal.setFrame(img`
-        ..bbabbaabbaabbaabbbbb..
-        .bddbaddbaddbaddbabbddb.
-        addddbaddbaddbaddbadddda
-        addddbbaabbaabbaabbdddda
-        abddbccccccccccccccbddba
-        bbabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbadb
-        abdaccccccccccccccccadda
-        addaccccccccccccccccadba
-        bdabccccccccccccccccbbab
-        babbccccccccccccccccbabb
-        abddbccccccccccccccbddba
-        addddbbaabbaabbaabbdddda
-        addddabddabddabddabdddda
-        .addbbabddabddabddabdda.
-        ..aaabbaabbaabbaabbaaa..
-        `)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
-    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
-    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 11)
-    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
-}
-function setGhostStats () {
-    maxAtkCooldown = 5000 / difficulty
-    minAtkCooldown = 10000 / difficulty
-    maxHuntTime = 15000 * difficulty
-    minHuntTime = 20000 * difficulty
-    looseTrailTime = 5000 * difficulty
-    ghostSpeed = 100 * difficulty
-    ghostSightSpeed = ghostSpeed
-    ghostCloseSpeed = ghostSpeed
-    wallHacks = false
-    sightRange = 160 * difficulty
-    flashingGhost = 300
-    setGhostAnimation()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(ghostReadyToHunt) && !(openedMenu) && !(openOtherMenu) && !(infoDisplayed)) {
@@ -399,9 +343,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         inputGhostType.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
         inputGhostType.onButtonPressed(controller.A, function (selection, selectedIndex) {
             if (canHunt) {
-                if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoom)) {
-                    if (selectedIndex == ghostList.indexOf(currentGhostType)) {
-                        win = true
+                for (let index = 0; index <= rooms[ghostSpawnRoomIndex].length; index++) {
+                    if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoomTiles[index])) {
+                        if (selectedIndex == ghostList.indexOf(currentGhostType)) {
+                            win = true
+                        }
                     }
                 }
                 gameOver2()
@@ -415,6 +361,63 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         })
     }
 })
+function setPlayerSpawnAndCam () {
+    mainCharacter = sprites.create(assets.image`mainPlayerR`, SpriteKind.Player)
+    tiles.placeOnRandomTile(mainCharacter, assets.tile`hideLeft`)
+}
+function noSelectMenu () {
+    ghostReveal.setFrame(img`
+        ..bbabbaabbaabbaabbbbb..
+        .bddbaddbaddbaddbabbddb.
+        addddbaddbaddbaddbadddda
+        addddbbaabbaabbaabbdddda
+        abddbccccccccccccccbddba
+        bbabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbadb
+        abdaccccccccccccccccadda
+        addaccccccccccccccccadba
+        bdabccccccccccccccccbbab
+        babbccccccccccccccccbabb
+        abddbccccccccccccccbddba
+        addddbbaabbaabbaabbdddda
+        addddabddabddabddabdddda
+        .addbbabddabddabddabdda.
+        ..aaabbaabbaabbaabbaaa..
+        `)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 160)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 60)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    ghostReveal.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 11)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.BorderColor, 13)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Foreground, 16)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
+    ghostReveal.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Background, 11)
+    ghostReveal.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+}
+function setGhostStats () {
+    maxAtkCooldown = 5000 / difficulty
+    minAtkCooldown = 10000 / difficulty
+    maxHuntTime = 15000 * difficulty
+    minHuntTime = 20000 * difficulty
+    looseTrailTime = 5000 * difficulty
+    ghostSpeed = 100 * difficulty
+    ghostSightSpeed = ghostSpeed
+    ghostCloseSpeed = ghostSpeed
+    wallHacks = false
+    sightRange = 160 * difficulty
+    flashingGhost = 300
+    setGhostAnimation()
+}
 function setDifficulty () {
     if (!(isDifficultySetted)) {
         incenseState = true
@@ -499,6 +502,46 @@ function setDifficulty () {
         incenseState = false
     }
 }
+function setRooms () {
+    rooms = [
+    roomKitchen,
+    roomHallway,
+    roomTVRoom,
+    roomDinningRoom,
+    roomBedRoom,
+    roomBathRoom,
+    roomLockerRoom,
+    roomEntranceRoom,
+    roomStorageRoom,
+    roomRuinsRoom
+    ]
+    roomKitchen = [assets.tile`miMosaico2`]
+    roomHallway = [
+    assets.tile`moqueta`,
+    assets.tile`moquetaTableLR0`,
+    assets.tile`moquetaTableL0`,
+    assets.tile`moquetaTableR`
+    ]
+    roomTVRoom = [assets.tile`moqueta2`]
+    roomDinningRoom = [
+    assets.tile`floor1`,
+    assets.tile`mesa L`,
+    assets.tile`mesaR`,
+    assets.tile`floorWithDoor1`
+    ]
+    roomBedRoom = [
+    assets.tile`moqueta1`,
+    assets.tile`TablemoquetaR`,
+    assets.tile`moqueta1`,
+    assets.tile`moquetaDoorL`,
+    assets.tile`moquetaDoorR`
+    ]
+    roomBathRoom = [assets.tile`bathroom`, assets.tile`bathrooDoor`]
+    roomLockerRoom = [assets.tile`suelo3`, assets.tile`suelArmarioD`]
+    roomEntranceRoom = [assets.tile`floor2`]
+    roomStorageRoom = [assets.tile`floor4`]
+    roomRuinsRoom = [assets.tile`myTile4`]
+}
 function setGhost () {
     ghost = sprites.create(img`
         ........................
@@ -527,7 +570,29 @@ function setGhost () {
         ........................
         `, SpriteKind.Enemy)
     ghost.setScale(0, ScaleAnchor.Middle)
-    ghostSpawnRoom = floorTiles._pickRandom()
+    ghostSpawnRoomIndex = randint(0, rooms.length)
+    ghostSpawnRoom = houseDefualtTiles[ghostSpawnRoomIndex]
+    if (ghostSpawnRoomIndex == 0) {
+        ghostSpawnRoomTiles = roomKitchen
+    } else if (ghostSpawnRoomIndex == 1) {
+        ghostSpawnRoomTiles = roomHallway
+    } else if (ghostSpawnRoomIndex == 2) {
+        ghostSpawnRoomTiles = roomTVRoom
+    } else if (ghostSpawnRoomIndex == 3) {
+        ghostSpawnRoomTiles = roomDinningRoom
+    } else if (ghostSpawnRoomIndex == 4) {
+        ghostSpawnRoomTiles = roomBedRoom
+    } else if (ghostSpawnRoomIndex == 5) {
+        ghostSpawnRoomTiles = roomBathRoom
+    } else if (ghostSpawnRoomIndex == 6) {
+        ghostSpawnRoomTiles = roomLockerRoom
+    } else if (ghostSpawnRoomIndex == 7) {
+        ghostSpawnRoomTiles = roomEntranceRoom
+    } else if (ghostSpawnRoomIndex == 8) {
+        ghostSpawnRoomTiles = roomStorageRoom
+    } else {
+        ghostSpawnRoomTiles = roomRuinsRoom
+    }
 }
 function setStates () {
     changeHuntOrColorState = false
@@ -730,34 +795,47 @@ let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
-let ghost: Sprite = null
+let ghostSpawnRoom: Image = null
+let roomRuinsRoom: Image[] = []
+let roomStorageRoom: Image[] = []
+let roomEntranceRoom: Image[] = []
+let roomLockerRoom: Image[] = []
+let roomBathRoom: Image[] = []
+let roomBedRoom: Image[] = []
+let roomDinningRoom: Image[] = []
+let roomTVRoom: Image[] = []
+let roomHallway: Image[] = []
+let roomKitchen: Image[] = []
 let selectedDiff: Sprite = null
 let incenseCount = 0
 let setDifficultyMenu: miniMenu.MenuSprite = null
 let incenseState = false
 let isDifficultySetted = false
+let minHuntTime = 0
+let difficulty = 0
+let ghostReveal: miniMenu.MenuSprite = null
 let playerVelocity = 0
 let win = false
 let currentGhostType = ""
-let ghostSpawnRoom: Image = null
+let ghostSpawnRoomTiles: Image[] = []
+let ghostSpawnRoomIndex = 0
+let rooms: Image[][] = []
 let canHunt = false
 let skullList: Image[] = []
 let ghostList: string[] = []
 let inputGhostType: miniMenu.MenuSprite = null
+let mainCharacter: Sprite = null
 let infoDisplayed = false
 let openOtherMenu = false
 let openedMenu = false
 let ghostReadyToHunt = false
-let minHuntTime = 0
-let difficulty = 0
-let ghostReveal: miniMenu.MenuSprite = null
 let wallList: Image[] = []
 let closedDoor: Image = null
 let openDoor: Image = null
 let hideTiles: Image[] = []
 let otherHouseTilescantSpawn: Image[] = []
 let selectDiffTile: Image = null
-let floorTiles: Image[] = []
+let houseDefualtTiles: Image[] = []
 let maxMimicCooldown = 0
 let minMimicCooldown = 0
 let ghostSight = false
@@ -772,11 +850,11 @@ let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
-let mainCharacter: Sprite = null
+let ghost: Sprite = null
 changeToNormalPalette()
 setMap()
 setSpriteUtils()
-scene.cameraFollowSprite(mainCharacter)
+scene.cameraFollowSprite(ghost)
 forever(function () {
     if (ghostReadyToHunt) {
         if (!(ghostSight)) {
@@ -785,9 +863,9 @@ forever(function () {
                 if (random == 0) {
                     randomTile = randint(0, hideTiles.length)
                 } else {
-                    randomTile = randint(0, floorTiles.length)
+                    randomTile = randint(0, houseDefualtTiles.length)
                 }
-                tiles.placeOnRandomTile(ghostDirection, floorTiles[randomTile])
+                tiles.placeOnRandomTile(ghostDirection, houseDefualtTiles[randomTile])
                 generatedPath = true
             } else {
                 if (ghostCanStartMoving) {
@@ -805,6 +883,21 @@ forever(function () {
                 }
             }
         }
+    }
+})
+forever(function () {
+    if (currentGhostType == "Mimic") {
+        while (true) {
+            currentGhostAbility = ghostList._pickRandom()
+            if (currentGhostAbility != currentGhostType) {
+                setGhostStats()
+                ghostAbilitiesList()
+                break;
+            }
+        }
+        pause(randint(minMimicCooldown, maxMimicCooldown))
+    } else {
+        pause(9999999999)
     }
 })
 forever(function () {
@@ -842,21 +935,6 @@ forever(function () {
                 scene.followPath(ghost, scene.aStar(tiles.locationOfSprite(ghost), tiles.locationOfSprite(mainCharacter)), ghostSightSpeed)
             }
         }
-    }
-})
-forever(function () {
-    if (currentGhostType == "Mimic") {
-        while (true) {
-            currentGhostAbility = ghostList._pickRandom()
-            if (currentGhostAbility != currentGhostType) {
-                setGhostStats()
-                ghostAbilitiesList()
-                break;
-            }
-        }
-        pause(randint(minMimicCooldown, maxMimicCooldown))
-    } else {
-        pause(9999999999)
     }
 })
 forever(function () {
@@ -1029,7 +1107,7 @@ forever(function () {
 })
 forever(function () {
     if (!(gameOver)) {
-        for (let tile of floorTiles) {
+        for (let tile of houseDefualtTiles) {
             if (tiles.tileAtLocationEquals(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), tile)) {
                 isHouseFloorTile = true
                 hiding = false

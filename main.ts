@@ -262,7 +262,7 @@ function setUtilTiles () {
     assets.tile`MapTR`,
     assets.tile`mapLR`,
     assets.tile`mapLL`,
-    assets.tile`MapTR`,
+    assets.tile`mapTL`,
     assets.tile`mañeraC`,
     assets.tile`armarioD`,
     assets.tile`armarioU`,

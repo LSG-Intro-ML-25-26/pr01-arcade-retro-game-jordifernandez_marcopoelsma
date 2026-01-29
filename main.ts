@@ -1,10 +1,93 @@
 function isPlayerInGhostRoom () {
-    for (let index = 0; index <= ghostSpawnRoomTiles.length - 1; index++) {
-        if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), ghostSpawnRoomTiles[index])) {
-            win = true
-            break;
-        } else {
-            win = false
+    if (ghostSpawnRoomIndex == 0) {
+        for (let index = 0; index <= roomKitchen.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomKitchen[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 1) {
+        for (let index = 0; index <= roomHallway.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomHallway[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 2) {
+        for (let index = 0; index <= roomTVRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomTVRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 3) {
+        for (let index = 0; index <= roomDinningRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomDinningRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 4) {
+        for (let index = 0; index <= roomBedRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomBedRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 5) {
+        for (let index = 0; index <= roomBathRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomBathRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 6) {
+        for (let index = 0; index <= roomLockerRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomLockerRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 7) {
+        for (let index = 0; index <= roomEntranceRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomEntranceRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 8) {
+        for (let index = 0; index <= roomStorageRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomStorageRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
+        }
+    } else if (ghostSpawnRoomIndex == 9) {
+        for (let index = 0; index <= roomRuinsRoom.length - 1; index++) {
+            if (tiles.tileIs(tiles.getTileLocation(mainCharacter.x / 16, mainCharacter.y / 16), roomRuinsRoom[index])) {
+                win = true
+                break;
+            } else {
+                win = false
+            }
         }
     }
 }
@@ -829,19 +912,9 @@ let gameOver = false
 let isHouseFloorTile = false
 let ghostHunt = false
 let changeHuntOrColorState = false
+let ghostSpawnRoomTiles: Image[] = []
 let ghostSpawnRoom: Image = null
-let ghostSpawnRoomIndex = 0
 let ghost: Sprite = null
-let roomRuinsRoom: Image[] = []
-let roomStorageRoom: Image[] = []
-let roomEntranceRoom: Image[] = []
-let roomLockerRoom: Image[] = []
-let roomBathRoom: Image[] = []
-let roomBedRoom: Image[] = []
-let roomDinningRoom: Image[] = []
-let roomTVRoom: Image[] = []
-let roomHallway: Image[] = []
-let roomKitchen: Image[] = []
 let rooms: Image[][] = []
 let selectedDiff: Sprite = null
 let incenseCount = 0
@@ -882,8 +955,18 @@ let minAtkCooldown = 0
 let maxAtkCooldown = 0
 let flashingGhost = 0
 let currentGhostAbility = ""
+let roomRuinsRoom: Image[] = []
+let roomStorageRoom: Image[] = []
+let roomEntranceRoom: Image[] = []
+let roomLockerRoom: Image[] = []
+let roomBathRoom: Image[] = []
+let roomBedRoom: Image[] = []
+let roomDinningRoom: Image[] = []
+let roomTVRoom: Image[] = []
+let roomHallway: Image[] = []
 let win = false
-let ghostSpawnRoomTiles: Image[] = []
+let roomKitchen: Image[] = []
+let ghostSpawnRoomIndex = 0
 let mainCharacter: Sprite = null
 changeToNormalPalette()
 setMap()
